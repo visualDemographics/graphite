@@ -1,0 +1,5 @@
+file,url,retrieved,bytes,sha256
+ds140-graphite-2022.xlsx,https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/media/files/ds140-graphite-2022.xlsx,2026-11-03,36809,b3dae30d9679fcaaa0c37ef4c044eeaf032cb708b1a65359a1cc5fd10356c56a
+fred_cpi_monthly.csv,https://fred.stlouisfed.org/graph/fredgraph.csv?id=CPIAUCSL,2026-11-03,17763,8556b710094027fa4724641d48be620cc37c04abfa15a0c496378cf1146c1549
+usgs_myb2022_graphite.xlsx,https://pubs.usgs.gov/myb/vol1/2022/myb1-2022-graphite.xlsx,2026-11-03,149975,403c2431ae6794546bc3f9c840410c4d33f7b7cece1697945b72b4c321112f87
+usgs_myb2023_graphite_ert.xlsx,https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/media/files/myb1-2023-Graph-ERT.xlsx,2026-11-03,97342,0a4e8dcdbd600366f26e7a521a4132a1f365c8af5352b5a1b2a0b871943f3003

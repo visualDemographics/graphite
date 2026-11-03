@@ -1,0 +1,10 @@
+grade_id,grade_name,mesh_size,carbon_purity_min,carbon_purity_max,carbon_purity_mid,price_min_usd_t,price_max_usd_t,price_mid_usd_t,value_chain_stage,primary_source,is_primary_source
+AMORPHOUS,Amorphous Graphite Powder,-200 mesh (<75 um),0.8,0.85,0.825,435.0,500.0,467.5,Upstream Concentrate,USGS Minerals Yearbook 2022 Table 4 (80-85% C),1
+FINE_FLAKE,Fine Crystalline Flake (-100 mesh),-100 mesh (<150 um),0.94,0.97,0.955,755.0,830.0,792.5,Upstream Flotation Concentrate,USGS Minerals Yearbook 2022 Table 4 (-100 mesh 94-97% C),1
+MEDIUM_FLAKE,Medium Crystalline Flake (+100 / -80 mesh),+100 to -80 mesh (150-180 um),0.94,0.97,0.955,950.0,1250.0,1100.0,Upstream Flotation Concentrate,USGS Minerals Yearbook 2022 Table 4 (+100/-80 mesh 94-97% C),1
+LARGE_FLAKE,Large Crystalline Flake (+80 / -50 mesh),+80 to -50 mesh (180-300 um),0.94,0.97,0.955,1200.0,1400.0,1300.0,Upstream Flotation Concentrate,USGS Minerals Yearbook 2022 Table 4 (+80/-50 mesh 94-97% C),1
+JUMBO_FLAKE_ESTIMATE,Jumbo Flake (+50 / +32 mesh) [Trade Estimate],+50 to +32 mesh (300-500 um),0.95,0.98,0.965,2000.0,2450.0,2225.0,Upstream Flotation Concentrate,Fastmarkets IM Trade Estimate 2022-2023 (Secondary Benchmark),0
+UNCOATED_SPG,Uncoated Spherical Purified Graphite (uSPG),15-20 um D50,0.9995,0.9997,0.9996,2800.0,3000.0,2900.0,Midstream Purified Intermediate,USGS Minerals Yearbook 2022 Table 4 (15 microns 99.95% C),1
+US_IMPORT_SPG,US Import Natural SPG Unit Value 2022,15-20 um D50,0.9995,0.9998,0.99965,3930.0,4480.0,4480.0,Midstream Purified Intermediate,USGS Minerals Yearbook 2022 p. 32.4 (US Customs),1
+SYNTHETIC_ANODE_IMPORT,US Import Synthetic Anode Material 2022,15-20 um D50,0.999,0.9998,0.9995,5130.0,5520.0,5130.0,Downstream Active Anode Material,USGS Minerals Yearbook 2022 p. 32.5 (US Customs),1
+COATED_CSPG_ESTIMATE,Coated Spherical Purified Graphite (cSPG) [Industry Estimate],15-20 um D50 Carbon Coated,0.9995,0.9999,0.9997,5500.0,8500.0,7000.0,Downstream Active Anode Material,Benchmark Mineral Intelligence / Fastmarkets 2023-2024,0

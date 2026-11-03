@@ -1,0 +1,15 @@
+route,stage,electricity_intermediate_kwh,electricity_cumulative_kwh,thermal_energy_mj_per_kg,mass_yield_stage_pct,cumulative_mass_factor,acid_reagent_kg_per_t,stage_description
+Natural_Chemical_HF,1_Mining_Flotation,0.484,1.352,2.88,10.43,2.534,0.0,"Ore crushing, grinding and froth flotation to 95% C concentrate (ANL Table 3)"
+Natural_Chemical_HF,2_Micronization_Spheronization,1.899,2.167,0.0,45.05,1.141,0.0,Mechanical rounding in air classifier mills; 54.7% fine scrap byproduct
+Natural_Chemical_HF,3_Purification_HF,0.276,0.279,0.955,88.5,1.01,480.0,Acid leaching: 180kg HF + 200kg HCl + 100kg HNO3 + 400kg CaO neutralizing lime
+Natural_Chemical_HF,4_Pitch_Coating_Carbonization,4.113,4.113,0.0,99.0,1.0,0.0,"5 wt% petroleum pitch coating, carbonization at 1,000-1,200C in inert N2"
+Natural_Thermal,1_Mining_Flotation,0.484,1.352,2.88,10.43,2.534,0.0,"Ore crushing, grinding and froth flotation to 95% C concentrate"
+Natural_Thermal,2_Micronization_Spheronization,1.899,2.167,0.0,45.05,1.141,0.0,Mechanical rounding in air classifier mills; 54.7% fine scrap byproduct
+Natural_Thermal,3_Thermal_Purification,9.5,9.595,0.0,90.0,1.01,0.0,"Ultra-high temperature electric furnace (2,800C); zero chemical effluent"
+Natural_Thermal,4_Pitch_Coating_Carbonization,4.113,4.113,0.0,99.0,1.0,0.0,"5 wt% petroleum pitch coating, carbonization at 1,000-1,200C in inert N2"
+Synthetic_Acheson,1_Precursor_Calcination,0.442,0.442,14.31,74.0,1.108,0.0,"Rotary kiln calcination of green needle coke at 1,300C (ANL Table 2)"
+Synthetic_Acheson,2_Milling_Mixing_Baking,0.85,0.85,11.7,99.6,1.02,0.0,"Micronization, 20 wt% coal tar pitch blending, ring furnace baking at 1,000C"
+Synthetic_Acheson,3_Graphitization_Acheson,12.5,12.5,0.0,98.0,1.0,0.0,"Traditional Acheson batch resistance furnace (2,800-3,000C, ~30% thermal eff)"
+Synthetic_LWG_Castner,1_Precursor_Calcination,0.442,0.442,14.31,74.0,1.108,0.0,"Rotary kiln calcination of green needle coke at 1,300C (ANL Table 2)"
+Synthetic_LWG_Castner,2_Milling_Mixing_Baking,0.85,0.85,11.7,99.6,1.02,0.0,"Micronization, 20 wt% coal tar pitch blending, ring furnace baking at 1,000C"
+Synthetic_LWG_Castner,3_Graphitization_LWG,7.4,7.4,0.0,98.0,1.0,0.0,Longitudinal graphitization / Castner continuous furnace (50-60% thermal efficiency)

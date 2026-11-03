@@ -1,0 +1,32 @@
+{
+  "H1_midstream_chokepoint": {
+    "hypothesis": "China midstream processing share exceeds upstream mine share by >= 15 pp",
+    "china_mine_share_pct": 79.38,
+    "china_spherical_share_pct": 99.0,
+    "spread_pp": 19.620000000000005,
+    "verdict": "CONFIRMED"
+  },
+  "H2_real_price_trend": {
+    "hypothesis": "Long-term real price shows no secular upward trend (slope <= 0 or p > 0.05)",
+    "ols_slope_usd_per_year": 13.9134506401138,
+    "pvalue": 1.8553153650814613e-15,
+    "mean_real_2023_usd": 914.9049333333332,
+    "verdict": "FALSIFIED_BY_EMPIRICAL_DATA"
+  },
+  "H3_synthetic_energy_dominance": {
+    "hypothesis": "Graphitization > 65% electricity and synthetic >= 2.0x natural HF electricity",
+    "acheson_ratio": 2.036621382161843,
+    "lwg_ratio": 1.2835203780271707,
+    "acheson_graph_pct": 90.6322505800464,
+    "lwg_graph_pct": 85.13575701794754,
+    "verdict": "PARTIALLY_CONFIRMED_ARCHITECTURE_DEPENDENT"
+  },
+  "H4_grid_carbon_decoupling": {
+    "hypothesis": "Renewable synthetic cleaner than coal natural (superiority p<0.05; TOST equivalence)",
+    "mean_diff_kg_co2e": -4.719999999999999,
+    "p_superiority": 1.5476862609835985e-11,
+    "p_tost": 1.0,
+    "superiority_verdict": "CONFIRMED",
+    "equivalence_verdict": "REJECTED"
+  }
+}
