@@ -1,0 +1,89 @@
+@startuml 01_global_value_chain_topology
+!pragma layout smetana
+skinparam backgroundColor #FDFDFD
+skinparam defaultFontName "Helvetica"
+skinparam roundCorner 8
+skinparam shadowing false
+skinparam ArrowColor #2C3E50
+skinparam ArrowThickness 1.5
+
+skinparam package {
+  BackgroundColor #F4F6F7
+  BorderColor #BDC3C7
+  FontColor #2C3E50
+  FontStyle bold
+}
+
+skinparam rectangle {
+  BackgroundColor #FFFFFF
+  BorderColor #7F8C8D
+  FontColor #2C3E50
+}
+
+skinparam rectangle<<Upstream>> {
+  BackgroundColor #EBF5FB
+  BorderColor #2980B9
+}
+
+skinparam rectangle<<MidstreamChokepoint>> {
+  BackgroundColor #FDEDEC
+  BorderColor #C0392B
+  FontColor #900C3F
+  FontStyle bold
+}
+
+skinparam rectangle<<Downstream>> {
+  BackgroundColor #FEF9E7
+  BorderColor #F39C12
+}
+
+title Global Graphite Value-Chain Topology: Geopolitical Chokepoints, Step Costs & Energy Intensity\nSysML Material Flow, Cash-Cost Escalation & Specific Energy Ledger (USGS MCS 2025, IEA 2024, ANL-22/74)
+
+package "1. Upstream Extraction & Hydrocarbon Precursors" {
+  rectangle "Natural Mine Extraction\n(1,600 kt/yr Global Total, 2024e)\n---\n* China: 1,270 kt (79.38%)\n* Madagascar: 89 kt (5.56%)\n* Mozambique: 75 kt (4.69%)\n* Brazil: 68 kt (4.25%)\n* USA: 0 kt (100% Import Reliance)\n---\n<b>Ore Grade:</b> ~10.4% C (24.3 t Ore / t cSPG)\n<b>Mining Opex:</b> ~$180 - $260 / t conc" as MinedOre <<Upstream>>
+  
+  rectangle "Froth Flotation Beneficiation\nFlake Concentrate (94-97% C)\n---\n* <b>Stage Electricity:</b> 0.484 kWh/kg conc\n  (1.352 kWh/kg cumulative per cSPG)\n* <b>Stage Thermal Fuel:</b> 2.88 MJ/kg conc\n* <b>Mass Yield:</b> 10.43% (89.4% Tailings)\n---\n<b>Market Price:</b> $793 - $830/t (-100 mesh)\n  $1,100 - $1,300/t (+80/+50 mesh)" as FlakeConcentrate <<Upstream>>
+
+  rectangle "Green Petroleum Needle Coke\n(Delayed Coking of Decant Oil)\n---\n* <b>Feed Requirement:</b> 1.108 t / t AAM\n* <b>Embodied Energy:</b> ~3.5 MJ/kg\n* <b>Volatile Loss:</b> 25.8% Off-gases\n---\n<b>Precursor Cost:</b> $1,100 - $1,400 / t\n  ($1,220 - $1,550 / t finished AAM)" as PetCoke <<Upstream>>
+
+  rectangle "Coal Tar & Petroleum Pitch\n(Binder & Surface Coating Feed)\n---\n* <b>Synthetic Binder:</b> 0.205 t / t AAM (20 wt%)\n* <b>Natural Coating:</b> 0.050 t / t cSPG (5 wt%)\n* <b>Softening Point:</b> 110 - 120 °C\n---\n<b>Precursor Cost:</b> $700 - $850 / t\n  ($155/t AAM | $40/t cSPG)" as BinderPitch <<Upstream>>
+  
+  MinedOre -down-> FlakeConcentrate : Comminution & Flotation\n(10.43% Mass Recovery)
+}
+
+package "2. Midstream Refining Chokepoints (Step Cost & Energy Attribution)" {
+  rectangle "Mechanical Spheronization (ACM Train)\n---\n* <b>Feed Multiplier:</b> 2.22 t Flake / t uSPG\n* <b>Core Shaping Yield:</b> 45.05% (D50 = 15 um)\n* <b>Cleavage Fines Scrap:</b> 54.73% (sold @ $468/t)\n* <b>Stage Electricity:</b> 1.899 kWh/kg uSPG\n  (2.167 kWh/kg cSPG | 0.0 MJ/kg thermal)\n---\n<b>Step Cost Delta:</b> +$1,750 / t cSPG\n  (+$1,200/t Yield Penalty + $550/t Milling)\n<color:#C0392B><b>CHINA CONTROL: 99.0%</b></color>" as Spheronization <<MidstreamChokepoint>>
+
+  rectangle "Chemical Acid vs. Thermal Purification\n---\n* <b>Route A (HF Acid - 99% Share):</b>\n  180kg HF + 200kg HCl + 100kg HNO3 + 400kg CaO\n  <b>Electricity:</b> 0.276 kWh/kg | <b>Thermal:</b> 0.955 MJ/kg\n  <b>Step Cost Delta:</b> +$1,100 / t (Reagents + Effluent)\n* <b>Route B (Thermal 2,800 °C - <1% Share):</b>\n  <b>Electricity:</b> 9.50 kWh/kg (34.4x HF power!)\n  <b>Step Cost Delta:</b> +$1,650 / t (Zero liquid waste)\n---\n<b>Intermediate uSPG Price:</b> $2,900 - $4,480 / t" as Purification <<MidstreamChokepoint>>
+
+  rectangle "Surface Pitch Coating & Carbonization\n---\n* <b>Process:</b> 5 wt% Pitch @ 1,000 - 1,200 °C in N2\n* <b>Stage Electricity:</b> 4.113 kWh/kg cSPG\n  (52.0% of Total Chemical Route Power!)\n* <b>Stage Yield:</b> 99.0% | BET: 8.0 -> 2.0 m2/g\n---\n<b>Step Cost Delta:</b> +$1,450 / t (Coating Kiln)\n<b>QA, De-ironing & Margin:</b> +$1,900 / t" as PitchCoating <<MidstreamChokepoint>>
+
+  rectangle "Needle Coke Calcination, Milling & Baking\n---\n* <b>Step 1 (Calcining @ 1,300 °C):</b> Yield 74.0%\n  <b>Energy:</b> 0.442 kWh/kg elec + 14.31 MJ/kg fuel\n  <b>Conversion Cost:</b> +$210 / t AAM\n* <b>Step 2 (Jet Milling & Baking @ 1,000 °C):</b>\n  <b>Energy:</b> 0.850 kWh/kg elec + 11.70 MJ/kg fuel\n  <b>Conversion Cost:</b> +$540 / t AAM" as CalciningMilling <<MidstreamChokepoint>>
+
+  rectangle "Ultra-High-Temp Graphitization (2,800 - 3,000 °C)\n---\n* <b>Route A (Acheson Batch):</b> 12.50 kWh/kg (~30% eff)\n  <b>Step Cost:</b> +$1,210/t (China @ $0.045/kWh)\n  vs. +$2,825/t (EU/US @ $0.15/kWh)\n* <b>Route B (LWG Continuous):</b> 7.40 kWh/kg (~55% eff)\n  <b>Step Cost:</b> +$753/t (China) vs. +$1,760/t (EU/US)\n  <b>LWG Savings:</b> -5.10 kWh/kg (-$457/t in China)\n---\n<color:#C0392B><b>CHINA CONTROL: 95.86% (2,550 kt / 2,660 kt)</b></color>" as Graphitization <<MidstreamChokepoint>>
+
+  FlakeConcentrate -down-> Spheronization : 2.534 t Flake / t cSPG\n($1,776/t Gross Feed)
+  Spheronization -down-> Purification : uSPG Cores ($2,900/t)\n45.05% Mass Yield
+  Purification -down-> PitchCoating : 99.95% C Purified uSPG\n88.5% Mass Yield
+  
+  PetCoke -down-> CalciningMilling : 1.108 t Green Coke
+  BinderPitch -down-> CalciningMilling : 0.205 t Pitch (20 wt%)
+  BinderPitch .down.> PitchCoating : 0.050 t Pitch (5 wt%)
+  CalciningMilling -down-> Graphitization : Baked Carbon (1.02 t/t)\nCum. Elec: 1.29 kWh/kg
+}
+
+package "3. Downstream Battery Anode Products (Cumulative Energy, Carbon & Price)" {
+  rectangle "Coated Spherical Purified Graphite (cSPG)\nNatural Battery Anode Material (20.5% Global Share)\n---\n* <b>Cumulative Electricity:</b>\n  • Chemical HF Route: <b>7.91 kWh/kg</b> (6.77 intermediate)\n  • Thermal 2800°C Route: <b>17.18 kWh/kg</b>\n* <b>Cumulative Thermal Fuel:</b> 8.26 MJ/kg\n* <b>Carbon Footprint:</b> 9.6 kg CO2e/kg (Coal Grid)\n  vs. 2.1 kg CO2e/kg (Hydro Grid)\n---\n<b>Market Price: ~$7,000 / t</b> ($800 Base + $6,200 Value Added)" as NaturalCSPG <<Downstream>>
+
+  rectangle "Synthetic Battery Anode Material (AAM)\nGraphitized Synthetic Carbon (76.5% Global Share)\n---\n* <b>Cumulative Electricity:</b>\n  • Acheson Route: <b>13.79 kWh/kg</b> (90.6% in furnace)\n  • LWG Castner Route: <b>8.69 kWh/kg</b> (85.2% in furnace)\n* <b>Cumulative Thermal Fuel:</b> 26.01 MJ/kg\n* <b>Carbon Footprint:</b> 20.6 - 29.7 kg CO2e/kg (Coal Grid)\n  vs. 2.8 - 4.9 kg CO2e/kg (Hydro Grid)\n---\n<b>Market Price: $5,130 / t</b> (Range: $4,500 - $7,200 / t)" as SyntheticAAM <<Downstream>>
+
+  PitchCoating -down-> NaturalCSPG : Finished cSPG\n(+$6,200/t Total Escalation)
+  Graphitization -down-> SyntheticAAM : De-ironing (<50 ppb Fe)\n& Classification (+$750/t)
+}
+
+rectangle "Lithium-Ion Battery Cell Manufacturing (Giga-factories)\nAnode Slurry Coating on Cu Foil (95% Graphite / 5% Si-C Blend)\n---\n* Specific Capacity: 355 - 365 mAh/g (Natural cSPG) | 350 - 360 mAh/g (Synthetic AAM)\n* Anode Share of Pack Cost: ~8 - 12% (~0.85 kg Graphite per kWh Battery Capacity)" as GigaFactory <<Downstream>>
+
+NaturalCSPG -down-> GigaFactory : High Energy-Density Cells
+SyntheticAAM -down-> GigaFactory : Fast-Charge & Long-Cycle Cells
+
+@enduml

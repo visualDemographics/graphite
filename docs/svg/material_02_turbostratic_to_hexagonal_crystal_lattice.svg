@@ -1,0 +1,417 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+
+  <defs>
+    <!-- Blueprint Subtle Engineering Grid -->
+    <pattern id="blueprintGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E5E8E8" stroke-width="0.6" />
+      <path d="M 20 0 L 20 40 M 0 20 L 40 20" fill="none" stroke="#F2F4F4" stroke-width="0.4" />
+    </pattern>
+
+    <!-- Steel Hatching Pattern (ISO 128 45 deg lines) -->
+    <pattern id="steelHatch" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <rect width="8" height="8" fill="#D5D8DC" fill-opacity="0.35" />
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#566573" stroke-width="1.2" />
+    </pattern>
+
+    <!-- Elastomer / Polyurethane Wear Liner Pattern (Cross-hatch) -->
+    <pattern id="rubberLiner" width="6" height="6" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <rect width="6" height="6" fill="#2C3E50" fill-opacity="0.18" />
+      <line x1="0" y1="0" x2="0" y2="6" stroke="#1F618D" stroke-width="1.0" />
+      <line x1="0" y1="0" x2="6" y2="0" stroke="#1F618D" stroke-width="1.0" />
+    </pattern>
+
+    <!-- Refractory Brick Masonry Pattern -->
+    <pattern id="refractoryBrick" width="24" height="12" patternUnits="userSpaceOnUse">
+      <rect width="24" height="12" fill="#D35400" fill-opacity="0.25" stroke="#BA4A00" stroke-width="1" />
+      <line x1="0" y1="6" x2="24" y2="6" stroke="#BA4A00" stroke-width="1" />
+      <line x1="12" y1="0" x2="12" y2="6" stroke="#BA4A00" stroke-width="1" />
+      <line x1="0" y1="6" x2="0" y2="12" stroke="#BA4A00" stroke-width="1" />
+      <line x1="24" y1="6" x2="24" y2="12" stroke="#BA4A00" stroke-width="1" />
+    </pattern>
+
+    <!-- PTFE / Fluoropolymer Corrosion Lining Pattern -->
+    <pattern id="ptfeHatch" width="8" height="8" patternTransform="rotate(-45 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#16A085" stroke-width="1.5" />
+      <line x1="0" y1="4" x2="8" y2="4" stroke="#16A085" stroke-width="0.8" stroke-dasharray="2,2" />
+    </pattern>
+
+    <!-- Granular Resistor Coke Bed Pattern -->
+    <pattern id="cokeBed" width="16" height="16" patternUnits="userSpaceOnUse">
+      <rect width="16" height="16" fill="#2C3E50" fill-opacity="0.15" />
+      <circle cx="4" cy="4" r="2.2" fill="#34495E" />
+      <circle cx="12" cy="12" r="2.8" fill="#2C3E50" />
+      <circle cx="13" cy="4" r="1.8" fill="#1A252F" />
+      <circle cx="4" cy="12" r="2.0" fill="#2C3E50" />
+    </pattern>
+
+    <!-- Polyhedral Mineralized Froth Cellular Pattern -->
+    <pattern id="frothCells" width="18" height="16" patternUnits="userSpaceOnUse">
+      <rect width="18" height="16" fill="#EAEDED" />
+      <polygon points="9,1 17,5 17,11 9,15 1,11 1,5" fill="#F8F9F9" stroke="#566573" stroke-width="1.2" />
+      <circle cx="9" cy="8" r="3.5" fill="#FFFFFF" opacity="0.8" />
+      <path d="M 1,5 L 9,1 L 17,5" fill="none" stroke="#1C2833" stroke-width="1.6" stroke-dasharray="3,1" />
+    </pattern>
+
+    <!-- Thermal Plume & Incandescent Gradients -->
+    <radialGradient id="heatGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFF9C4" stop-opacity="1" />
+      <stop offset="45%" stop-color="#F39C12" stop-opacity="0.85" />
+      <stop offset="85%" stop-color="#C0392B" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="#7B241C" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="bubbleGrad" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.98" />
+      <stop offset="55%" stop-color="#D6EAF8" stop-opacity="0.85" />
+      <stop offset="90%" stop-color="#85C1E9" stop-opacity="0.75" />
+      <stop offset="100%" stop-color="#2E86C1" stop-opacity="0.9" />
+    </radialGradient>
+
+    <linearGradient id="metallicCyl" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7F8C8D" />
+      <stop offset="30%" stop-color="#ECF0F1" />
+      <stop offset="55%" stop-color="#BDC3C7" />
+      <stop offset="85%" stop-color="#566573" />
+      <stop offset="100%" stop-color="#7F8C8D" />
+    </linearGradient>
+
+    <linearGradient id="slurryGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#D6DBDF" stop-opacity="0.72" />
+      <stop offset="35%" stop-color="#AEB6BF" stop-opacity="0.84" />
+      <stop offset="75%" stop-color="#5D6D7E" stop-opacity="0.92" />
+      <stop offset="100%" stop-color="#2C3E50" stop-opacity="0.98" />
+    </linearGradient>
+
+    <linearGradient id="frothGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2C3E50" stop-opacity="0.85" />
+      <stop offset="30%" stop-color="#5D6D7E" stop-opacity="0.75" />
+      <stop offset="100%" stop-color="#D5D8DC" stop-opacity="0.9" />
+    </linearGradient>
+
+    <!-- Arrow Markers -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#2C3E50" />
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#C0392B" />
+    </marker>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#2980B9" />
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#27AE60" />
+    </marker>
+    <marker id="arrowOrange" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#D35400" />
+    </marker>
+    <marker id="dimTick" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 2 L 8 5 L 0 8 z" fill="#34495E" />
+    </marker>
+  </defs>
+
+  <rect width="1200" height="800" fill="#F8F9F9" />
+
+    <!-- Background Blueprint Grid & ISO Drawing Sheet Frame -->
+    <rect x="12" y="12" width="1176" height="776" fill="url(#blueprintGrid)" stroke="#1C2833" stroke-width="2" />
+    <rect x="16" y="16" width="1168" height="768" fill="none" stroke="#566573" stroke-width="0.8" />
+
+    <!-- Upper Blueprint Header -->
+    <rect x="20" y="20" width="1160" height="52" fill="#1C2833" rx="3" />
+    <rect x="20" y="68" width="1160" height="4" fill="#C0392B" />
+    <text x="36" y="43" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="bold" fill="#ECF0F1">CRYSTALLOGRAPHIC EVOLUTION: TURBOSTRATIC CARBON TO BERNAL ABAB LATTICE</text>
+    <text x="36" y="60" font-family="Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#BDC3C7">Atomic-Scale Phase Transition (1,000 -> 3,000 °C): d002 Contraction, Mering-Maire Graphitization &amp; Stage-1 LiC6 Intercalation</text>
+    <line x1="855" y1="26" x2="855" y2="64" stroke="#566573" stroke-width="1" />
+    <text x="1165" y="42" font-family="Courier, monospace" font-size="9.5" font-weight="bold" fill="#F39C12" text-anchor="end">BASIS: 1,000 kg FINISHED cSPG (24,300 kg ROM ORE)</text>
+    <text x="1165" y="58" font-family="Courier, monospace" font-size="8.5" fill="#ABB2B9" text-anchor="end">CAD SECTION VIEW A-A | P&amp;ID INSTRUMENTED</text>
+
+<g transform="translate(22, 92)" id="panel_turbostratic">
+<rect x="0" y="0" width="564" height="408" fill="#FFFFFF" stroke="#D35400" stroke-width="1.8" rx="5" />
+<rect x="0" y="0" width="564" height="28" fill="#FEF5E7" rx="4" />
+<text x="12" y="19" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="bold" font-style="normal" fill="#9C640C" text-anchor="start">1. TURBOSTRATIC CARBON: ROTATIONAL STACKING DISORDER (1,000 - 1,350 °C)</text>
+<rect x="12" y="36" width="322" height="202" fill="#FDFEFE" stroke="#F5B041" stroke-width="1.1" rx="4" />
+<text x="20" y="51" font-family="Helvetica, Arial, sans-serif" font-size="8.2" font-weight="bold" font-style="normal" fill="#B9770E" text-anchor="start">A. SIDE VIEW (c-AXIS): WAVY, CROSS-LINKED GRAPHENE RIBBONS</text>
+<path d="M 26 78 Q 88 58, 152 80 Q 214 100, 262 72" fill="none" stroke="#2C3E50" stroke-width="4.2" stroke-linecap="round" />
+<path d="M 24 118 Q 96 138, 162 110 Q 218 92, 264 122" fill="none" stroke="#34495E" stroke-width="4.2" stroke-linecap="round" />
+<path d="M 28 160 Q 92 142, 156 168 Q 216 188, 260 156" fill="none" stroke="#2C3E50" stroke-width="4.2" stroke-linecap="round" />
+<path d="M 24 202 Q 100 220, 166 196 Q 222 178, 264 204" fill="none" stroke="#34495E" stroke-width="4.2" stroke-linecap="round" />
+<line x1="102" y1="73" x2="108" y2="124" stroke="#C0392B" stroke-width="2.2" stroke-dasharray="3,2" />
+<circle cx="105" cy="98" r="5.5" fill="#E74C3C" stroke="#922B21" stroke-width="1" />
+<text x="114" y="101" font-family="Helvetica, Arial, sans-serif" font-size="7.2" font-weight="bold" font-style="normal" fill="#C0392B" text-anchor="start">S / N Bridge</text>
+<line x1="194" y1="104" x2="188" y2="172" stroke="#C0392B" stroke-width="2.2" stroke-dasharray="3,2" />
+<circle cx="191" cy="138" r="5.5" fill="#E67E22" stroke="#9C640C" stroke-width="1" />
+<text x="130" y="141" font-family="Helvetica, Arial, sans-serif" font-size="7.2" font-weight="bold" font-style="normal" fill="#B9770E" text-anchor="start">sp3 Defect</text>
+<circle cx="58" cy="139" r="6.5" fill="#F1C40F" stroke="#9C640C" stroke-width="1.2" />
+<text x="58" y="142" font-family="Helvetica, Arial, sans-serif" font-size="6.5" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="middle">Li+</text>
+<path d="M 66 139 L 86 139" stroke="#C0392B" stroke-width="1.8" marker-end="url(#arrowRed)" />
+<text x="26" y="228" font-family="Helvetica, Arial, sans-serif" font-size="7.3" font-weight="bold" font-style="normal" fill="#922B21" text-anchor="start">Steric bottleneck: high Li+ diffusion barrier (E_a &gt; 0.65 eV)</text>
+<line x1="274" y1="72" x2="274" y2="122" stroke="#C0392B" stroke-width="1.6" marker-start="url(#arrowRed)" marker-end="url(#arrowRed)" />
+<text x="280" y="93" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" font-style="normal" fill="#C0392B" text-anchor="start">d002 &gt;=</text>
+<text x="280" y="104" font-family="Courier, monospace" font-size="7.5" font-weight="bold" font-style="normal" fill="#C0392B" text-anchor="start">0.3440 nm</text>
+<text x="280" y="116" font-family="Helvetica, Arial, sans-serif" font-size="7.2" font-weight="bold" font-style="normal" fill="#922B21" text-anchor="start">(g = 0%)</text>
+<line x1="274" y1="156" x2="274" y2="204" stroke="#566573" stroke-width="1.4" marker-start="url(#dimTick)" marker-end="url(#dimTick)" />
+<text x="280" y="178" font-family="Helvetica, Arial, sans-serif" font-size="7.2" font-weight="bold" font-style="normal" fill="#34495E" text-anchor="start">L_c &lt; 5 nm</text>
+<text x="280" y="189" font-family="Helvetica, Arial, sans-serif" font-size="7.2" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="start">L_a &lt; 10 nm</text>
+<rect x="342" y="36" width="210" height="202" fill="#FDFEFE" stroke="#F5B041" stroke-width="1.1" rx="4" />
+<text x="350" y="51" font-family="Helvetica, Arial, sans-serif" font-size="8.2" font-weight="bold" font-style="normal" fill="#B9770E" text-anchor="start">B. BASAL PLAN VIEW: MOIRE TWIST</text>
+<g transform="translate(447, 128)">
+<polygon points="-9.0,-15.6 -18.0,-0.0 -36.0,-0.0 -45.0,-15.6 -36.0,-31.2 -18.0,-31.2" fill="none" stroke="#2C3E50" stroke-width="1.6" />
+<polygon points="18.0,-31.2 9.0,-15.6 -9.0,-15.6 -18.0,-31.2 -9.0,-46.8 9.0,-46.8" fill="none" stroke="#2C3E50" stroke-width="1.6" />
+<polygon points="45.0,-15.6 36.0,-0.0 18.0,-0.0 9.0,-15.6 18.0,-31.2 36.0,-31.2" fill="none" stroke="#2C3E50" stroke-width="1.6" />
+<polygon points="-9.0,15.6 -18.0,31.2 -36.0,31.2 -45.0,15.6 -36.0,0.0 -18.0,0.0" fill="none" stroke="#2C3E50" stroke-width="1.6" />
+<polygon points="18.0,0.0 9.0,15.6 -9.0,15.6 -18.0,0.0 -9.0,-15.6 9.0,-15.6" fill="none" stroke="#2C3E50" stroke-width="1.6" />
+<polygon points="45.0,15.6 36.0,31.2 18.0,31.2 9.0,15.6 18.0,0.0 36.0,0.0" fill="none" stroke="#2C3E50" stroke-width="1.6" />
+<polygon points="18.0,31.2 9.0,46.8 -9.0,46.8 -18.0,31.2 -9.0,15.6 9.0,15.6" fill="none" stroke="#2C3E50" stroke-width="1.6" />
+<g transform="rotate(22)">
+<polygon points="-9.0,-15.6 -18.0,-0.0 -36.0,-0.0 -45.0,-15.6 -36.0,-31.2 -18.0,-31.2" fill="none" stroke="#E67E22" stroke-width="1.4" stroke-dasharray="3,2" />
+<polygon points="18.0,-31.2 9.0,-15.6 -9.0,-15.6 -18.0,-31.2 -9.0,-46.8 9.0,-46.8" fill="none" stroke="#E67E22" stroke-width="1.4" stroke-dasharray="3,2" />
+<polygon points="45.0,-15.6 36.0,-0.0 18.0,-0.0 9.0,-15.6 18.0,-31.2 36.0,-31.2" fill="none" stroke="#E67E22" stroke-width="1.4" stroke-dasharray="3,2" />
+<polygon points="-9.0,15.6 -18.0,31.2 -36.0,31.2 -45.0,15.6 -36.0,0.0 -18.0,0.0" fill="none" stroke="#E67E22" stroke-width="1.4" stroke-dasharray="3,2" />
+<polygon points="18.0,0.0 9.0,15.6 -9.0,15.6 -18.0,0.0 -9.0,-15.6 9.0,-15.6" fill="none" stroke="#E67E22" stroke-width="1.4" stroke-dasharray="3,2" />
+<polygon points="45.0,15.6 36.0,31.2 18.0,31.2 9.0,15.6 18.0,0.0 36.0,0.0" fill="none" stroke="#E67E22" stroke-width="1.4" stroke-dasharray="3,2" />
+<polygon points="18.0,31.2 9.0,46.8 -9.0,46.8 -18.0,31.2 -9.0,15.6 9.0,15.6" fill="none" stroke="#E67E22" stroke-width="1.4" stroke-dasharray="3,2" />
+</g>
+</g>
+<text x="447" y="198" font-family="Helvetica, Arial, sans-serif" font-size="7.4" font-weight="bold" font-style="normal" fill="#9C640C" text-anchor="middle">Random rotation angle theta != 0°, 60°</text>
+<text x="447" y="211" font-family="Helvetica, Arial, sans-serif" font-size="7.2" font-weight="normal" font-style="normal" fill="#5D6D7E" text-anchor="middle">Incommensurate stacking destroys</text>
+<text x="447" y="222" font-family="Helvetica, Arial, sans-serif" font-size="7.2" font-weight="bold" font-style="normal" fill="#922B21" text-anchor="middle">aligned LiC6 intercalation sites</text>
+<rect x="12" y="246" width="540" height="152" fill="#FEF9E7" stroke="#F5B041" stroke-width="1.1" rx="4" />
+<text x="22" y="262" font-family="Helvetica, Arial, sans-serif" font-size="9" font-weight="bold" font-style="normal" fill="#9C640C" text-anchor="start">TURBOSTRATIC CRYSTALLOGRAPHIC &amp; ELECTROCHEMICAL AUDIT (T = 1,000 - 1,350 °C):</text>
+<line x1="22" y1="268" x2="542" y2="268" stroke="#F5B041" stroke-width="0.9" />
+<text x="22" y="282" font-family="Helvetica, Arial, sans-serif" font-size="7.8" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="start">• Layer Stacking Sequence:</text>
+<text x="198" y="282" font-family="Helvetica, Arial, sans-serif" font-size="7.8" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="start">Random rotational &amp; translational disorder (1D diffraction)</text>
+<text x="22" y="298" font-family="Helvetica, Arial, sans-serif" font-size="7.8" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="start">• Interlayer Spacing d002:</text>
+<text x="198" y="298" font-family="Helvetica, Arial, sans-serif" font-size="7.8" font-weight="bold" font-style="normal" fill="#922B21" text-anchor="start">0.3440 - 0.3550 nm (Franklin non-graphitized threshold &gt;= 0.3440 nm)</text>
+<text x="22" y="314" font-family="Helvetica, Arial, sans-serif" font-size="7.8" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="start">• XRD (002) Bragg Reflection:</text>
+<text x="198" y="314" font-family="Helvetica, Arial, sans-serif" font-size="7.8" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="start">2-theta = 25.4° - 25.8° (Cu-Ka) | Broad asymmetric peak (FWHM &gt; 1.2°)</text>
+<text x="22" y="330" font-family="Helvetica, Arial, sans-serif" font-size="7.8" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="start">• Crystallite Coherence Lengths:</text>
+<text x="198" y="330" font-family="Helvetica, Arial, sans-serif" font-size="7.8" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="start">Stacking height L_c = 2 - 5 nm | In-plane domain L_a = 4 - 10 nm</text>
+<text x="22" y="346" font-family="Helvetica, Arial, sans-serif" font-size="7.8" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="start">• Degree of Graphitization (g):</text>
+<text x="198" y="346" font-family="Helvetica, Arial, sans-serif" font-size="7.8" font-weight="bold" font-style="normal" fill="#922B21" text-anchor="start">g = 0.0%  [Mering-Maire: g = (0.3440 - d002) / (0.3440 - 0.3354)]</text>
+<text x="22" y="362" font-family="Helvetica, Arial, sans-serif" font-size="7.8" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="start">• Raman Spectroscopy (532 nm):</text>
+<text x="198" y="362" font-family="Helvetica, Arial, sans-serif" font-size="7.8" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="start">High D-band (1,350 cm-1) defect intensity: I_D / I_G = 0.85 - 1.25</text>
+<text x="22" y="378" font-family="Helvetica, Arial, sans-serif" font-size="7.8" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="start">• Reversible Li+ Capacity:</text>
+<text x="198" y="378" font-family="Helvetica, Arial, sans-serif" font-size="7.8" font-weight="bold" font-style="normal" fill="#922B21" text-anchor="start">180 - 230 mAh/g (Sloping voltage curve, high hysteresis, no LiC6 plateau)</text>
+</g>
+<g transform="translate(604, 92)" id="panel_hexagonal">
+<rect x="0" y="0" width="576" height="408" fill="#FFFFFF" stroke="#27AE60" stroke-width="1.8" rx="5" />
+<rect x="0" y="0" width="576" height="28" fill="#E8F8F5" rx="4" />
+<text x="12" y="19" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="bold" font-style="normal" fill="#0E6251" text-anchor="start">2. BERNAL HEXAGONAL 2H GRAPHITE: ORDERED ABAB REGISTRY (2,800 - 3,000 °C)</text>
+<rect x="12" y="36" width="330" height="202" fill="#FDFEFE" stroke="#76D7C4" stroke-width="1.1" rx="4" />
+<text x="20" y="51" font-family="Helvetica, Arial, sans-serif" font-size="8.2" font-weight="bold" font-style="normal" fill="#0E6251" text-anchor="start">A. SIDE VIEW (c-AXIS): ABAB STACKING &amp; STAGE-1 LiC6 GALLERIES</text>
+<text x="22" y="78" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="bold" font-style="normal" fill="#1B4F72" text-anchor="start">A</text>
+<line x1="36" y1="74" x2="236" y2="74" stroke="#1B4F72" stroke-width="4" />
+<circle cx="42" cy="74" r="3.2" fill="#FFFFFF" stroke="#1B4F72" stroke-width="1.4" />
+<circle cx="70" cy="74" r="3.2" fill="#FFFFFF" stroke="#1B4F72" stroke-width="1.4" />
+<circle cx="98" cy="74" r="3.2" fill="#FFFFFF" stroke="#1B4F72" stroke-width="1.4" />
+<circle cx="126" cy="74" r="3.2" fill="#FFFFFF" stroke="#1B4F72" stroke-width="1.4" />
+<circle cx="154" cy="74" r="3.2" fill="#FFFFFF" stroke="#1B4F72" stroke-width="1.4" />
+<circle cx="182" cy="74" r="3.2" fill="#FFFFFF" stroke="#1B4F72" stroke-width="1.4" />
+<circle cx="210" cy="74" r="3.2" fill="#FFFFFF" stroke="#1B4F72" stroke-width="1.4" />
+<text x="22" y="120" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="bold" font-style="normal" fill="#117A65" text-anchor="start">B</text>
+<line x1="36" y1="116" x2="236" y2="116" stroke="#117A65" stroke-width="4" />
+<circle cx="56" cy="116" r="3.2" fill="#FFFFFF" stroke="#117A65" stroke-width="1.4" />
+<circle cx="84" cy="116" r="3.2" fill="#FFFFFF" stroke="#117A65" stroke-width="1.4" />
+<circle cx="112" cy="116" r="3.2" fill="#FFFFFF" stroke="#117A65" stroke-width="1.4" />
+<circle cx="140" cy="116" r="3.2" fill="#FFFFFF" stroke="#117A65" stroke-width="1.4" />
+<circle cx="168" cy="116" r="3.2" fill="#FFFFFF" stroke="#117A65" stroke-width="1.4" />
+<circle cx="196" cy="116" r="3.2" fill="#FFFFFF" stroke="#117A65" stroke-width="1.4" />
+<circle cx="224" cy="116" r="3.2" fill="#FFFFFF" stroke="#117A65" stroke-width="1.4" />
+<text x="22" y="162" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="bold" font-style="normal" fill="#1B4F72" text-anchor="start">A</text>
+<line x1="36" y1="158" x2="236" y2="158" stroke="#1B4F72" stroke-width="4" />
+<circle cx="42" cy="158" r="3.2" fill="#FFFFFF" stroke="#1B4F72" stroke-width="1.4" />
+<circle cx="70" cy="158" r="3.2" fill="#FFFFFF" stroke="#1B4F72" stroke-width="1.4" />
+<circle cx="98" cy="158" r="3.2" fill="#FFFFFF" stroke="#1B4F72" stroke-width="1.4" />
+<circle cx="126" cy="158" r="3.2" fill="#FFFFFF" stroke="#1B4F72" stroke-width="1.4" />
+<circle cx="154" cy="158" r="3.2" fill="#FFFFFF" stroke="#1B4F72" stroke-width="1.4" />
+<circle cx="182" cy="158" r="3.2" fill="#FFFFFF" stroke="#1B4F72" stroke-width="1.4" />
+<circle cx="210" cy="158" r="3.2" fill="#FFFFFF" stroke="#1B4F72" stroke-width="1.4" />
+<text x="22" y="204" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="bold" font-style="normal" fill="#117A65" text-anchor="start">B</text>
+<line x1="36" y1="200" x2="236" y2="200" stroke="#117A65" stroke-width="4" />
+<circle cx="56" cy="200" r="3.2" fill="#FFFFFF" stroke="#117A65" stroke-width="1.4" />
+<circle cx="84" cy="200" r="3.2" fill="#FFFFFF" stroke="#117A65" stroke-width="1.4" />
+<circle cx="112" cy="200" r="3.2" fill="#FFFFFF" stroke="#117A65" stroke-width="1.4" />
+<circle cx="140" cy="200" r="3.2" fill="#FFFFFF" stroke="#117A65" stroke-width="1.4" />
+<circle cx="168" cy="200" r="3.2" fill="#FFFFFF" stroke="#117A65" stroke-width="1.4" />
+<circle cx="196" cy="200" r="3.2" fill="#FFFFFF" stroke="#117A65" stroke-width="1.4" />
+<circle cx="224" cy="200" r="3.2" fill="#FFFFFF" stroke="#117A65" stroke-width="1.4" />
+<line x1="42" y1="74" x2="42" y2="200" stroke="#AED6F1" stroke-width="0.9" stroke-dasharray="2,2" />
+<line x1="98" y1="74" x2="98" y2="200" stroke="#AED6F1" stroke-width="0.9" stroke-dasharray="2,2" />
+<line x1="154" y1="74" x2="154" y2="200" stroke="#AED6F1" stroke-width="0.9" stroke-dasharray="2,2" />
+<line x1="210" y1="74" x2="210" y2="200" stroke="#AED6F1" stroke-width="0.9" stroke-dasharray="2,2" />
+<circle cx="63" cy="95" r="6.5" fill="#F1C40F" stroke="#B7950B" stroke-width="1.2" />
+<text x="63" y="97.5" font-family="Helvetica, Arial, sans-serif" font-size="6" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="middle">Li+</text>
+<circle cx="119" cy="95" r="6.5" fill="#F1C40F" stroke="#B7950B" stroke-width="1.2" />
+<text x="119" y="97.5" font-family="Helvetica, Arial, sans-serif" font-size="6" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="middle">Li+</text>
+<circle cx="175" cy="95" r="6.5" fill="#F1C40F" stroke="#B7950B" stroke-width="1.2" />
+<text x="175" y="97.5" font-family="Helvetica, Arial, sans-serif" font-size="6" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="middle">Li+</text>
+<circle cx="217" cy="95" r="6.5" fill="#F1C40F" stroke="#B7950B" stroke-width="1.2" />
+<text x="217" y="97.5" font-family="Helvetica, Arial, sans-serif" font-size="6" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="middle">Li+</text>
+<circle cx="63" cy="137" r="6.5" fill="#F1C40F" stroke="#B7950B" stroke-width="1.2" />
+<text x="63" y="139.5" font-family="Helvetica, Arial, sans-serif" font-size="6" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="middle">Li+</text>
+<circle cx="119" cy="137" r="6.5" fill="#F1C40F" stroke="#B7950B" stroke-width="1.2" />
+<text x="119" y="139.5" font-family="Helvetica, Arial, sans-serif" font-size="6" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="middle">Li+</text>
+<circle cx="175" cy="137" r="6.5" fill="#F1C40F" stroke="#B7950B" stroke-width="1.2" />
+<text x="175" y="139.5" font-family="Helvetica, Arial, sans-serif" font-size="6" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="middle">Li+</text>
+<circle cx="217" cy="137" r="6.5" fill="#F1C40F" stroke="#B7950B" stroke-width="1.2" />
+<text x="217" y="139.5" font-family="Helvetica, Arial, sans-serif" font-size="6" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="middle">Li+</text>
+<circle cx="63" cy="179" r="6.5" fill="#F1C40F" stroke="#B7950B" stroke-width="1.2" />
+<text x="63" y="181.5" font-family="Helvetica, Arial, sans-serif" font-size="6" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="middle">Li+</text>
+<circle cx="119" cy="179" r="6.5" fill="#F1C40F" stroke="#B7950B" stroke-width="1.2" />
+<text x="119" y="181.5" font-family="Helvetica, Arial, sans-serif" font-size="6" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="middle">Li+</text>
+<circle cx="175" cy="179" r="6.5" fill="#F1C40F" stroke="#B7950B" stroke-width="1.2" />
+<text x="175" y="181.5" font-family="Helvetica, Arial, sans-serif" font-size="6" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="middle">Li+</text>
+<circle cx="217" cy="179" r="6.5" fill="#F1C40F" stroke="#B7950B" stroke-width="1.2" />
+<text x="217" y="181.5" font-family="Helvetica, Arial, sans-serif" font-size="6" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="middle">Li+</text>
+<line x1="246" y1="74" x2="246" y2="116" stroke="#27AE60" stroke-width="1.6" marker-start="url(#arrowGreen)" marker-end="url(#arrowGreen)" />
+<text x="252" y="91" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" font-style="normal" fill="#0E6251" text-anchor="start">d002 =</text>
+<text x="252" y="102" font-family="Courier, monospace" font-size="7.5" font-weight="bold" font-style="normal" fill="#0E6251" text-anchor="start">0.3354 nm</text>
+<text x="252" y="113" font-family="Helvetica, Arial, sans-serif" font-size="6.8" font-weight="normal" font-style="normal" fill="#117A65" text-anchor="start">(0.370 LiC6)</text>
+<line x1="246" y1="116" x2="246" y2="200" stroke="#2980B9" stroke-width="1.5" marker-start="url(#arrowBlue)" marker-end="url(#arrowBlue)" />
+<text x="252" y="155" font-family="Helvetica, Arial, sans-serif" font-size="7.3" font-weight="bold" font-style="normal" fill="#1B4F72" text-anchor="start">c = 2*d002</text>
+<text x="252" y="166" font-family="Courier, monospace" font-size="7.3" font-weight="bold" font-style="normal" fill="#1B4F72" text-anchor="start">= 0.6708 nm</text>
+<text x="252" y="182" font-family="Helvetica, Arial, sans-serif" font-size="7.0" font-weight="bold" font-style="normal" fill="#0E6251" text-anchor="start">L_c: 25-45nm</text>
+<text x="22" y="228" font-family="Helvetica, Arial, sans-serif" font-size="7.3" font-weight="bold" font-style="normal" fill="#0E6251" text-anchor="start">Stage-1 LiC6: rapid 2D Li+ diffusion (D_Li ~ 10^-8 cm2/s) -&gt; 372 mAh/g</text>
+<rect x="350" y="36" width="214" height="202" fill="#FDFEFE" stroke="#76D7C4" stroke-width="1.1" rx="4" />
+<text x="358" y="51" font-family="Helvetica, Arial, sans-serif" font-size="8.2" font-weight="bold" font-style="normal" fill="#0E6251" text-anchor="start">B. BASAL PLAN VIEW: ABAB + LiC6</text>
+<g transform="translate(457, 126)">
+<polygon points="-9.0,-15.6 -18.0,-0.0 -36.0,-0.0 -45.0,-15.6 -36.0,-31.2 -18.0,-31.2" fill="none" stroke="#1B4F72" stroke-width="1.6" />
+<polygon points="18.0,-31.2 9.0,-15.6 -9.0,-15.6 -18.0,-31.2 -9.0,-46.8 9.0,-46.8" fill="none" stroke="#1B4F72" stroke-width="1.6" />
+<polygon points="45.0,-15.6 36.0,-0.0 18.0,-0.0 9.0,-15.6 18.0,-31.2 36.0,-31.2" fill="none" stroke="#1B4F72" stroke-width="1.6" />
+<polygon points="-9.0,15.6 -18.0,31.2 -36.0,31.2 -45.0,15.6 -36.0,0.0 -18.0,0.0" fill="none" stroke="#1B4F72" stroke-width="1.6" />
+<polygon points="18.0,0.0 9.0,15.6 -9.0,15.6 -18.0,0.0 -9.0,-15.6 9.0,-15.6" fill="none" stroke="#1B4F72" stroke-width="1.6" />
+<polygon points="45.0,15.6 36.0,31.2 18.0,31.2 9.0,15.6 18.0,0.0 36.0,0.0" fill="none" stroke="#1B4F72" stroke-width="1.6" />
+<polygon points="18.0,31.2 9.0,46.8 -9.0,46.8 -18.0,31.2 -9.0,15.6 9.0,15.6" fill="none" stroke="#1B4F72" stroke-width="1.6" />
+<polygon points="9.0,-15.6 0.0,-0.0 -18.0,-0.0 -27.0,-15.6 -18.0,-31.2 0.0,-31.2" fill="none" stroke="#16A085" stroke-width="1.2" stroke-dasharray="3,2" />
+<polygon points="36.0,-31.2 27.0,-15.6 9.0,-15.6 0.0,-31.2 9.0,-46.8 27.0,-46.8" fill="none" stroke="#16A085" stroke-width="1.2" stroke-dasharray="3,2" />
+<polygon points="36.0,0.0 27.0,15.6 9.0,15.6 0.0,0.0 9.0,-15.6 27.0,-15.6" fill="none" stroke="#16A085" stroke-width="1.2" stroke-dasharray="3,2" />
+<polygon points="9.0,15.6 0.0,31.2 -18.0,31.2 -27.0,15.6 -18.0,0.0 0.0,0.0" fill="none" stroke="#16A085" stroke-width="1.2" stroke-dasharray="3,2" />
+<circle cx="0" cy="0" r="5.5" fill="#F1C40F" stroke="#B7950B" stroke-width="1.1" />
+<circle cx="0" cy="-31.2" r="5.5" fill="#F1C40F" stroke="#B7950B" stroke-width="1.1" />
+<circle cx="0" cy="31.2" r="5.5" fill="#F1C40F" stroke="#B7950B" stroke-width="1.1" />
+<circle cx="-27" cy="-15.6" r="5.5" fill="#F1C40F" stroke="#B7950B" stroke-width="1.1" />
+<circle cx="27" cy="15.6" r="5.5" fill="#F1C40F" stroke="#B7950B" stroke-width="1.1" />
+</g>
+<text x="457" y="198" font-family="Helvetica, Arial, sans-serif" font-size="7.4" font-weight="bold" font-style="normal" fill="#0E6251" text-anchor="middle">Layer B shifted by a_C-C = 0.1421 nm</text>
+<text x="457" y="211" font-family="Helvetica, Arial, sans-serif" font-size="7.2" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="middle">Golden Li+ ions occupy aligned</text>
+<text x="457" y="222" font-family="Helvetica, Arial, sans-serif" font-size="7.2" font-weight="bold" font-style="normal" fill="#145A32" text-anchor="middle">(sqrt(3) x sqrt(3))R30° LiC6 sites</text>
+<rect x="12" y="246" width="552" height="152" fill="#E8F8F5" stroke="#76D7C4" stroke-width="1.1" rx="4" />
+<text x="22" y="262" font-family="Helvetica, Arial, sans-serif" font-size="9" font-weight="bold" font-style="normal" fill="#0E6251" text-anchor="start">BERNAL HEXAGONAL CRYSTALLOGRAPHIC &amp; ELECTROCHEMICAL AUDIT (T = 2,800 - 3,000 °C):</text>
+<line x1="22" y1="268" x2="554" y2="268" stroke="#76D7C4" stroke-width="0.9" />
+<text x="22" y="282" font-family="Helvetica, Arial, sans-serif" font-size="7.8" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="start">• Space Group &amp; Polytype:</text>
+<text x="198" y="282" font-family="Helvetica, Arial, sans-serif" font-size="7.8" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="start">P6_3/mmc (2H Hexagonal ABAB Bernal registry; &lt;10% 3R ABC rhombohedral)</text>
+<text x="22" y="298" font-family="Helvetica, Arial, sans-serif" font-size="7.8" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="start">• Interlayer Spacing d002:</text>
+<text x="198" y="298" font-family="Helvetica, Arial, sans-serif" font-size="7.8" font-weight="bold" font-style="normal" fill="#0E6251" text-anchor="start">0.3354 nm (ideal crystal) | 0.3356 - 0.3360 nm (synthetic LWG/Acheson)</text>
+<text x="22" y="314" font-family="Helvetica, Arial, sans-serif" font-size="7.8" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="start">• XRD (002) Bragg Reflection:</text>
+<text x="198" y="314" font-family="Helvetica, Arial, sans-serif" font-size="7.8" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="start">2-theta = 26.55° (Cu-Ka) | Sharp symmetric reflection + (101)/(112) 3D peaks</text>
+<text x="22" y="330" font-family="Helvetica, Arial, sans-serif" font-size="7.8" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="start">• Crystallite Coherence Lengths:</text>
+<text x="198" y="330" font-family="Helvetica, Arial, sans-serif" font-size="7.8" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="start">Stacking height L_c = 25 - 45 nm | In-plane domain L_a = 50 - 120 nm</text>
+<text x="22" y="346" font-family="Helvetica, Arial, sans-serif" font-size="7.8" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="start">• Degree of Graphitization (g):</text>
+<text x="198" y="346" font-family="Helvetica, Arial, sans-serif" font-size="7.8" font-weight="bold" font-style="normal" fill="#0E6251" text-anchor="start">g = 90.0 - 97.7% (Synthetic anode spec &gt;= 93%; Natural flake ~ 98-100%)</text>
+<text x="22" y="362" font-family="Helvetica, Arial, sans-serif" font-size="7.8" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="start">• Raman Spectroscopy (532 nm):</text>
+<text x="198" y="362" font-family="Helvetica, Arial, sans-serif" font-size="7.8" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="start">Dominant G-band (1,580 cm-1) sp2 stretching: I_D / I_G = 0.08 - 0.22</text>
+<text x="22" y="378" font-family="Helvetica, Arial, sans-serif" font-size="7.8" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="start">• Reversible Li+ Capacity:</text>
+<text x="198" y="378" font-family="Helvetica, Arial, sans-serif" font-size="7.8" font-weight="bold" font-style="normal" fill="#0E6251" text-anchor="start">355 - 365 mAh/g (95-98% of 372 mAh/g Stage-1 LiC6 theoretical limit)</text>
+</g>
+<polygon points="586,282 604,294 586,306" fill="#C0392B" stroke="#FFFFFF" stroke-width="1.2" />
+<g transform="translate(22, 512)" id="crystallographic_curves">
+<rect x="0" y="0" width="642" height="268" fill="#FFFFFF" stroke="#1C2833" stroke-width="1.6" rx="5" />
+<rect x="0" y="0" width="642" height="26" fill="#1C2833" rx="4" />
+<text x="12" y="17" font-family="Helvetica, Arial, sans-serif" font-size="9.8" font-weight="bold" font-style="normal" fill="#ECF0F1" text-anchor="start">MERING-MAIRE GRAPHITIZATION TRAJECTORY (d002 VS. T) &amp; DAUMAS-HEROLD Li+ STAGING</text>
+<rect x="10" y="34" width="308" height="224" fill="#F4F9FD" stroke="#85C1E9" stroke-width="1" rx="3" />
+<text x="18" y="49" font-family="Helvetica, Arial, sans-serif" font-size="8.2" font-weight="bold" font-style="normal" fill="#1B4F72" text-anchor="start">A. INTERLAYER CONTRACTION d002(T) &amp; MERING-MAIRE g</text>
+<line x1="54" y1="68" x2="54" y2="192" stroke="#1C2833" stroke-width="1.3" />
+<line x1="54" y1="192" x2="300" y2="192" stroke="#1C2833" stroke-width="1.3" />
+<line x1="54" y1="68" x2="300" y2="68" stroke="#E74C3C" stroke-width="0.9" stroke-dasharray="3,2" />
+<text x="50" y="71" font-family="Courier, monospace" font-size="6.8" font-weight="bold" font-style="normal" fill="#C0392B" text-anchor="end">0.3440</text>
+<line x1="54" y1="128" x2="300" y2="128" stroke="#BDC3C7" stroke-width="0.8" stroke-dasharray="2,2" />
+<text x="50" y="131" font-family="Courier, monospace" font-size="6.8" font-weight="normal" font-style="normal" fill="#566573" text-anchor="end">0.3397</text>
+<line x1="54" y1="188" x2="300" y2="188" stroke="#27AE60" stroke-width="0.9" stroke-dasharray="3,2" />
+<text x="50" y="191" font-family="Courier, monospace" font-size="6.8" font-weight="bold" font-style="normal" fill="#0E6251" text-anchor="end">0.3354</text>
+<text x="54" y="204" font-family="Helvetica, Arial, sans-serif" font-size="6.8" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="middle">1,000°C</text>
+<text x="114" y="204" font-family="Helvetica, Arial, sans-serif" font-size="6.8" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="middle">1,500°C</text>
+<text x="174" y="204" font-family="Helvetica, Arial, sans-serif" font-size="6.8" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="middle">2,000°C</text>
+<text x="234" y="204" font-family="Helvetica, Arial, sans-serif" font-size="6.8" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="middle">2,500°C</text>
+<text x="294" y="204" font-family="Helvetica, Arial, sans-serif" font-size="6.8" font-weight="bold" font-style="normal" fill="#0E6251" text-anchor="middle">3,000°C</text>
+<path d="M 54 68 L 114 68 L 150 75 L 174 103 L 210 145 L 246 174 L 282 185 L 294 187" fill="none" stroke="#C0392B" stroke-width="2.4" />
+<circle cx="114" cy="68" r="3" fill="#C0392B" />
+<circle cx="174" cy="103" r="3" fill="#E67E22" />
+<circle cx="210" cy="145" r="3" fill="#F39C12" />
+<circle cx="246" cy="174" r="3.2" fill="#27AE60" />
+<circle cx="282" cy="185" r="3.8" fill="#0E6251" />
+<text x="108" y="62" font-family="Helvetica, Arial, sans-serif" font-size="6.8" font-weight="bold" font-style="normal" fill="#C0392B" text-anchor="start">Turbostratic (g=0%)</text>
+<text x="182" y="100" font-family="Helvetica, Arial, sans-serif" font-size="6.8" font-weight="bold" font-style="normal" fill="#B9770E" text-anchor="start">g = 29%</text>
+<text x="218" y="142" font-family="Helvetica, Arial, sans-serif" font-size="6.8" font-weight="bold" font-style="normal" fill="#B9770E" text-anchor="start">g = 64%</text>
+<text x="236" y="166" font-family="Helvetica, Arial, sans-serif" font-size="6.8" font-weight="bold" font-style="normal" fill="#117A65" text-anchor="end">2,600°C (g=88%)</text>
+<text x="280" y="178" font-family="Helvetica, Arial, sans-serif" font-size="6.8" font-weight="bold" font-style="normal" fill="#0E6251" text-anchor="end">2,900°C (g=95%)</text>
+<rect x="18" y="212" width="292" height="40" fill="#FFFFFF" stroke="#85C1E9" stroke-width="0.9" rx="2" />
+<text x="24" y="225" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" font-style="normal" fill="#1B4F72" text-anchor="start">Mering-Maire Equation (Franklin 1951):</text>
+<text x="24" y="238" font-family="Courier, monospace" font-size="7.5" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="start">g = (0.3440 - d002) / (0.3440 - 0.3354) x 100%</text>
+<text x="24" y="248" font-family="Helvetica, Arial, sans-serif" font-size="7.0" font-weight="normal" font-style="normal" fill="#5D6D7E" text-anchor="start">Threshold: T &gt;= 2,500 °C required to reach g &gt;= 88%.</text>
+<rect x="326" y="34" width="306" height="224" fill="#FEF9E7" stroke="#F39C12" stroke-width="1" rx="3" />
+<text x="334" y="49" font-family="Helvetica, Arial, sans-serif" font-size="8.2" font-weight="bold" font-style="normal" fill="#B9770E" text-anchor="start">B. Li+ STAGING POTENTIAL PROFILE (V vs. Li/Li+)</text>
+<line x1="366" y1="68" x2="366" y2="192" stroke="#1C2833" stroke-width="1.3" />
+<line x1="366" y1="192" x2="618" y2="192" stroke="#1C2833" stroke-width="1.3" />
+<text x="362" y="73" font-family="Courier, monospace" font-size="6.8" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="end">1.0V</text>
+<text x="362" y="132" font-family="Courier, monospace" font-size="6.8" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="end">0.5V</text>
+<text x="362" y="169" font-family="Courier, monospace" font-size="6.8" font-weight="bold" font-style="normal" fill="#0E6251" text-anchor="end">0.2V</text>
+<text x="362" y="191" font-family="Courier, monospace" font-size="6.8" font-weight="bold" font-style="normal" fill="#C0392B" text-anchor="end">0.0V</text>
+<text x="366" y="204" font-family="Helvetica, Arial, sans-serif" font-size="6.8" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="middle">0</text>
+<text x="432" y="204" font-family="Helvetica, Arial, sans-serif" font-size="6.8" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="middle">100</text>
+<text x="498" y="204" font-family="Helvetica, Arial, sans-serif" font-size="6.8" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="middle">200</text>
+<text x="564" y="204" font-family="Helvetica, Arial, sans-serif" font-size="6.8" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="middle">300</text>
+<text x="612" y="204" font-family="Helvetica, Arial, sans-serif" font-size="6.8" font-weight="bold" font-style="normal" fill="#0E6251" text-anchor="end">372 mAh/g</text>
+<path d="M 368 74 Q 410 125, 455 155 Q 480 175, 498 188" fill="none" stroke="#C0392B" stroke-width="2.2" stroke-dasharray="4,2" />
+<text x="452" y="122" font-family="Helvetica, Arial, sans-serif" font-size="7.2" font-weight="bold" font-style="normal" fill="#C0392B" text-anchor="start">Turbostratic (g=0%)</text>
+<text x="452" y="132" font-family="Helvetica, Arial, sans-serif" font-size="6.8" font-weight="normal" font-style="normal" fill="#922B21" text-anchor="start">Sloping, ~200 mAh/g</text>
+<path d="M 368 74 L 382 166 L 408 166 L 414 174 L 464 174 L 470 182 L 604 182 L 608 190" fill="none" stroke="#0E6251" stroke-width="2.5" />
+<text x="395" y="161" font-family="Helvetica, Arial, sans-serif" font-size="6.5" font-weight="bold" font-style="normal" fill="#0E6251" text-anchor="middle">IV/III</text>
+<text x="440" y="169" font-family="Helvetica, Arial, sans-serif" font-size="6.5" font-weight="bold" font-style="normal" fill="#0E6251" text-anchor="middle">Stage II (LiC12)</text>
+<text x="542" y="177" font-family="Helvetica, Arial, sans-serif" font-size="6.8" font-weight="bold" font-style="normal" fill="#0E6251" text-anchor="middle">Stage I (LiC6, 0.08 V)</text>
+<rect x="334" y="212" width="290" height="40" fill="#FFFFFF" stroke="#F5B041" stroke-width="0.9" rx="2" />
+<text x="340" y="225" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" font-style="normal" fill="#B9770E" text-anchor="start">Daumas-Herold Staging Mechanism:</text>
+<text x="340" y="237" font-family="Helvetica, Arial, sans-serif" font-size="7.1" font-weight="normal" font-style="normal" fill="#1C2833" text-anchor="start">Ordered ABAB galleries fill sequentially (LiC36 -&gt; LiC12 -&gt; LiC6)</text>
+<text x="340" y="248" font-family="Helvetica, Arial, sans-serif" font-size="7.1" font-weight="bold" font-style="normal" fill="#0E6251" text-anchor="start">at 0.20 - 0.08 V vs Li/Li+, maximizing cell voltage &amp; energy.</text>
+</g>
+<g transform="translate(680, 512)" id="thermodynamic_crystallinity_comparison">
+<rect x="0" y="0" width="500" height="150" fill="#EAFAF1" stroke="#27AE60" stroke-width="1.6" rx="5" />
+<rect x="0" y="0" width="500" height="24" fill="#0E6251" rx="4" />
+<text x="12" y="16" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="bold" font-style="normal" fill="#FFFFFF" text-anchor="start">GEOLOGICAL METAMORPHISM VS. ELECTRO-THERMAL GRAPHITIZATION</text>
+<text x="12" y="39" font-family="Helvetica, Arial, sans-serif" font-size="8.2" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="start">Why Natural cSPG Uses 42.6% Less Electricity Than Acheson Synthetic Graphite:</text>
+<text x="12" y="54" font-family="Helvetica, Arial, sans-serif" font-size="7.6" font-weight="bold" font-style="normal" fill="#0E6251" text-anchor="start">• 1. Natural Flake Route (7.91 kWh/kg cSPG): Geological metamorphism (700-850 °C, 5-8 kbar</text>
+<text x="12" y="66" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="start">  over ~10^7 yr) provides d002 = 0.3354 nm (g ~ 100%) for free; only the 5 wt% amorphous</text>
+<text x="12" y="78" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="start">  pitch coating requires 1,100 °C carbonization (Stage 4: 2.07 kWh/kg).</text>
+<text x="12" y="94" font-family="Helvetica, Arial, sans-serif" font-size="7.6" font-weight="bold" font-style="normal" fill="#900C3F" text-anchor="start">• 2. Synthetic Route (13.79 kWh/kg Acheson | 8.69 kWh/kg LWG): Must overcome the</text>
+<text x="12" y="106" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="start">  260 kJ/mol C-C rearrange activation barrier at 2,800-3,000 °C to convert turbostratic</text>
+<text x="12" y="118" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="start">  needle coke (d002 = 0.3440 nm) into ABAB graphite (d002 = 0.3356 nm, g = 93-97%).</text>
+<line x1="12" y1="125" x2="488" y2="125" stroke="#A3E4D7" stroke-width="0.9" />
+<text x="12" y="139" font-family="Helvetica, Arial, sans-serif" font-size="7.6" font-weight="bold" font-style="normal" fill="#1B4F72" text-anchor="start">• Trade-Off: Synthetic has lower swelling &amp; longer cycle life (&gt;2,000 cycles vs ~1,200 natural).</text>
+</g>
+
+    <!-- ISO 7200 Technical Title Block -->
+    <g transform="translate(680, 672)" id="iso_title_block">
+      <rect x="0" y="0" width="500" height="108" fill="#FFFFFF" stroke="#1C2833" stroke-width="1.8" />
+      <rect x="0" y="0" width="500" height="28" fill="#F2F4F4" stroke="#1C2833" stroke-width="1.2" />
+      <line x1="0" y1="56" x2="500" y2="56" stroke="#1C2833" stroke-width="1.0" />
+      <line x1="0" y1="82" x2="500" y2="82" stroke="#1C2833" stroke-width="1.0" />
+      <line x1="375" y1="0" x2="375" y2="56" stroke="#1C2833" stroke-width="1.0" />
+      <line x1="435" y1="28" x2="435" y2="56" stroke="#1C2833" stroke-width="1.0" />
+
+      <!-- First-Angle Projection Symbol -->
+      <circle cx="482" cy="14" r="6" fill="none" stroke="#1C2833" stroke-width="1.1" />
+      <circle cx="482" cy="14" r="2.5" fill="none" stroke="#1C2833" stroke-width="1.1" />
+      <polygon points="452,10 470,7 470,21 452,18" fill="none" stroke="#1C2833" stroke-width="1.1" />
+
+      <!-- Field Content -->
+      <text x="10" y="19" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#1C2833">TURBOSTRATIC TO BERNAL ABAB CRYSTAL LATTICE</text>
+      <text x="383" y="19" font-family="Courier, monospace" font-size="10.5" font-weight="bold" fill="#C0392B">DWG-MAT-02</text>
+
+      <text x="10" y="45" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#566573">UNIT OP:</text>
+      <text x="58" y="45" font-family="Helvetica, Arial, sans-serif" font-size="9" font-weight="bold" fill="#1C2833">Crystallographic Phase Transition (Stage 3)</text>
+      <text x="383" y="45" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#566573">STD: ISO 128</text>
+      <text x="442" y="45" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1C2833">REV 2.0</text>
+
+      <text x="10" y="73" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#117A65">AUDIT METRICS: d002: >=0.3440 nm (g=0%) -> 0.3354 nm (g>93%) | Stage-1 LiC6: 372 mAh/g</text>
+      <text x="10" y="98" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-style="italic" fill="#5D6D7E">PRIMARY PROVENANCE: Franklin (1951); Surovtseva et al. (2022); ANL-22/74</text>
+    </g>
+
+</svg>

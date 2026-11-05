@@ -1,0 +1,316 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+
+  <defs>
+    <!-- Blueprint Subtle Engineering Grid -->
+    <pattern id="blueprintGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E5E8E8" stroke-width="0.6" />
+      <path d="M 20 0 L 20 40 M 0 20 L 40 20" fill="none" stroke="#F2F4F4" stroke-width="0.4" />
+    </pattern>
+
+    <!-- Steel Hatching Pattern (ISO 128 45 deg lines) -->
+    <pattern id="steelHatch" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <rect width="8" height="8" fill="#D5D8DC" fill-opacity="0.35" />
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#566573" stroke-width="1.2" />
+    </pattern>
+
+    <!-- Structured Packing / Corrugated Sheet Pattern -->
+    <pattern id="structuredPacking" width="12" height="12" patternUnits="userSpaceOnUse">
+      <rect width="12" height="12" fill="#EAECEE" />
+      <path d="M 0 0 L 6 12 L 12 0" fill="none" stroke="#2980B9" stroke-width="1.2" />
+      <path d="M 0 6 L 6 0 L 12 6" fill="none" stroke="#7FB3D5" stroke-width="0.8" stroke-dasharray="2,2" />
+    </pattern>
+
+    <!-- Refractory Brick Masonry Pattern -->
+    <pattern id="refractoryBrick" width="24" height="12" patternUnits="userSpaceOnUse">
+      <rect width="24" height="12" fill="#D35400" fill-opacity="0.25" stroke="#BA4A00" stroke-width="1" />
+      <line x1="0" y1="6" x2="24" y2="6" stroke="#BA4A00" stroke-width="1" />
+      <line x1="12" y1="0" x2="12" y2="6" stroke="#BA4A00" stroke-width="1" />
+      <line x1="0" y1="6" x2="0" y2="12" stroke="#BA4A00" stroke-width="1" />
+      <line x1="24" y1="6" x2="24" y2="12" stroke="#BA4A00" stroke-width="1" />
+    </pattern>
+
+    <!-- Geological Caprock / Shale Hatch -->
+    <pattern id="shaleHatch" width="16" height="8" patternUnits="userSpaceOnUse">
+      <rect width="16" height="8" fill="#5D6D7E" fill-opacity="0.3" />
+      <line x1="0" y1="2" x2="8" y2="2" stroke="#34495E" stroke-width="1.2" />
+      <line x1="8" y1="6" x2="16" y2="6" stroke="#34495E" stroke-width="1.2" />
+    </pattern>
+
+    <!-- Saline Sandstone Porous Hatch -->
+    <pattern id="sandstoneHatch" width="12" height="12" patternUnits="userSpaceOnUse">
+      <rect width="12" height="12" fill="#EDBB99" fill-opacity="0.35" />
+      <circle cx="3" cy="3" r="1.2" fill="#BA4A00" />
+      <circle cx="9" cy="9" r="1.5" fill="#A04000" />
+      <circle cx="9" cy="3" r="1.0" fill="#BA4A00" />
+      <circle cx="3" cy="9" r="1.2" fill="#873600" />
+    </pattern>
+
+    <!-- Basaltic Igneous Columnar Pattern -->
+    <pattern id="basaltHatch" width="16" height="20" patternUnits="userSpaceOnUse">
+      <rect width="16" height="20" fill="#2C3E50" fill-opacity="0.25" />
+      <polygon points="8,1 15,6 15,14 8,19 1,14 1,6" fill="none" stroke="#1A252F" stroke-width="1.1" />
+    </pattern>
+
+    <!-- Sorbent Monolith Channel Pattern -->
+    <pattern id="monolithChannels" width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect width="10" height="10" fill="#F4F6F6" stroke="#BDC3C7" stroke-width="0.8" />
+      <circle cx="5" cy="5" r="2.5" fill="#1ABC9C" fill-opacity="0.4" />
+    </pattern>
+
+    <!-- Gradients -->
+    <radialGradient id="heatGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFF9C4" stop-opacity="1" />
+      <stop offset="45%" stop-color="#F39C12" stop-opacity="0.85" />
+      <stop offset="85%" stop-color="#C0392B" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="#7B241C" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="gasBubble" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95" />
+      <stop offset="55%" stop-color="#D4EFDF" stop-opacity="0.8" />
+      <stop offset="90%" stop-color="#7DCEA0" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#27AE60" stop-opacity="0.9" />
+    </radialGradient>
+
+    <linearGradient id="metallicCyl" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7F8C8D" />
+      <stop offset="30%" stop-color="#ECF0F1" />
+      <stop offset="55%" stop-color="#BDC3C7" />
+      <stop offset="85%" stop-color="#566573" />
+      <stop offset="100%" stop-color="#7F8C8D" />
+    </linearGradient>
+
+    <linearGradient id="solventRichGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#AED6F1" stop-opacity="0.7" />
+      <stop offset="50%" stop-color="#5DADE2" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="#2E86C1" stop-opacity="0.95" />
+    </linearGradient>
+
+    <linearGradient id="solventLeanGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#A9DFBF" stop-opacity="0.7" />
+      <stop offset="50%" stop-color="#52BE80" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="#229954" stop-opacity="0.95" />
+    </linearGradient>
+
+    <linearGradient id="supercriticalCO2Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FADBD8" />
+      <stop offset="40%" stop-color="#F1948A" />
+      <stop offset="70%" stop-color="#E74C3C" />
+      <stop offset="100%" stop-color="#B03A2E" />
+    </linearGradient>
+
+    <!-- Arrow Markers -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#2C3E50" />
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#C0392B" />
+    </marker>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#2980B9" />
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#27AE60" />
+    </marker>
+    <marker id="arrowOrange" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#D35400" />
+    </marker>
+    <marker id="arrowTeal" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#16A085" />
+    </marker>
+  </defs>
+
+  <rect width="1200" height="800" fill="#F8F9F9" />
+
+    <!-- Background Blueprint Grid & ISO Drawing Sheet Frame -->
+    <rect x="12" y="12" width="1176" height="776" fill="url(#blueprintGrid)" stroke="#1C2833" stroke-width="2" />
+    <rect x="16" y="16" width="1168" height="768" fill="none" stroke="#566573" stroke-width="0.8" />
+
+    <!-- Upper Blueprint Header -->
+    <rect x="20" y="20" width="1160" height="52" fill="#1C2833" rx="3" />
+    <rect x="20" y="68" width="1160" height="4" fill="#2980B9" />
+    <text x="36" y="43" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="bold" fill="#ECF0F1">POST-COMBUSTION AMINE PACKED ABSORBER &amp; THERMAL STRIPPER SYSTEM</text>
+    <text x="36" y="60" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="normal" fill="#BDC3C7">Point-Source Flue Gas Chemical Absorption &amp; Steam Solvent Regeneration (ISO 10628 / NETL Rev 4a B12B.90)</text>
+    <line x1="835" y1="26" x2="835" y2="64" stroke="#566573" stroke-width="1" />
+    <text x="1165" y="42" font-family="Courier, monospace" font-size="9" font-weight="bold" fill="#F39C12" text-anchor="end">BASIS: 1,000 kg CAPTURED CO2 (CANSOLV / 30 wt% MEA)</text>
+    <text x="1165" y="58" font-family="Courier, monospace" font-size="8.5" fill="#ABB2B9" text-anchor="end">CAD SECTION VIEW A-A | P&amp;ID INSTRUMENTED</text>
+
+
+    <!-- ================================================================= -->
+    <!-- ABSORBER COLUMN (LEFT)                                            -->
+    <!-- ================================================================= -->
+    <g id="absorber_column">
+      <!-- Vessel Skirt & Foundation -->
+      <rect x="130" y="590" width="160" height="60" fill="url(#metallicCyl)" stroke="#1C2833" stroke-width="1.6" />
+      <rect x="110" y="650" width="200" height="15" fill="#7F8C8D" stroke="#1C2833" stroke-width="1.5" />
+
+      <!-- Main Column Shell (D=9m, H=45m scale) -->
+      <rect x="140" y="140" width="140" height="450" rx="8" fill="#EAEDED" stroke="#1C2833" stroke-width="2.2" />
+
+      <!-- Top Dome & Vent -->
+      <path d="M 140 140 Q 210 110 280 140 Z" fill="#EAEDED" stroke="#1C2833" stroke-width="2" />
+      <rect x="195" y="90" width="30" height="30" fill="url(#metallicCyl)" stroke="#1C2833" stroke-width="1.5" />
+      <!-- Water Wash Section at Top -->
+      <rect x="146" y="145" width="128" height="40" fill="#D4E6F1" stroke="#2980B9" stroke-width="1.2" />
+      <text x="210" y="168" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1B4F72" text-anchor="middle">WATER WASH (Amine &lt;1 ppmv)</text>
+
+      <!-- Demister Pad -->
+      <line x1="146" y1="190" x2="274" y2="190" stroke="#7F8C8D" stroke-width="3" stroke-dasharray="4,2" />
+
+      <!-- Upper Structured Packing Bed -->
+      <rect x="148" y="210" width="124" height="110" fill="url(#structuredPacking)" stroke="#2980B9" stroke-width="1.5" />
+      <text x="210" y="265" font-family="Helvetica, Arial, sans-serif" font-size="9" font-weight="bold" fill="#154360" text-anchor="middle">Mellapak 250X Packing</text>
+      <text x="210" y="280" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#154360" text-anchor="middle">(Bed Height: 12 m | 40 °C)</text>
+
+      <!-- Intercooling Collector & Redistributor Tray -->
+      <rect x="146" y="330" width="128" height="16" fill="#BDC3C7" stroke="#1C2833" stroke-width="1.2" />
+      <text x="210" y="342" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" fill="#2C3E50" text-anchor="middle">Intercooling Redistributor</text>
+
+      <!-- Lower Structured Packing Bed -->
+      <rect x="148" y="355" width="124" height="120" fill="url(#structuredPacking)" stroke="#2980B9" stroke-width="1.5" />
+      <text x="210" y="415" font-family="Helvetica, Arial, sans-serif" font-size="9" font-weight="bold" fill="#154360" text-anchor="middle">Lower Absorption Bed</text>
+      <text x="210" y="430" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#154360" text-anchor="middle">(Exothermic Bulge: 52 °C)</text>
+
+      <!-- Flue Gas Inlet & Chimney Tray -->
+      <rect x="60" y="500" width="80" height="28" fill="url(#metallicCyl)" stroke="#1C2833" stroke-width="1.5" />
+      <line x1="65" y1="514" x2="125" y2="514" stroke="#E67E22" stroke-width="2.5" marker-end="url(#arrowOrange)" />
+      <text x="45" y="492" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#D35400">FLUE GAS INLET</text>
+      <text x="45" y="504" font-family="Courier, monospace" font-size="7.5" fill="#7E5109">40 °C | 12.5% CO2</text>
+
+      <!-- Rich Amine Liquid Sump -->
+      <rect x="142" y="540" width="136" height="50" rx="4" fill="url(#solventRichGrad)" stroke="#1C2833" stroke-width="1.2" />
+      <text x="210" y="565" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Rich Amine Sump (α=0.48)</text>
+
+      <!-- Clean Stack Vent Line -->
+      <line x1="210" y1="90" x2="210" y2="72" stroke="#27AE60" stroke-width="2.5" marker-end="url(#arrowGreen)" />
+      <text x="220" y="85" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#27AE60">CLEAN GAS VENT (CO2 &lt; 1.5%)</text>
+    </g>
+
+    <!-- ================================================================= -->
+    <!-- CENTER: CROSS HEAT EXCHANGER & PUMPS                              -->
+    <!-- ================================================================= -->
+    <g id="cross_heat_exchanger">
+      <!-- Rich Amine Bottoms Pump -->
+      <circle cx="210" cy="625" r="14" fill="#5D6D7E" stroke="#1C2833" stroke-width="1.5" />
+      <polygon points="205,620 220,625 205,630" fill="#FFFFFF" />
+
+      <!-- Plate & Frame Cross Exchanger -->
+      <rect x="330" y="460" width="60" height="90" fill="#FADBD8" stroke="#C0392B" stroke-width="1.8" />
+      <line x1="335" y1="470" x2="385" y2="470" stroke="#C0392B" stroke-width="1.2" />
+      <line x1="335" y1="485" x2="385" y2="485" stroke="#2980B9" stroke-width="1.2" />
+      <line x1="335" y1="500" x2="385" y2="500" stroke="#C0392B" stroke-width="1.2" />
+      <line x1="335" y1="515" x2="385" y2="515" stroke="#2980B9" stroke-width="1.2" />
+      <line x1="335" y1="530" x2="385" y2="530" stroke="#C0392B" stroke-width="1.2" />
+      <text x="360" y="450" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#922B21" text-anchor="middle">LEAN / RICH P&amp;F</text>
+      <text x="360" y="562" font-family="Courier, monospace" font-size="7.5" fill="#922B21" text-anchor="middle">ΔT_app = 5 °C</text>
+
+      <!-- Flow Lines connecting Absorber to Exchanger -->
+      <path d="M 210 590 L 210 611 M 224 625 L 330 625 L 330 550" fill="none" stroke="#2980B9" stroke-width="2" marker-end="url(#arrowBlue)" />
+      <text x="260" y="618" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#154360">Cold Rich (50 °C)</text>
+    </g>
+
+    <!-- ================================================================= -->
+    <!-- STRIPPER / REGENERATOR COLUMN (RIGHT)                             -->
+    <!-- ================================================================= -->
+    <g id="stripper_column">
+      <!-- Vessel Skirt & Foundation -->
+      <rect x="460" y="550" width="130" height="90" fill="url(#metallicCyl)" stroke="#1C2833" stroke-width="1.6" />
+      <rect x="445" y="640" width="160" height="15" fill="#7F8C8D" stroke="#1C2833" stroke-width="1.5" />
+
+      <!-- Stripper Shell (D=6m, H=30m scale) -->
+      <rect x="470" y="210" width="110" height="340" rx="8" fill="#FDFEFE" stroke="#1C2833" stroke-width="2.2" />
+      <path d="M 470 210 Q 525 185 580 210 Z" fill="#FDFEFE" stroke="#1C2833" stroke-width="2" />
+
+      <!-- Hot Rich Inlet Line from Cross Exchanger -->
+      <path d="M 390 475 L 435 475 L 435 240 L 470 240" fill="none" stroke="#C0392B" stroke-width="2" marker-end="url(#arrowRed)" />
+      <text x="430" y="232" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" fill="#C0392B" text-anchor="end">Hot Rich (100 °C)</text>
+
+      <!-- Stripper Packing Bed -->
+      <rect x="476" y="260" width="98" height="170" fill="url(#structuredPacking)" stroke="#C0392B" stroke-width="1.5" />
+      <text x="525" y="340" font-family="Helvetica, Arial, sans-serif" font-size="9" font-weight="bold" fill="#922B21" text-anchor="middle">Desorption Bed</text>
+      <text x="525" y="355" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#922B21" text-anchor="middle">P: 2.0 bar | T: 120 °C</text>
+
+      <!-- Kettle Steam Reboiler -->
+      <rect x="520" y="490" width="90" height="50" rx="5" fill="#FADBD8" stroke="#C0392B" stroke-width="1.8" />
+      <path d="M 535 505 Q 550 495 565 505 T 595 505" fill="none" stroke="#C0392B" stroke-width="2.5" />
+      <text x="565" y="525" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" fill="#922B21" text-anchor="middle">Steam Reboiler</text>
+      <text x="565" y="535" font-family="Courier, monospace" font-size="6.5" fill="#78281F" text-anchor="middle">2.45 GJ_th / t CO2</text>
+
+      <!-- Lean Solvent Bottoms Recycle -->
+      <path d="M 470 540 L 400 540 L 400 520 L 390 520" fill="none" stroke="#27AE60" stroke-width="2" marker-end="url(#arrowGreen)" />
+      <path d="M 330 500 L 290 500 L 290 200 L 274 200" fill="none" stroke="#27AE60" stroke-width="2" marker-end="url(#arrowGreen)" />
+      <text x="310" y="215" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" fill="#27AE60">Lean Solvent (α=0.20)</text>
+
+      <!-- Overhead Condenser & Reflux -->
+      <rect x="510" y="120" width="30" height="25" fill="url(#metallicCyl)" stroke="#1C2833" stroke-width="1.5" />
+      <path d="M 525 185 L 525 145" fill="none" stroke="#34495E" stroke-width="2" />
+      <rect x="575" y="110" width="55" height="35" rx="3" fill="#D4E6F1" stroke="#2980B9" stroke-width="1.5" />
+      <text x="602" y="130" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" fill="#1B4F72" text-anchor="middle">Condenser</text>
+      <line x1="540" y1="128" x2="575" y2="128" stroke="#34495E" stroke-width="2" marker-end="url(#arrow)" />
+
+      <!-- CO2 Overhead Product Line -->
+      <path d="M 630 125 L 665 125 L 665 240 L 730 240" fill="none" stroke="#C0392B" stroke-width="2.5" marker-end="url(#arrowRed)" />
+      <text x="735" y="235" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#C0392B">MOIST CO2 (99.2% Purity)</text>
+      <text x="735" y="247" font-family="Courier, monospace" font-size="7.5" fill="#78281F">To Dehydration &amp; Compressor Train</text>
+    </g>
+
+    <!-- Callout Box: Technical Specifications -->
+    <g transform="translate(680, 280)">
+      <rect x="0" y="0" width="480" height="230" fill="#FFFFFF" stroke="#BDC3C7" stroke-width="1.2" rx="4" />
+      <rect x="0" y="0" width="480" height="24" fill="#EAEDED" rx="4" />
+      <text x="12" y="17" font-family="Helvetica, Arial, sans-serif" font-size="9" font-weight="bold" fill="#2C3E50">PROCESS MASS &amp; THERMAL ENERGY BALANCE (NETL B12B.90)</text>
+
+      <text x="12" y="42" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#154360">• Solvent System:</text>
+      <text x="135" y="42" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#2C3E50">Shell CANSOLV DC-103 / 30 wt% MEA aqueous solution</text>
+
+      <text x="12" y="60" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#154360">• Specific Steam Duty:</text>
+      <text x="135" y="60" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#C0392B">2.45 GJ_th / t CO2 (LP steam @ 3.0 bar extracted from turbine)</text>
+
+      <text x="12" y="78" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#154360">• Auxiliary Power:</text>
+      <text x="135" y="78" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#2C3E50">111.0 kWh_e / t CO2 (Fans: 30.9 kWh | Compression: 80.1 kWh)</text>
+
+      <text x="12" y="96" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#154360">• Flue Gas Pre-quench:</text>
+      <text x="135" y="96" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#2C3E50">DCC quenches from 58 °C to 40 °C; NaOH polish limits SO2 &lt; 0.37 ppmv</text>
+
+      <text x="12" y="114" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#154360">• Capture Rate &amp; Loss:</text>
+      <text x="135" y="114" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#27AE60">90.0% capture efficiency | Amine aerosol loss &lt; 0.5 kg / t CO2</text>
+
+      <line x1="12" y1="128" x2="468" y2="128" stroke="#E5E8E8" stroke-width="1" />
+
+      <!-- Chemical Reaction Box -->
+      <rect x="12" y="138" width="456" height="78" fill="#F4F6F7" stroke="#D5D8DC" rx="3" />
+      <text x="20" y="154" font-family="Courier, monospace" font-size="8" font-weight="bold" fill="#1B4F72">Absorption (40-50 °C, Exothermic):</text>
+      <text x="20" y="168" font-family="Courier, monospace" font-size="8" fill="#1B4F72">CO2 + 2 RNH2 &lt;=&gt; RNHCOO- + RNH3+   (ΔH = -84.5 kJ/mol CO2)</text>
+      <text x="20" y="188" font-family="Courier, monospace" font-size="8" font-weight="bold" fill="#78281F">Thermal Desorption (115-122 °C, Endothermic):</text>
+      <text x="20" y="202" font-family="Courier, monospace" font-size="8" fill="#78281F">RNHCOO- + RNH3+ + Steam =&gt; CO2(g) + 2 RNH2 (Lean Loading α=0.20)</text>
+    </g>
+    
+
+    <!-- ISO 7200 Technical Title Block -->
+    <g transform="translate(680, 672)" id="iso_title_block">
+      <rect x="0" y="0" width="500" height="108" fill="#FFFFFF" stroke="#1C2833" stroke-width="1.8" />
+      <rect x="0" y="0" width="500" height="28" fill="#F2F4F4" stroke="#1C2833" stroke-width="1.2" />
+      <line x1="0" y1="56" x2="500" y2="56" stroke="#1C2833" stroke-width="1.0" />
+      <line x1="0" y1="82" x2="500" y2="82" stroke="#1C2833" stroke-width="1.0" />
+      <line x1="375" y1="0" x2="375" y2="56" stroke="#1C2833" stroke-width="1.0" />
+      <line x1="435" y1="28" x2="435" y2="56" stroke="#1C2833" stroke-width="1.0" />
+
+      <!-- First-Angle Projection Symbol -->
+      <circle cx="482" cy="14" r="6" fill="none" stroke="#1C2833" stroke-width="1.1" />
+      <circle cx="482" cy="14" r="2.5" fill="none" stroke="#1C2833" stroke-width="1.1" />
+      <polygon points="452,10 470,7 470,21 452,18" fill="none" stroke="#1C2833" stroke-width="1.1" />
+
+      <!-- Field Content -->
+      <text x="10" y="19" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="bold" fill="#1C2833">POST-COMBUSTION AMINE ABSORBER &amp; STRIPPER</text>
+      <text x="383" y="19" font-family="Courier, monospace" font-size="10.5" font-weight="bold" fill="#C0392B">DWG-CCUS-MACH-01</text>
+
+      <text x="10" y="45" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#566573">UNIT OP:</text>
+      <text x="58" y="45" font-family="Helvetica, Arial, sans-serif" font-size="9" font-weight="bold" fill="#1C2833">Point-Source Chemical Absorption (Stage 2)</text>
+      <text x="383" y="45" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#566573">STD: ISO 128</text>
+      <text x="442" y="45" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1C2833">REV 2.0</text>
+
+      <text x="10" y="73" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#117A65">AUDIT METRICS: Capture: 90% | Reboiler Duty: 2.45 GJ_th / t | Elec: 111 kWh_e / t</text>
+      <text x="10" y="98" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-style="italic" fill="#5D6D7E">PRIMARY PROVENANCE: NETL Rev 4a (2022); Rochelle (2009) Science</text>
+    </g>
+
+</svg>

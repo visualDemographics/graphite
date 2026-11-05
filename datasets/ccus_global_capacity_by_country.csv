@@ -1,0 +1,11 @@
+country,operational_capacity_mtpa,share_pct,pipeline_projects,key_facilities
+United States,22.0,42.31,276,"Terrell/Val Verde, Century Plant, ADM Decatur, Petra Nova"
+Brazil,12.0,23.08,6,Petrobras Santos Basin Pre-Salt gas reinjection / EOR
+Canada,4.8,9.23,48,"Shell Quest, Boundary Dam Unit 3, Alberta Carbon Trunk Line"
+China,4.5,8.65,52,"Sinopec Qilu-Shengli, CNOOC Enping 15-1, CHN Energy Taizhou"
+Australia,2.5,4.81,18,Chevron Gorgon CO2 Injection (Barrow Island)
+Qatar,2.1,4.04,4,QatarEnergy Ras Laffan CCS LNG processing
+Norway,1.6,3.08,14,"Equinor Sleipner (Utsira), Snøhvit (Tubåen), Northern Lights"
+Saudi Arabia,0.8,1.54,8,"Saudi Aramco Uthmaniyah CO2-EOR, Jubail Industrial Hub"
+United Arab Emirates,0.8,1.54,6,ADNOC Al Reyadah (Emirates Steel Industries DRI CCUS)
+Rest of World,0.9,1.73,196,"European pilots, Climeworks Mammoth DAC, Porthos Rotterdam"

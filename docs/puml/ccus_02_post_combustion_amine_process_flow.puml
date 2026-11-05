@@ -1,0 +1,96 @@
+@startuml ccus_02_post_combustion_amine_process_flow
+!pragma layout smetana
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName "Helvetica"
+skinparam roundCorner 6
+skinparam shadowing false
+skinparam ArrowColor #34495E
+skinparam ArrowThickness 1.5
+
+skinparam rectangle {
+  BackgroundColor #F8F9F9
+  BorderColor #7F8C8D
+  FontColor #2C3E50
+}
+
+skinparam card {
+  BackgroundColor #EAEDED
+  BorderColor #95A5A6
+  FontColor #2C3E50
+}
+
+skinparam node {
+  BackgroundColor #E8F8F5
+  BorderColor #1ABC9C
+  FontColor #16A085
+  FontStyle bold
+}
+
+skinparam queue {
+  BackgroundColor #FEF5E7
+  BorderColor #F39C12
+}
+
+skinparam storage {
+  BackgroundColor #FADBD8
+  BorderColor #E74C3C
+  FontColor #922B21
+}
+
+title Post-Combustion Amine Carbon Capture (CANSOLV / MEA) Industrial Flowsheet\nISO 10628 PFD Standard with Mass, Energy & Parasitic Duty Breakdown (Basis: 1,000 kg Captured CO2 | NETL Rev 4a Case B12B.90)
+
+' --- STAGE 1: FLUE GAS PRETREATMENT ---
+package "Stage 1: Flue Gas Quenching, SO2 Polishing & Booster Fan [Power Share: 27.9%]" #F4F6F7 {
+  queue "Raw Flue Gas Inlet\n(Coal: 12.5% CO2 | NGCC: 4.1% CO2)\nInlet Temp: 55 - 99 °C | P: 0.10 MPa\n• Flue Gas Mass: ~5,200 kg (Coal) | ~15,500 kg (NGCC)\n• Contaminants: Fly ash, SO2, NOx, O2" as RawFlueGas
+  rectangle "Direct Contact Cooler (DCC)\nCounter-Current Water Spray Quench\n• Cools gas to 40 °C (moisture condensation)\n• Caustic NaOH Polish: SO2 < 1.0 ppmv (<0.37 ppmv)\n• Prevents heat-stable amine salt formation" as DCC_Quench
+  rectangle "Variable-Frequency Booster Fan\nOvercomes Absorber Packed-Bed Pressure Drop (10-15 kPa)\n• Stage Elec (Coal): 30.9 kWh / t CO2\n• Stage Elec (NGCC): 60.8 kWh / t CO2 (3x gas volume)" as BoosterFan
+  storage "DCC Effluent Water Knockout\nCondensed Water + Sulfate Salts\nMass: ~250 kg / t CO2" as DCC_Condensate
+
+  RawFlueGas --> DCC_Quench : Hot Flue Gas
+  DCC_Quench --> DCC_Condensate : Acid Condensate
+  DCC_Quench --> BoosterFan : Quenched Gas (40 °C)
+}
+
+' --- STAGE 2: ABSORPTION COLUMN ---
+package "Stage 2: Structured-Packing Absorber & Carbamate Reaction [Chemical Capture]" #EBF5FB {
+  rectangle "Counter-Current Absorber Column\nMellapak Structured Packing (304L/316L SS Shell)\n• Operating Temp: 40 °C (top) -> 55 °C (intercooling bulge)\n• Solvent: 30 wt% MEA or Advanced Piperazine / CANSOLV\n• Chemical Reaction: CO2 + 2 RNH2 <-> RNHCOO- + RNH3+\n• Exothermic Heat: Delta H_abs = -85 kJ/mol CO2\n• Capture Rate: 90% Design (Up to 95-99% Deep Capture)" as Absorber
+  storage "Clean Treated Flue Gas Stack Vent\nN2, O2, Residual H2O + 10% Uncaptured CO2\nMass: ~4,200 kg / t CO2 (CO2 < 1.5%)\nWater Wash Section recovers amine aerosols" as CleanStackVent
+  card "CO2-Rich Amine Solution\nRich Loading: alpha_rich = 0.48 - 0.50 mol CO2 / mol amine\nTemp: 48 - 52 °C | Total Liquid Flow: ~25 m3 / t CO2" as RichAmine
+
+  BoosterFan --> Absorber : Cooled Flue Gas
+  Absorber --> CleanStackVent : Clean Flue Gas Vent
+  Absorber --> RichAmine : Absorber Bottoms
+}
+
+' --- STAGE 3: HEAT EXCHANGE & THERMAL REGENERATION ---
+package "Stage 3: Cross Heat Exchanger, Stripper Column & Steam Reboiler [Thermal Share: 70.4%]" #FEF9E7 {
+  rectangle "Lean/Rich Plate Heat Exchanger\nHeat Recovery (Delta T_approach = 5 - 10 °C)\n• Preheats Rich Solvent to 95 - 105 °C\n• Cools Lean Solvent to 45 - 55 °C" as CrossExchanger
+  rectangle "Thermal Stripper / Regenerator Column\nOperating Temp: 115 - 122 °C | P: 1.8 - 2.2 bar\n• Reverse Endothermic Desorption Reaction\n• Reboiler Duty (CANSOLV Coal): 2.40 - 2.50 GJ_th / t CO2\n• Reboiler Duty (30 wt% MEA): 3.20 - 3.70 GJ_th / t CO2\n• Steam Extracted from IP/LP Crossover Pipe (3.0 bar)" as StripperColumn
+  rectangle "Thermal Reclaimer Unit\nBatch Caustic Reclaiming of Heat-Stable Salts (HSS)\n• Reclaimer Waste Sludge: ~0.50 kg / t CO2\n• Solvent Make-up: 0.3 - 1.5 kg amine / t CO2" as Reclaimer
+  card "Regenerated Lean Amine Stream\nLean Loading: alpha_lean = 0.20 - 0.25 mol CO2 / mol amine\nRecycled to Absorber Top (Closed Loop)" as LeanAmine
+  card "Moist Stripper Overhead Gas\n99.0% CO2 + Saturated H2O Vapor\nTemp: 90 - 105 °C | P: 1.8 bar" as OverheadGas
+
+  RichAmine --> CrossExchanger : Cold Rich Solvent
+  CrossExchanger --> StripperColumn : Hot Rich Solvent (100 °C)
+  StripperColumn --> Reclaimer : Slipstream to Reclaimer
+  StripperColumn --> CrossExchanger : Hot Lean Solvent (120 °C)
+  CrossExchanger --> LeanAmine : Cooled Lean Solvent
+  LeanAmine --> Absorber : Lean Solvent Recycle
+  StripperColumn --> OverheadGas : Overhead Vapor
+}
+
+' --- STAGE 4: CONDENSER, COMPRESSION & STORAGE DELIVERY ---
+package "Stage 4: Overhead Condenser, TEG Dehydration & Supercritical Compression [Power Share: 72.1%]" #EAFAF1 {
+  rectangle "Overhead Condenser & Reflux Accumulator\nCools to 30 °C | Refluxes condensed water to Stripper\n• Eliminates amine carryover (<1 ppmv)" as Condenser
+  rectangle "Triethylene Glycol (TEG) Dehydration Tower\nCounter-Current Absorption of Water Vapor\n• Dehydration Spec: <50 ppmv H2O (below solubility limit)\n• Prevents carbonic acid corrosion in pipeline tubulars" as TEG_Dehydration
+  node "8-Stage Integrally Geared Centrifugal Compressor\nIntercooled Compression: 0.18 MPa -> 15.3 MPa (2,217 psia)\n• Specific Compression Power: 80.1 kWh_e / t CO2\n• Dense Supercritical Phase (Density: 700 - 850 kg/m3)\n• Discharge Temp: 35 - 40 °C (Pipeline Ready)" as SupercriticalCompressor
+  card "Supercritical CO2 Pipeline Delivery\nMass: 1,000 kg Dense Supercritical CO2 (99.8% Purity)\nP: 15.3 MPa | Levelized Cost: $38.1/t (Captured) | $63.0/t (Avoided)" as FinalProduct
+
+  OverheadGas --> Condenser
+  Condenser --> TEG_Dehydration : Dew-Point Gas
+  TEG_Dehydration --> SupercriticalCompressor : Bone-Dry CO2 (<50 ppmv H2O)
+  SupercriticalCompressor --> FinalProduct : Dense-Phase Pipeline Injection
+}
+
+@enduml
+

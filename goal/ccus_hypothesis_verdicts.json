@@ -1,0 +1,31 @@
+{
+  "CCUS_H1_application_concentration": {
+    "hypothesis": "Natural gas processing >65% and hard-to-abate sectors/DAC <5% of operational capture capacity",
+    "ng_processing_share_pct": 65.0,
+    "hard_to_abate_and_dac_share_pct": 2.03,
+    "verdict": "CONFIRMED"
+  },
+  "CCUS_H2_sherwood_dilution_scaling": {
+    "hypothesis": "LCOC escalates log-linearly with -log10(y0) following Sherwood scaling (R2 >= 0.85, p < 0.001)",
+    "ols_slope": 0.8271310330906914,
+    "r_squared": 0.9370639349238178,
+    "pvalue": 7.981321113100403e-05,
+    "verdict": "CONFIRMED"
+  },
+  "CCUS_H3_thermal_regeneration_dominance": {
+    "hypothesis": "Thermal regeneration accounts for >70% of capture primary energy equivalent",
+    "coal_cansolv_thermal_gj": 2.4,
+    "liquid_dac_thermal_gj": 8.81,
+    "amine_primary_thermal_pct": 70.4,
+    "liquid_dac_primary_thermal_pct": 87.0,
+    "verdict": "CONFIRMED"
+  },
+  "CCUS_H4_dac_grid_coupling": {
+    "hypothesis": "DAC on clean power superior to fossil grid (p<0.001; TOST equivalence rejected)",
+    "mean_diff_pct": 54.89999999999999,
+    "p_superiority": 0.0,
+    "p_tost": 5.621393747064896e-39,
+    "superiority_verdict": "CONFIRMED",
+    "equivalence_verdict": "REJECTED"
+  }
+}

@@ -1,0 +1,289 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+
+  <defs>
+    <!-- Blueprint Subtle Engineering Grid -->
+    <pattern id="blueprintGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E5E8E8" stroke-width="0.6" />
+      <path d="M 20 0 L 20 40 M 0 20 L 40 20" fill="none" stroke="#F2F4F4" stroke-width="0.4" />
+    </pattern>
+
+    <!-- Steel Hatching Pattern (ISO 128 45 deg lines) -->
+    <pattern id="steelHatch" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <rect width="8" height="8" fill="#D5D8DC" fill-opacity="0.35" />
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#566573" stroke-width="1.2" />
+    </pattern>
+
+    <!-- Structured Packing / Corrugated Sheet Pattern -->
+    <pattern id="structuredPacking" width="12" height="12" patternUnits="userSpaceOnUse">
+      <rect width="12" height="12" fill="#EAECEE" />
+      <path d="M 0 0 L 6 12 L 12 0" fill="none" stroke="#2980B9" stroke-width="1.2" />
+      <path d="M 0 6 L 6 0 L 12 6" fill="none" stroke="#7FB3D5" stroke-width="0.8" stroke-dasharray="2,2" />
+    </pattern>
+
+    <!-- Refractory Brick Masonry Pattern -->
+    <pattern id="refractoryBrick" width="24" height="12" patternUnits="userSpaceOnUse">
+      <rect width="24" height="12" fill="#D35400" fill-opacity="0.25" stroke="#BA4A00" stroke-width="1" />
+      <line x1="0" y1="6" x2="24" y2="6" stroke="#BA4A00" stroke-width="1" />
+      <line x1="12" y1="0" x2="12" y2="6" stroke="#BA4A00" stroke-width="1" />
+      <line x1="0" y1="6" x2="0" y2="12" stroke="#BA4A00" stroke-width="1" />
+      <line x1="24" y1="6" x2="24" y2="12" stroke="#BA4A00" stroke-width="1" />
+    </pattern>
+
+    <!-- Geological Caprock / Shale Hatch -->
+    <pattern id="shaleHatch" width="16" height="8" patternUnits="userSpaceOnUse">
+      <rect width="16" height="8" fill="#5D6D7E" fill-opacity="0.3" />
+      <line x1="0" y1="2" x2="8" y2="2" stroke="#34495E" stroke-width="1.2" />
+      <line x1="8" y1="6" x2="16" y2="6" stroke="#34495E" stroke-width="1.2" />
+    </pattern>
+
+    <!-- Saline Sandstone Porous Hatch -->
+    <pattern id="sandstoneHatch" width="12" height="12" patternUnits="userSpaceOnUse">
+      <rect width="12" height="12" fill="#EDBB99" fill-opacity="0.35" />
+      <circle cx="3" cy="3" r="1.2" fill="#BA4A00" />
+      <circle cx="9" cy="9" r="1.5" fill="#A04000" />
+      <circle cx="9" cy="3" r="1.0" fill="#BA4A00" />
+      <circle cx="3" cy="9" r="1.2" fill="#873600" />
+    </pattern>
+
+    <!-- Basaltic Igneous Columnar Pattern -->
+    <pattern id="basaltHatch" width="16" height="20" patternUnits="userSpaceOnUse">
+      <rect width="16" height="20" fill="#2C3E50" fill-opacity="0.25" />
+      <polygon points="8,1 15,6 15,14 8,19 1,14 1,6" fill="none" stroke="#1A252F" stroke-width="1.1" />
+    </pattern>
+
+    <!-- Sorbent Monolith Channel Pattern -->
+    <pattern id="monolithChannels" width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect width="10" height="10" fill="#F4F6F6" stroke="#BDC3C7" stroke-width="0.8" />
+      <circle cx="5" cy="5" r="2.5" fill="#1ABC9C" fill-opacity="0.4" />
+    </pattern>
+
+    <!-- Gradients -->
+    <radialGradient id="heatGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFF9C4" stop-opacity="1" />
+      <stop offset="45%" stop-color="#F39C12" stop-opacity="0.85" />
+      <stop offset="85%" stop-color="#C0392B" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="#7B241C" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="gasBubble" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95" />
+      <stop offset="55%" stop-color="#D4EFDF" stop-opacity="0.8" />
+      <stop offset="90%" stop-color="#7DCEA0" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#27AE60" stop-opacity="0.9" />
+    </radialGradient>
+
+    <linearGradient id="metallicCyl" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7F8C8D" />
+      <stop offset="30%" stop-color="#ECF0F1" />
+      <stop offset="55%" stop-color="#BDC3C7" />
+      <stop offset="85%" stop-color="#566573" />
+      <stop offset="100%" stop-color="#7F8C8D" />
+    </linearGradient>
+
+    <linearGradient id="solventRichGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#AED6F1" stop-opacity="0.7" />
+      <stop offset="50%" stop-color="#5DADE2" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="#2E86C1" stop-opacity="0.95" />
+    </linearGradient>
+
+    <linearGradient id="solventLeanGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#A9DFBF" stop-opacity="0.7" />
+      <stop offset="50%" stop-color="#52BE80" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="#229954" stop-opacity="0.95" />
+    </linearGradient>
+
+    <linearGradient id="supercriticalCO2Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FADBD8" />
+      <stop offset="40%" stop-color="#F1948A" />
+      <stop offset="70%" stop-color="#E74C3C" />
+      <stop offset="100%" stop-color="#B03A2E" />
+    </linearGradient>
+
+    <!-- Arrow Markers -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#2C3E50" />
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#C0392B" />
+    </marker>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#2980B9" />
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#27AE60" />
+    </marker>
+    <marker id="arrowOrange" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#D35400" />
+    </marker>
+    <marker id="arrowTeal" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#16A085" />
+    </marker>
+  </defs>
+
+  <rect width="1200" height="800" fill="#F8F9F9" />
+
+    <!-- Background Blueprint Grid & ISO Drawing Sheet Frame -->
+    <rect x="12" y="12" width="1176" height="776" fill="url(#blueprintGrid)" stroke="#1C2833" stroke-width="2" />
+    <rect x="16" y="16" width="1168" height="768" fill="none" stroke="#566573" stroke-width="0.8" />
+
+    <!-- Upper Blueprint Header -->
+    <rect x="20" y="20" width="1160" height="52" fill="#1C2833" rx="3" />
+    <rect x="20" y="68" width="1160" height="4" fill="#2980B9" />
+    <text x="36" y="43" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="bold" fill="#ECF0F1">SOLID SORBENT DIRECT AIR CAPTURE (S-DAC) MODULAR TVSA CONTACTOR CELL</text>
+    <text x="36" y="60" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="normal" fill="#BDC3C7">Modular Temperature-Vacuum Swing Adsorption Architecture (ISO 10628 / Deutz &amp; Bardow 2021 Nature Energy)</text>
+    <line x1="835" y1="26" x2="835" y2="64" stroke="#566573" stroke-width="1" />
+    <text x="1165" y="42" font-family="Courier, monospace" font-size="9" font-weight="bold" fill="#F39C12" text-anchor="end">BASIS: 1,000 kg NET ATMOSPHERIC CO2 CAPTURED (CLIMEWORKS ORCA ARCHETYPE)</text>
+    <text x="1165" y="58" font-family="Courier, monospace" font-size="8.5" fill="#ABB2B9" text-anchor="end">CAD SECTION VIEW A-A | P&amp;ID INSTRUMENTED</text>
+
+
+    <!-- ================================================================= -->
+    <!-- S-DAC MODULAR COLLECTOR CROSS-SECTION                             -->
+    <!-- ================================================================= -->
+    <g id="sdac_module_assembly">
+      <!-- Outer Structural Steel Frame (Container Module) -->
+      <rect x="80" y="140" width="560" height="500" rx="6" fill="#EAEDED" stroke="#1C2833" stroke-width="2.2" />
+
+      <!-- Left Inlet Louvers (Aerodynamic Air Intake) -->
+      <rect x="86" y="160" width="28" height="460" fill="#BDC3C7" stroke="#1C2833" stroke-width="1.2" />
+      <!-- Louver Slats (Open position in adsorption, closed in desorption) -->
+      <line x1="86" y1="180" x2="114" y2="195" stroke="#2C3E50" stroke-width="2.5" />
+      <line x1="86" y1="220" x2="114" y2="235" stroke="#2C3E50" stroke-width="2.5" />
+      <line x1="86" y1="260" x2="114" y2="275" stroke="#2C3E50" stroke-width="2.5" />
+      <line x1="86" y1="300" x2="114" y2="315" stroke="#2C3E50" stroke-width="2.5" />
+      <line x1="86" y1="340" x2="114" y2="355" stroke="#2C3E50" stroke-width="2.5" />
+      <line x1="86" y1="380" x2="114" y2="395" stroke="#2C3E50" stroke-width="2.5" />
+      <line x1="86" y1="420" x2="114" y2="435" stroke="#2C3E50" stroke-width="2.5" />
+      <line x1="86" y1="460" x2="114" y2="475" stroke="#2C3E50" stroke-width="2.5" />
+      <line x1="86" y1="500" x2="114" y2="515" stroke="#2C3E50" stroke-width="2.5" />
+      <line x1="86" y1="540" x2="114" y2="555" stroke="#2C3E50" stroke-width="2.5" />
+      <line x1="86" y1="580" x2="114" y2="595" stroke="#2C3E50" stroke-width="2.5" />
+
+      <!-- Air Inflow Velocity Vectors -->
+      <line x1="30" y1="240" x2="75" y2="240" stroke="#2980B9" stroke-width="2" marker-end="url(#arrowBlue)" />
+      <line x1="30" y1="380" x2="75" y2="380" stroke="#2980B9" stroke-width="2" marker-end="url(#arrowBlue)" />
+      <line x1="30" y1="520" x2="75" y2="520" stroke="#2980B9" stroke-width="2" marker-end="url(#arrowBlue)" />
+      <text x="25" y="225" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1F618D">AMBIENT AIR</text>
+      <text x="25" y="235" font-family="Courier, monospace" font-size="7.5" fill="#154360">420 ppmv CO2</text>
+      <text x="25" y="245" font-family="Courier, monospace" font-size="7.5" fill="#154360">v = 1.2 m/s</text>
+
+      <!-- Axial Suction Fan Bank -->
+      <rect x="130" y="160" width="35" height="460" fill="url(#metallicCyl)" stroke="#1C2833" stroke-width="1.5" />
+      <circle cx="147" cy="240" r="14" fill="#34495E" />
+      <circle cx="147" cy="380" r="14" fill="#34495E" />
+      <circle cx="147" cy="520" r="14" fill="#34495E" />
+      <text x="147" y="320" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#ECF0F1" transform="rotate(-90 147 320)" text-anchor="middle">AXIAL FANS (140 kWh/t)</text>
+
+      <!-- Solid Sorbent Monolith Bed (Active Chemisorption Core) -->
+      <rect x="200" y="160" width="220" height="460" fill="url(#monolithChannels)" stroke="#16A085" stroke-width="2" />
+      <rect x="210" y="170" width="200" height="440" fill="#E8F8F5" fill-opacity="0.8" stroke="#1ABC9C" stroke-width="1.2" stroke-dasharray="4,2" />
+
+      <!-- Internal Heating Channels (LP Steam @ 100 °C) -->
+      <path d="M 230 180 L 230 600 M 270 180 L 270 600 M 310 180 L 310 600 M 350 180 L 350 600 M 390 180 L 390 600" fill="none" stroke="#E74C3C" stroke-width="1.6" stroke-dasharray="3,3" />
+
+      <text x="310" y="280" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="bold" fill="#0E6251" text-anchor="middle">SOLID AMINE MONOLITH</text>
+      <text x="310" y="298" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#117A65" text-anchor="middle">Amine-Functionalized Fibrils</text>
+      <text x="310" y="312" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#117A65" text-anchor="middle">Working Cap: 1.5 - 2.0 mmol/g</text>
+
+      <text x="310" y="440" font-family="Helvetica, Arial, sans-serif" font-size="9" font-weight="bold" fill="#C0392B" text-anchor="middle">STEAM HEATING JACKET</text>
+      <text x="310" y="455" font-family="Courier, monospace" font-size="8" fill="#78281F" text-anchor="middle">T_des = 95 - 100 °C</text>
+      <text x="310" y="468" font-family="Courier, monospace" font-size="8" fill="#78281F" text-anchor="middle">Q_th = 5.76 - 7.50 GJ/t</text>
+
+      <!-- Rear Exhaust Louvers (Depleted Air Vent) -->
+      <rect x="450" y="160" width="28" height="460" fill="#BDC3C7" stroke="#1C2833" stroke-width="1.2" />
+      <line x1="450" y1="180" x2="478" y2="195" stroke="#2C3E50" stroke-width="2.5" />
+      <line x1="450" y1="220" x2="478" y2="235" stroke="#2C3E50" stroke-width="2.5" />
+      <line x1="450" y1="260" x2="478" y2="275" stroke="#2C3E50" stroke-width="2.5" />
+      <line x1="450" y1="300" x2="478" y2="315" stroke="#2C3E50" stroke-width="2.5" />
+      <line x1="450" y1="340" x2="478" y2="355" stroke="#2C3E50" stroke-width="2.5" />
+      <line x1="450" y1="380" x2="478" y2="395" stroke="#2C3E50" stroke-width="2.5" />
+      <line x1="450" y1="420" x2="478" y2="435" stroke="#2C3E50" stroke-width="2.5" />
+      <line x1="450" y1="460" x2="478" y2="475" stroke="#2C3E50" stroke-width="2.5" />
+      <line x1="450" y1="500" x2="478" y2="515" stroke="#2C3E50" stroke-width="2.5" />
+      <line x1="450" y1="540" x2="478" y2="555" stroke="#2C3E50" stroke-width="2.5" />
+      <line x1="450" y1="580" x2="478" y2="595" stroke="#2C3E50" stroke-width="2.5" />
+
+      <!-- Depleted Air Exhaust Vectors -->
+      <line x1="485" y1="380" x2="525" y2="380" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrow)" />
+      <text x="535" y="375" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#566573">DEPLETED AIR VENT</text>
+      <text x="535" y="387" font-family="Courier, monospace" font-size="7.5" fill="#566573">CO2 ~ 100 ppmv (75% capture)</text>
+
+      <!-- Vacuum Plenum & Roots Extraction Header -->
+      <path d="M 310 160 L 310 100 L 580 100 L 580 140" fill="none" stroke="#2C3E50" stroke-width="2.5" />
+      <rect x="560" y="140" width="40" height="35" rx="3" fill="#34495E" stroke="#1C2833" stroke-width="1.5" />
+      <text x="580" y="162" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle">VAC</text>
+      <text x="580" y="92" font-family="Courier, monospace" font-size="7.5" font-weight="bold" fill="#2C3E50" text-anchor="middle">Vacuum Line (P &lt; 0.15 bar)</text>
+
+      <!-- Condensed Water Trap at Bottom -->
+      <path d="M 310 620 L 310 660 L 480 660" fill="none" stroke="#2980B9" stroke-width="2" marker-end="url(#arrowBlue)" />
+      <text x="485" y="663" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#1F618D">Condensed Water (+2.0 t H2O / t CO2)</text>
+    </g>
+
+    <!-- Right Side: TVSA Cyclic Operation Flow -->
+    <g transform="translate(680, 140)">
+      <rect x="0" y="0" width="480" height="270" fill="#FFFFFF" stroke="#BDC3C7" stroke-width="1.2" rx="4" />
+      <rect x="0" y="0" width="480" height="24" fill="#EAEDED" rx="4" />
+      <text x="12" y="17" font-family="Helvetica, Arial, sans-serif" font-size="9" font-weight="bold" fill="#2C3E50">TEMPERATURE-VACUUM SWING ADSORPTION (TVSA) CYCLIC PROFILE</text>
+
+      <!-- Step 1: Adsorption -->
+      <rect x="12" y="35" width="456" height="50" rx="3" fill="#E8F8F5" stroke="#1ABC9C" stroke-width="1.2" />
+      <text x="20" y="52" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#0E6251">PHASE 1: AMBIENT ADSORPTION (120 - 240 min)</text>
+      <text x="20" y="67" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#117A65">• Louvers OPEN; axial fans blow 1.6M m3 air/t CO2 across bed at 1.2 m/s</text>
+      <text x="20" y="78" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#117A65">• Chemisorption on primary amines: ΔH_ads = -85 kJ/mol; Fan power: 140 kWh/t</text>
+
+      <!-- Step 2: Evacuation -->
+      <rect x="12" y="92" width="456" height="50" rx="3" fill="#FEF9E7" stroke="#F39C12" stroke-width="1.2" />
+      <text x="20" y="109" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#7D6608">PHASE 2: CHAMBER ISOLATION &amp; EVACUATION (15 - 30 min)</text>
+      <text x="20" y="124" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#7D6608">• Louvers HERMETICALLY SEALED with pneumatic bladder gaskets</text>
+      <text x="20" y="135" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#7D6608">• Vacuum roots blowers evacuate non-adsorbed N2/O2 down to 0.15 bar (prevents oxidation)</text>
+
+      <!-- Step 3: Desorption -->
+      <rect x="12" y="149" width="456" height="50" rx="3" fill="#FDEDEC" stroke="#E74C3C" stroke-width="1.2" />
+      <text x="20" y="166" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#78281F">PHASE 3: STEAM HEATING &amp; THERMAL DESORPTION (60 - 90 min)</text>
+      <text x="20" y="181" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#78281F">• Saturated 100 °C steam circulates in jacket; bed reaches 95-100 °C</text>
+      <text x="20" y="192" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#78281F">• CO2 &amp; co-adsorbed H2O desorb; vacuum pump extracts 95%+ pure CO2</text>
+
+      <!-- Step 4: Cooling -->
+      <rect x="12" y="206" width="456" height="50" rx="3" fill="#EBF5FB" stroke="#3498DB" stroke-width="1.2" />
+      <text x="20" y="223" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1B4F72">PHASE 4: EVAPORATIVE COOLING &amp; RESET (20 - 40 min)</text>
+      <text x="20" y="238" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#1B4F72">• Steam cut off; bed cools to &lt;45 °C under controlled filtered air repressurization</text>
+      <text x="20" y="249" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#1B4F72">• Louvers unseal; ready for next adsorption cycle (Sorbent life: &gt;5,000 cycles)</text>
+    </g>
+
+    <!-- Technical KPI Table -->
+    <g transform="translate(680, 430)">
+      <rect x="0" y="0" width="480" height="85" fill="#F4F6F7" stroke="#BDC3C7" stroke-width="1.2" rx="4" />
+      <text x="12" y="18" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1C2833">SOLID DAC (S-DAC) ENERGY &amp; WATER SPECIFICATIONS</text>
+      <text x="12" y="36" font-family="Courier, monospace" font-size="8" fill="#154360">• Specific Heat Duty (95-100 °C):  5.76 - 7.50 GJ_th / t CO2 (Low-grade waste/geothermal)</text>
+      <text x="12" y="52" font-family="Courier, monospace" font-size="8" fill="#154360">• Total Electric Consumption:    400 - 650 kWh_e / t CO2 (Fans, vacuum, comp)</text>
+      <text x="12" y="68" font-family="Courier, monospace" font-size="8" fill="#154360">• Net Water Co-Production:       +1.5 - 2.5 t H2O / t CO2 (High purity byproduct)</text>
+    </g>
+    
+
+    <!-- ISO 7200 Technical Title Block -->
+    <g transform="translate(680, 672)" id="iso_title_block">
+      <rect x="0" y="0" width="500" height="108" fill="#FFFFFF" stroke="#1C2833" stroke-width="1.8" />
+      <rect x="0" y="0" width="500" height="28" fill="#F2F4F4" stroke="#1C2833" stroke-width="1.2" />
+      <line x1="0" y1="56" x2="500" y2="56" stroke="#1C2833" stroke-width="1.0" />
+      <line x1="0" y1="82" x2="500" y2="82" stroke="#1C2833" stroke-width="1.0" />
+      <line x1="375" y1="0" x2="375" y2="56" stroke="#1C2833" stroke-width="1.0" />
+      <line x1="435" y1="28" x2="435" y2="56" stroke="#1C2833" stroke-width="1.0" />
+
+      <!-- First-Angle Projection Symbol -->
+      <circle cx="482" cy="14" r="6" fill="none" stroke="#1C2833" stroke-width="1.1" />
+      <circle cx="482" cy="14" r="2.5" fill="none" stroke="#1C2833" stroke-width="1.1" />
+      <polygon points="452,10 470,7 470,21 452,18" fill="none" stroke="#1C2833" stroke-width="1.1" />
+
+      <!-- Field Content -->
+      <text x="10" y="19" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="bold" fill="#1C2833">SOLID SORBENT DAC TVSA CONTACTOR CELL</text>
+      <text x="383" y="19" font-family="Courier, monospace" font-size="10.5" font-weight="bold" fill="#C0392B">DWG-CCUS-MACH-02</text>
+
+      <text x="10" y="45" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#566573">UNIT OP:</text>
+      <text x="58" y="45" font-family="Helvetica, Arial, sans-serif" font-size="9" font-weight="bold" fill="#1C2833">Direct Air Capture Adsorption (Stage 1)</text>
+      <text x="383" y="45" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#566573">STD: ISO 128</text>
+      <text x="442" y="45" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1C2833">REV 2.0</text>
+
+      <text x="10" y="73" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#117A65">AUDIT METRICS: Thermal: 5.76-7.50 GJ_th / t | Elec: 400-650 kWh_e / t | Net Water: +2.0 t H2O/t</text>
+      <text x="10" y="98" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-style="italic" fill="#5D6D7E">PRIMARY PROVENANCE: Deutz &amp; Bardow (2021) Nature Energy; Climeworks</text>
+    </g>
+
+</svg>

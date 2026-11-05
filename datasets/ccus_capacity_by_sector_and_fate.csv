@@ -1,0 +1,9 @@
+sector,operational_mtpa,eor_utilization_mtpa,dedicated_storage_mtpa,sector_share_pct,purity_co2_pct
+Natural_Gas_Processing,33.2,25.5,7.7,63.85,80.0
+Hydrogen_Ammonia_Syngas,6.1,4.2,1.9,11.73,98.0
+Chemicals_and_Refining,6.36,5.3,1.06,12.23,85.0
+Bioethanol_Biofuels,2.6,0.8,1.8,5.0,99.0
+Power_Generation,1.8,1.4,0.4,3.46,12.5
+Iron_and_Steel,0.8,0.8,0.0,1.54,24.0
+Cement_and_Lime,0.1,0.0,0.1,0.19,20.0
+Direct_Air_Capture,0.04,0.0,0.04,0.08,0.042

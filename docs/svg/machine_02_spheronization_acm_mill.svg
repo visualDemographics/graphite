@@ -1,0 +1,421 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+
+  <defs>
+    <!-- Blueprint Subtle Engineering Grid -->
+    <pattern id="blueprintGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E5E8E8" stroke-width="0.6" />
+      <path d="M 20 0 L 20 40 M 0 20 L 40 20" fill="none" stroke="#F2F4F4" stroke-width="0.4" />
+    </pattern>
+
+    <!-- Steel Hatching Pattern (ISO 128 45 deg lines) -->
+    <pattern id="steelHatch" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <rect width="8" height="8" fill="#D5D8DC" fill-opacity="0.35" />
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#566573" stroke-width="1.2" />
+    </pattern>
+
+    <!-- Elastomer / Polyurethane Wear Liner Pattern (Cross-hatch) -->
+    <pattern id="rubberLiner" width="6" height="6" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <rect width="6" height="6" fill="#2C3E50" fill-opacity="0.18" />
+      <line x1="0" y1="0" x2="0" y2="6" stroke="#1F618D" stroke-width="1.0" />
+      <line x1="0" y1="0" x2="6" y2="0" stroke="#1F618D" stroke-width="1.0" />
+    </pattern>
+
+    <!-- Refractory Brick Masonry Pattern -->
+    <pattern id="refractoryBrick" width="24" height="12" patternUnits="userSpaceOnUse">
+      <rect width="24" height="12" fill="#D35400" fill-opacity="0.25" stroke="#BA4A00" stroke-width="1" />
+      <line x1="0" y1="6" x2="24" y2="6" stroke="#BA4A00" stroke-width="1" />
+      <line x1="12" y1="0" x2="12" y2="6" stroke="#BA4A00" stroke-width="1" />
+      <line x1="0" y1="6" x2="0" y2="12" stroke="#BA4A00" stroke-width="1" />
+      <line x1="24" y1="6" x2="24" y2="12" stroke="#BA4A00" stroke-width="1" />
+    </pattern>
+
+    <!-- PTFE / Fluoropolymer Corrosion Lining Pattern -->
+    <pattern id="ptfeHatch" width="8" height="8" patternTransform="rotate(-45 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#16A085" stroke-width="1.5" />
+      <line x1="0" y1="4" x2="8" y2="4" stroke="#16A085" stroke-width="0.8" stroke-dasharray="2,2" />
+    </pattern>
+
+    <!-- Granular Resistor Coke Bed Pattern -->
+    <pattern id="cokeBed" width="16" height="16" patternUnits="userSpaceOnUse">
+      <rect width="16" height="16" fill="#2C3E50" fill-opacity="0.15" />
+      <circle cx="4" cy="4" r="2.2" fill="#34495E" />
+      <circle cx="12" cy="12" r="2.8" fill="#2C3E50" />
+      <circle cx="13" cy="4" r="1.8" fill="#1A252F" />
+      <circle cx="4" cy="12" r="2.0" fill="#2C3E50" />
+    </pattern>
+
+    <!-- Polyhedral Mineralized Froth Cellular Pattern -->
+    <pattern id="frothCells" width="18" height="16" patternUnits="userSpaceOnUse">
+      <rect width="18" height="16" fill="#EAEDED" />
+      <polygon points="9,1 17,5 17,11 9,15 1,11 1,5" fill="#F8F9F9" stroke="#566573" stroke-width="1.2" />
+      <circle cx="9" cy="8" r="3.5" fill="#FFFFFF" opacity="0.8" />
+      <path d="M 1,5 L 9,1 L 17,5" fill="none" stroke="#1C2833" stroke-width="1.6" stroke-dasharray="3,1" />
+    </pattern>
+
+    <!-- Thermal Plume & Incandescent Gradients -->
+    <radialGradient id="heatGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFF9C4" stop-opacity="1" />
+      <stop offset="45%" stop-color="#F39C12" stop-opacity="0.85" />
+      <stop offset="85%" stop-color="#C0392B" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="#7B241C" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="bubbleGrad" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.98" />
+      <stop offset="55%" stop-color="#D6EAF8" stop-opacity="0.85" />
+      <stop offset="90%" stop-color="#85C1E9" stop-opacity="0.75" />
+      <stop offset="100%" stop-color="#2E86C1" stop-opacity="0.9" />
+    </radialGradient>
+
+    <linearGradient id="metallicCyl" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7F8C8D" />
+      <stop offset="30%" stop-color="#ECF0F1" />
+      <stop offset="55%" stop-color="#BDC3C7" />
+      <stop offset="85%" stop-color="#566573" />
+      <stop offset="100%" stop-color="#7F8C8D" />
+    </linearGradient>
+
+    <linearGradient id="slurryGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#D6DBDF" stop-opacity="0.72" />
+      <stop offset="35%" stop-color="#AEB6BF" stop-opacity="0.84" />
+      <stop offset="75%" stop-color="#5D6D7E" stop-opacity="0.92" />
+      <stop offset="100%" stop-color="#2C3E50" stop-opacity="0.98" />
+    </linearGradient>
+
+    <linearGradient id="frothGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2C3E50" stop-opacity="0.85" />
+      <stop offset="30%" stop-color="#5D6D7E" stop-opacity="0.75" />
+      <stop offset="100%" stop-color="#D5D8DC" stop-opacity="0.9" />
+    </linearGradient>
+
+    <!-- Arrow Markers -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#2C3E50" />
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#C0392B" />
+    </marker>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#2980B9" />
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#27AE60" />
+    </marker>
+    <marker id="arrowOrange" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#D35400" />
+    </marker>
+    <marker id="dimTick" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 2 L 8 5 L 0 8 z" fill="#34495E" />
+    </marker>
+  </defs>
+
+  <rect width="1200" height="800" fill="#F8F9F9" />
+
+    <!-- Background Blueprint Grid & ISO Drawing Sheet Frame -->
+    <rect x="12" y="12" width="1176" height="776" fill="url(#blueprintGrid)" stroke="#1C2833" stroke-width="2" />
+    <rect x="16" y="16" width="1168" height="768" fill="none" stroke="#566573" stroke-width="0.8" />
+
+    <!-- Upper Blueprint Header -->
+    <rect x="20" y="20" width="1160" height="52" fill="#1C2833" rx="3" />
+    <rect x="20" y="68" width="1160" height="4" fill="#C0392B" />
+    <text x="36" y="43" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#ECF0F1">AIR-CLASSIFIER IMPACT MILL (ACM): MECHANICAL SPHERONIZATION OF FLAKE GRAPHITE</text>
+    <text x="36" y="60" font-family="Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#BDC3C7">Stage 2 Flake Rounding: High-Shear Folding in a Pin-Rotor Chamber + Centrifugal Classifier Size Cut (ISO 10628 / ANL-22/74 Table 3)</text>
+    <line x1="855" y1="26" x2="855" y2="64" stroke="#566573" stroke-width="1" />
+    <text x="1165" y="42" font-family="Courier, monospace" font-size="9.5" font-weight="bold" fill="#F39C12" text-anchor="end">BASIS: 1,000 kg FINISHED cSPG (24,300 kg ROM ORE)</text>
+    <text x="1165" y="58" font-family="Courier, monospace" font-size="8.5" fill="#ABB2B9" text-anchor="end">CAD SECTION VIEW A-A | P&amp;ID INSTRUMENTED</text>
+
+
+    <!-- ================================================================= -->
+    <!-- LEFT PANEL: CAD CROSS-SECTION OF THE ACM (SECTION A-A)            -->
+    <!-- ================================================================= -->
+    <g id="acm_machine_body">
+
+      <!-- Foundation plinth & anti-vibration mounts -->
+      <rect x="170" y="676" width="340" height="14" fill="#7F8C8D" stroke="#1C2833" stroke-width="1.5" />
+      <rect x="190" y="660" width="26" height="16" fill="url(#metallicCyl)" stroke="#1C2833" stroke-width="1.2" />
+      <rect x="464" y="660" width="26" height="16" fill="url(#metallicCyl)" stroke="#1C2833" stroke-width="1.2" />
+
+      <!-- Lower grinding chamber: cast-iron shell (ISO 128 hatching) -->
+      <path d="M 200 330 L 200 560 L 245 598 L 435 598 L 480 560 L 480 330 Z" fill="url(#steelHatch)" stroke="#1C2833" stroke-width="2.2" />
+      <!-- Upper classifier housing -->
+      <rect x="230" y="168" width="220" height="162" fill="url(#steelHatch)" stroke="#1C2833" stroke-width="2.2" />
+      <!-- Bolted split flange between chambers -->
+      <rect x="192" y="324" width="296" height="10" fill="#566573" stroke="#1C2833" stroke-width="1.2" />
+      <g fill="#1C2833">
+        <circle cx="204" cy="329" r="2" /><circle cx="236" cy="329" r="2" /><circle cx="444" cy="329" r="2" /><circle cx="476" cy="329" r="2" />
+      </g>
+
+      <!-- Inner cavity (white) -->
+      <path d="M 216 334 L 216 552 L 252 584 L 428 584 L 464 552 L 464 334 Z" fill="#FFFFFF" stroke="#1C2833" stroke-width="1.2" />
+      <rect x="244" y="182" width="192" height="152" fill="#FFFFFF" stroke="#1C2833" stroke-width="1.2" />
+
+      <!-- Serrated stator impact liner (tungsten-carbide / hardened steel) -->
+      <path d="M 216 372 L 232 380 L 216 388 L 232 396 L 216 404 L 232 412 L 216 420 L 232 428 L 216 436 L 232 444 L 216 452 L 232 460 L 216 468 L 232 476 L 216 484 L 232 492 L 216 500 L 232 508 L 216 516 Z" fill="#E67E22" stroke="#9C640C" stroke-width="1.2" />
+      <path d="M 464 372 L 448 380 L 464 388 L 448 396 L 464 404 L 448 412 L 464 420 L 448 428 L 464 436 L 448 444 L 464 452 L 448 460 L 464 468 L 448 476 L 464 484 L 448 492 L 464 500 L 448 508 L 464 516 Z" fill="#E67E22" stroke="#9C640C" stroke-width="1.2" />
+      <text x="224" y="362" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" fill="#9C640C">SERRATED LINER</text>
+
+      <!-- Air-borne particle cloud (dark flakes) filling the grinding chamber -->
+      <rect x="236" y="340" width="208" height="150" fill="#2C3E50" fill-opacity="0.07" />
+
+      <!-- Rotor disc with impact pins -->
+      <rect x="248" y="500" width="184" height="18" fill="#C0392B" stroke="#641E16" stroke-width="1.8" rx="2" />
+      <g fill="#922B21" stroke="#1C2833" stroke-width="1">
+        <rect x="256" y="474" width="10" height="26" /><rect x="282" y="474" width="10" height="26" />
+        <rect x="308" y="474" width="10" height="26" /><rect x="362" y="474" width="10" height="26" />
+        <rect x="388" y="474" width="10" height="26" /><rect x="414" y="474" width="10" height="26" />
+      </g>
+      <!-- Rotor hub & main shaft -->
+      <rect x="326" y="486" width="28" height="14" fill="#566573" stroke="#1C2833" stroke-width="1.2" />
+      <rect x="333" y="518" width="14" height="150" fill="#2C3E50" stroke="#17202A" stroke-width="1.2" />
+      <!-- Bearing housing & V-belt sheave -->
+      <rect x="312" y="618" width="56" height="34" fill="url(#metallicCyl)" stroke="#1C2833" stroke-width="1.5" />
+      <rect x="296" y="652" width="88" height="10" fill="#F39C12" fill-opacity="0.85" stroke="#9C640C" stroke-width="1.2" rx="2" />
+      <text x="340" y="674" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" fill="#1C2833" text-anchor="middle">ROTOR DRIVE (VFD)</text>
+      <!-- Labyrinth seal -->
+      <rect x="326" y="598" width="28" height="12" fill="#95A5A6" stroke="#1C2833" stroke-width="1" />
+
+      <!-- Tip-speed dimension on rotor -->
+      <line x1="340" y1="534" x2="432" y2="534" stroke="#34495E" stroke-width="1" marker-start="url(#dimTick)" marker-end="url(#dimTick)" />
+      <text x="388" y="546" font-family="Courier, monospace" font-size="8" font-weight="bold" fill="#34495E" text-anchor="middle">R_rotor</text>
+      <text x="468" y="533" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" fill="#C0392B">v_tip = 15-25 m/s</text>
+
+      <!-- Classifier wheel (squirrel-cage rotor with vanes) -->
+      <rect x="296" y="210" width="88" height="56" fill="#2980B9" fill-opacity="0.9" stroke="#154360" stroke-width="1.8" />
+      <g stroke="#FFFFFF" stroke-width="2.4">
+        <line x1="306" y1="210" x2="306" y2="266" /><line x1="318" y1="210" x2="318" y2="266" /><line x1="330" y1="210" x2="330" y2="266" />
+        <line x1="350" y1="210" x2="350" y2="266" /><line x1="362" y1="210" x2="362" y2="266" /><line x1="374" y1="210" x2="374" y2="266" />
+      </g>
+      <rect x="333" y="150" width="14" height="60" fill="#2C3E50" stroke="#17202A" stroke-width="1.2" />
+      <!-- Classifier motor -->
+      <rect x="306" y="96" width="68" height="46" fill="#1F618D" stroke="#154360" stroke-width="1.8" rx="4" />
+      <g stroke="#85C1E9" stroke-width="1.1">
+        <line x1="312" y1="106" x2="368" y2="106" /><line x1="312" y1="114" x2="368" y2="114" /><line x1="312" y1="122" x2="368" y2="122" /><line x1="312" y1="130" x2="368" y2="130" />
+      </g>
+      <rect x="322" y="142" width="36" height="10" fill="url(#metallicCyl)" stroke="#1C2833" stroke-width="1.2" />
+      <text x="340" y="90" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#154360" text-anchor="middle">CLASSIFIER MOTOR (VFD: sets cut size)</text>
+      <text x="340" y="296" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#FFFFFF" text-anchor="middle">CLASSIFIER WHEEL</text>
+
+      <!-- Fines outlet duct (right of classifier) to cyclone / baghouse -->
+      <rect x="450" y="212" width="120" height="30" fill="url(#steelHatch)" stroke="#1C2833" stroke-width="1.8" />
+      <rect x="436" y="218" width="134" height="18" fill="#FFFFFF" stroke="#1C2833" stroke-width="1" />
+      <!-- Product discharge (coarse spheroids) right side of hopper -->
+      <rect x="480" y="528" width="90" height="26" fill="url(#steelHatch)" stroke="#1C2833" stroke-width="1.8" />
+      <rect x="464" y="534" width="106" height="14" fill="#FFFFFF" stroke="#1C2833" stroke-width="1" />
+      <!-- Carrier air inlet (left of hopper) -->
+      <rect x="110" y="548" width="100" height="26" fill="url(#steelHatch)" stroke="#1C2833" stroke-width="1.8" />
+      <rect x="110" y="554" width="116" height="14" fill="#FFFFFF" stroke="#1C2833" stroke-width="1" />
+      <!-- Feed screw conveyor (left) -->
+      <rect x="100" y="412" width="116" height="30" fill="url(#steelHatch)" stroke="#1C2833" stroke-width="1.8" />
+      <rect x="100" y="418" width="116" height="18" fill="#FFFFFF" stroke="#1C2833" stroke-width="1" />
+      <rect x="110" y="422" width="100" height="10" fill="#566573" />
+      <g stroke="#17202A" stroke-width="1.4">
+        <line x1="118" y1="420" x2="124" y2="434" /><line x1="136" y1="420" x2="142" y2="434" /><line x1="154" y1="420" x2="160" y2="434" /><line x1="172" y1="420" x2="178" y2="434" /><line x1="190" y1="420" x2="196" y2="434" />
+      </g>
+      <path d="M 100 412 L 70 340 L 190 340 L 160 412 Z" fill="#D5D8DC" stroke="#1C2833" stroke-width="1.5" />
+      <text x="130" y="372" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#1C2833" text-anchor="middle">FLAKE HOPPER</text>
+    </g>
+
+    <!-- ================================================================= -->
+    <!-- FLOW: TOROIDAL RECIRCULATION, CLASSIFICATION & PARTICLES          -->
+    <!-- ================================================================= -->
+    <g id="flow_pathways">
+      <!-- Toroidal recirculation loops (particle-wall-pin collisions) -->
+      <path d="M 262 470 C 232 420, 240 372, 290 366 C 318 364, 318 420, 306 468" fill="none" stroke="#E74C3C" stroke-width="2.2" stroke-dasharray="5,3" marker-end="url(#arrowRed)" />
+      <path d="M 418 470 C 448 420, 440 372, 390 366 C 362 364, 362 420, 374 468" fill="none" stroke="#E74C3C" stroke-width="2.2" stroke-dasharray="5,3" marker-end="url(#arrowRed)" />
+      <text x="340" y="400" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#C0392B" text-anchor="middle">TOROIDAL</text>
+      <text x="340" y="411" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#C0392B" text-anchor="middle">RECIRCULATION</text>
+      <text x="340" y="422" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#7B241C" text-anchor="middle">8-16 passes</text>
+
+      <!-- Upward air + fines stream through classifier wheel -->
+      <path d="M 340 330 L 340 300" stroke="#27AE60" stroke-width="2.2" stroke-dasharray="4,3" marker-end="url(#arrowGreen)" />
+      <path d="M 262 330 Q 262 290, 296 245" fill="none" stroke="#27AE60" stroke-width="1.8" stroke-dasharray="4,3" marker-end="url(#arrowGreen)" />
+      <path d="M 418 330 Q 418 290, 384 245" fill="none" stroke="#27AE60" stroke-width="1.8" stroke-dasharray="4,3" marker-end="url(#arrowGreen)" />
+      <!-- Rejected coarse particles fall back (classifier rejects) -->
+      <path d="M 288 275 Q 262 305, 272 345" fill="none" stroke="#7F8C8D" stroke-width="1.6" stroke-dasharray="3,3" marker-end="url(#arrow)" />
+      <path d="M 392 275 Q 418 305, 408 345" fill="none" stroke="#7F8C8D" stroke-width="1.6" stroke-dasharray="3,3" marker-end="url(#arrow)" />
+      <text x="262" y="318" font-family="Helvetica, Arial, sans-serif" font-size="7" fill="#566573" text-anchor="end">oversize rejected</text>
+
+      <!-- Fines exit arrow along duct -->
+      <line x1="440" y1="227" x2="585" y2="227" stroke="#C0392B" stroke-width="3.2" marker-end="url(#arrowRed)" />
+      <!-- Product exit arrow -->
+      <line x1="470" y1="541" x2="585" y2="541" stroke="#27AE60" stroke-width="3.2" marker-end="url(#arrowGreen)" />
+      <!-- Feed arrow -->
+      <line x1="40" y1="427" x2="98" y2="427" stroke="#2980B9" stroke-width="3.2" marker-end="url(#arrowBlue)" />
+      <!-- Air arrow -->
+      <line x1="40" y1="561" x2="108" y2="561" stroke="#27AE60" stroke-width="3.2" marker-end="url(#arrowGreen)" />
+
+      <!-- Particles: flat flakes (left of chamber), spheroids near product exit -->
+      <g fill="#17202A">
+        <rect x="240" y="440" width="12" height="2.5" /><rect x="262" y="392" width="12" height="2.5" /><rect x="410" y="445" width="12" height="2.5" /><rect x="395" y="395" width="12" height="2.5" />
+      </g>
+      <g fill="#2C3E50" stroke="#17202A" stroke-width="0.8">
+        <circle cx="300" cy="560" r="4" /><circle cx="324" cy="568" r="3.4" /><circle cx="356" cy="566" r="4" /><circle cx="384" cy="558" r="3.4" /><circle cx="412" cy="548" r="4" />
+      </g>
+    </g>
+
+    <!-- ================================================================= -->
+    <!-- STREAM CALLOUT BOXES (STRICT MASS BALANCE, BASIS 2,534 kg FLAKE)  -->
+    <!-- ================================================================= -->
+    <g id="process_streams">
+      <rect x="22" y="196" width="152" height="86" fill="#EBF5FB" stroke="#2980B9" stroke-width="1.2" rx="3" />
+      <text x="28" y="211" font-family="Helvetica, Arial, sans-serif" font-size="9" font-weight="bold" fill="#1B4F72">1. FLAKE CONCENTRATE FEED</text>
+      <text x="28" y="225" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#1C2833">• Mass: 2,534 kg (2.22 t / t uSPG)</text>
+      <text x="28" y="238" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#1C2833">• Grade: 94-97% C, +80/-100 mesh</text>
+      <text x="28" y="251" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#1C2833">• D50 = 150-300 um flat platelets</text>
+      <text x="28" y="264" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#154360">• Aspect ratio 1:20 to 1:50</text>
+      <text x="28" y="276" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#5D6D7E">Pneumatic / screw injection</text>
+
+      <rect x="22" y="582" width="86" height="40" fill="#E8F8F5" stroke="#27AE60" stroke-width="1.2" rx="3" />
+      <text x="28" y="596" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1E8449">2. CARRIER AIR</text>
+      <text x="28" y="609" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#145A32">Dry, ambient; fan-driven</text>
+      <text x="28" y="619" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#145A32">(closed circuit w/ baghouse)</text>
+
+      <rect x="456" y="128" width="150" height="76" fill="#FDEDEC" stroke="#C0392B" stroke-width="1.2" rx="3" />
+      <text x="462" y="143" font-family="Helvetica, Arial, sans-serif" font-size="9" font-weight="bold" fill="#900C3F">3. CLEAVAGE FINES TO CYCLONE</text>
+      <text x="462" y="157" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#1C2833">• Mass: 1,387 kg (54.73%)</text>
+      <text x="462" y="170" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#1C2833">• 1.215 t fines / t uSPG</text>
+      <text x="462" y="183" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#1C2833">• D50 &lt; 5 um, non-spherical</text>
+      <text x="462" y="196" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#900C3F">• Sold ~$468/t (refractory/recarb)</text>
+
+      <rect x="456" y="570" width="186" height="64" fill="#E8F8F5" stroke="#27AE60" stroke-width="1.2" rx="3" />
+      <text x="462" y="585" font-family="Helvetica, Arial, sans-serif" font-size="9" font-weight="bold" fill="#0E6251">4. SPHERICAL uSPG PRODUCT</text>
+      <text x="462" y="599" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#1C2833">• Mass: 1,141 kg (45.05% yield)</text>
+      <text x="462" y="612" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#1C2833">• D50 = 15 um | tap &gt;= 0.95 g/cm3</text>
+      <text x="462" y="625" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#145A32">• Purity ~95% C (pre-purification)</text>
+
+      <rect x="22" y="640" width="200" height="30" fill="#FEF9E7" stroke="#F39C12" stroke-width="1" rx="3" />
+      <text x="28" y="653" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#B9770E">Baghouse filter dust: 6 kg (0.22%)</text>
+      <text x="28" y="664" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#7E5109">Handling loss, within 5% residual cap</text>
+    </g>
+
+    <!-- ================================================================= -->
+    <!-- RIGHT PANEL: DIDACTIC INSET                                       -->
+    <!-- ================================================================= -->
+    <g transform="translate(650, 88)" id="spheronization_mechanism_inset">
+      <rect x="0" y="0" width="530" height="572" fill="#FFFFFF" stroke="#1C2833" stroke-width="1.8" rx="5" />
+      <rect x="0" y="0" width="530" height="28" fill="#1C2833" rx="4" />
+      <text x="14" y="18" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="bold" fill="#ECF0F1">MECHANISM INSET: FROM PLATELET TO SPHEROID, AND WHERE THE MASS GOES</text>
+
+      <!-- SUB-PANEL A: 4-step morphology evolution -->
+      <rect x="14" y="38" width="502" height="248" fill="#F4F9FD" stroke="#85C1E9" stroke-width="1.2" rx="4" />
+      <text x="24" y="55" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="bold" fill="#1B4F72">A. MORPHOLOGY EVOLUTION IN THE PIN-ROTOR CHAMBER (SIDE VIEW, NOT TO SCALE)</text>
+
+      <!-- Step 1: flat flake -->
+      <g transform="translate(24, 64)">
+        <rect x="0" y="0" width="114" height="150" fill="#FFFFFF" stroke="#BDC3C7" stroke-width="1" rx="3" />
+        <text x="57" y="14" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#2C3E50" text-anchor="middle">1. RAW FLAKE</text>
+        <g fill="#34495E" stroke="#17202A" stroke-width="0.8">
+          <rect x="10" y="62" width="94" height="6" /><rect x="8" y="70" width="98" height="6" /><rect x="10" y="78" width="94" height="6" /><rect x="8" y="86" width="98" height="6" />
+        </g>
+        <line x1="10" y1="104" x2="104" y2="104" stroke="#34495E" stroke-width="1" marker-start="url(#dimTick)" marker-end="url(#dimTick)" />
+        <text x="57" y="116" font-family="Courier, monospace" font-size="7.5" fill="#34495E" text-anchor="middle">150-300 um</text>
+        <text x="57" y="132" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#566573" text-anchor="middle">Exposed prismatic edges</text>
+        <text x="57" y="142" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#566573" text-anchor="middle">Tap 0.35-0.45 g/cm3</text>
+      </g>
+      <!-- Step 2: buckling + delamination -->
+      <g transform="translate(150, 64)">
+        <rect x="0" y="0" width="114" height="150" fill="#FFFFFF" stroke="#BDC3C7" stroke-width="1" rx="3" />
+        <text x="57" y="14" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#B9770E" text-anchor="middle">2. IMPACT + BUCKLING</text>
+        <path d="M 10 80 Q 30 52, 52 80 T 98 74" fill="none" stroke="#E67E22" stroke-width="6" stroke-linecap="round" />
+        <path d="M 12 92 Q 32 70, 54 92 T 98 88" fill="none" stroke="#34495E" stroke-width="5" stroke-linecap="round" />
+        <polygon points="86,46 96,42 94,52" fill="#C0392B" /><polygon points="100,58 108,56 105,64" fill="#C0392B" /><polygon points="20,48 28,44 27,53" fill="#C0392B" />
+        <line x1="57" y1="26" x2="57" y2="48" stroke="#C0392B" stroke-width="2" marker-end="url(#arrowRed)" />
+        <text x="57" y="118" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#B9770E" text-anchor="middle">Pin / wall impact</text>
+        <text x="57" y="132" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#C0392B" text-anchor="middle">Edge shear sheds</text>
+        <text x="57" y="142" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#C0392B" text-anchor="middle">&lt; 5 um fines</text>
+      </g>
+      <!-- Step 3: folding -->
+      <g transform="translate(276, 64)">
+        <rect x="0" y="0" width="114" height="150" fill="#FFFFFF" stroke="#BDC3C7" stroke-width="1" rx="3" />
+        <text x="57" y="14" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1F618D" text-anchor="middle">3. CABBAGE FOLD</text>
+        <path d="M 22 92 C 22 52, 92 52, 92 88 C 92 112, 36 112, 36 86 C 36 68, 78 68, 78 86" fill="none" stroke="#2980B9" stroke-width="5" stroke-linecap="round" />
+        <path d="M 30 100 C 50 118, 80 112, 88 98" fill="none" stroke="#34495E" stroke-width="3" stroke-linecap="round" />
+        <text x="57" y="132" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#1B4F72" text-anchor="middle">Lamellae wrap core,</text>
+        <text x="57" y="142" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#1B4F72" text-anchor="middle">trapping micro-voids</text>
+      </g>
+      <!-- Step 4: sphere -->
+      <g transform="translate(402, 64)">
+        <rect x="0" y="0" width="100" height="150" fill="#FFFFFF" stroke="#27AE60" stroke-width="1.2" rx="3" />
+        <text x="50" y="14" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1E8449" text-anchor="middle">4. uSPG SPHEROID</text>
+        <circle cx="50" cy="78" r="34" fill="#2C3E50" stroke="#17202A" stroke-width="1.6" />
+        <path d="M 22 78 C 22 54, 78 54, 78 78 C 78 98, 30 98, 30 78 C 30 64, 70 64, 70 78" fill="none" stroke="#95A5A6" stroke-width="2.4" stroke-linecap="round" />
+        <circle cx="50" cy="78" r="12" fill="none" stroke="#BDC3C7" stroke-width="1.4" />
+        <circle cx="50" cy="78" r="3.5" fill="#16A085" />
+        <text x="50" y="128" font-family="Courier, monospace" font-size="8" font-weight="bold" fill="#1E8449" text-anchor="middle">D50 = 15 um</text>
+        <text x="50" y="140" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#145A32" text-anchor="middle">Tap 0.95-1.02 g/cm3</text>
+      </g>
+      <!-- Arrows between steps -->
+      <g stroke="#2C3E50" stroke-width="2" fill="none">
+        <line x1="140" y1="140" x2="148" y2="140" marker-end="url(#arrow)" /><line x1="266" y1="140" x2="274" y2="140" marker-end="url(#arrow)" /><line x1="392" y1="140" x2="400" y2="140" marker-end="url(#arrow)" />
+      </g>
+      <rect x="24" y="226" width="482" height="50" fill="#FFFFFF" stroke="#BDC3C7" stroke-width="1" rx="3" />
+      <text x="32" y="240" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#2C3E50">WHY IT MATTERS:</text>
+      <text x="32" y="252" font-family="Helvetica, Arial, sans-serif" font-size="7.8" fill="#34495E">Rounding raises tap density (about 2.3x vs. flake), improves electrode packing and Li+ pathways, and hides reactive</text>
+      <text x="32" y="263" font-family="Helvetica, Arial, sans-serif" font-size="7.8" fill="#34495E">edge planes. The price is mechanical: each pass sheds edge material, so more than half of the feed leaves as fines.</text>
+      <text x="32" y="273" font-family="Helvetica, Arial, sans-serif" font-size="7.8" fill="#C0392B">Remaining BET area is still 6.5-9.0 m2/g (too high) until pitch coating (Stage 4).</text>
+
+      <!-- SUB-PANEL B: mass-balance stacked bar -->
+      <rect x="14" y="296" width="502" height="124" fill="#FEF9E7" stroke="#F39C12" stroke-width="1.2" rx="4" />
+      <text x="24" y="313" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="bold" fill="#B9770E">B. MASS BALANCE OF THE FLAKE FEED (2,534 kg = 100%)</text>
+      <rect x="24" y="326" width="216" height="30" fill="#27AE60" stroke="#1C2833" stroke-width="1.2" />
+      <rect x="240" y="326" width="262" height="30" fill="#C0392B" stroke="#1C2833" stroke-width="1.2" />
+      <rect x="502" y="326" width="2" height="30" fill="#F39C12" stroke="#1C2833" stroke-width="1" />
+      <text x="132" y="346" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="bold" fill="#FFFFFF" text-anchor="middle">uSPG 1,141 kg (45.05%)</text>
+      <text x="371" y="346" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Fines scrap 1,387 kg (54.73%)</text>
+      <line x1="503" y1="326" x2="503" y2="372" stroke="#B9770E" stroke-width="1" />
+      <text x="500" y="384" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#7E5109" text-anchor="end">Dust 6 kg (0.22%)</text>
+      <text x="24" y="376" font-family="Courier, monospace" font-size="8" fill="#34495E">1,141 + 1,387 + 6 = 2,534 kg (closed balance)</text>
+      <text x="24" y="396" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#1C2833">Feed multiplier 2.22 t flake per t uSPG; scrap output 1.215 t per t uSPG (ANL-22/74 Table 3).</text>
+      <text x="24" y="410" font-family="Helvetica, Arial, sans-serif" font-size="8.2" font-weight="bold" fill="#900C3F">Fines are not waste: sold at ~$468/t, credited back against the cSPG cost (-$649/t).</text>
+
+      <!-- SUB-PANEL C: ledger -->
+      <rect x="14" y="430" width="502" height="132" fill="#EAFAF1" stroke="#27AE60" stroke-width="1.2" rx="4" />
+      <text x="24" y="447" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="bold" fill="#0E6251">C. STAGE 2 ENERGY &amp; COST LEDGER (ANL-22/74 TABLE 3; DATASET graphite_process_energy_lca.csv)</text>
+      <line x1="24" y1="454" x2="504" y2="454" stroke="#27AE60" stroke-width="0.8" />
+      <text x="24" y="470" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1C2833">• Stage electricity (per kg uSPG)</text>
+      <text x="196" y="470" font-family="Courier, monospace" font-size="8.5" font-weight="bold" fill="#0E6251">1.899 kWh/kg</text>
+      <text x="24" y="486" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1C2833">• Per kg cSPG (cumulative stage)</text>
+      <text x="196" y="486" font-family="Courier, monospace" font-size="8.5" font-weight="bold" fill="#0E6251">2.167 kWh/kg</text>
+      <text x="24" y="502" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1C2833">• Thermal fuel</text>
+      <text x="196" y="502" font-family="Courier, monospace" font-size="8.5" font-weight="bold" fill="#0E6251">0.0 MJ/kg (all electric)</text>
+      <text x="24" y="518" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1C2833">• Cumulative with Stage 1</text>
+      <text x="196" y="518" font-family="Courier, monospace" font-size="8.5" font-weight="bold" fill="#0E6251">3.519 kWh/kg cSPG</text>
+      <line x1="334" y1="458" x2="334" y2="552" stroke="#A3E4D7" stroke-width="1" />
+      <text x="344" y="470" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1C2833">• Milling power + liner wear</text>
+      <text x="344" y="482" font-family="Courier, monospace" font-size="8.5" fill="#34495E">+$550 / t cSPG</text>
+      <text x="344" y="498" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1C2833">• Yield-loss penalty (2.22x feed)</text>
+      <text x="344" y="510" font-family="Courier, monospace" font-size="8.5" fill="#34495E">+$1,200 / t cSPG</text>
+      <text x="344" y="526" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1C2833">• China share of spheronization</text>
+      <text x="344" y="538" font-family="Courier, monospace" font-size="8.5" font-weight="bold" fill="#C0392B">99.0% (IEA 2024)</text>
+      <text x="24" y="546" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#145A32">Stage 2 = 27.4% of HF-route electricity: the single biggest cost lever before purification.</text>
+    </g>
+
+
+    <!-- ISO 7200 Technical Title Block -->
+    <g transform="translate(680, 672)" id="iso_title_block">
+      <rect x="0" y="0" width="500" height="108" fill="#FFFFFF" stroke="#1C2833" stroke-width="1.8" />
+      <rect x="0" y="0" width="500" height="28" fill="#F2F4F4" stroke="#1C2833" stroke-width="1.2" />
+      <line x1="0" y1="56" x2="500" y2="56" stroke="#1C2833" stroke-width="1.0" />
+      <line x1="0" y1="82" x2="500" y2="82" stroke="#1C2833" stroke-width="1.0" />
+      <line x1="375" y1="0" x2="375" y2="56" stroke="#1C2833" stroke-width="1.0" />
+      <line x1="435" y1="28" x2="435" y2="56" stroke="#1C2833" stroke-width="1.0" />
+
+      <!-- First-Angle Projection Symbol -->
+      <circle cx="482" cy="14" r="6" fill="none" stroke="#1C2833" stroke-width="1.1" />
+      <circle cx="482" cy="14" r="2.5" fill="none" stroke="#1C2833" stroke-width="1.1" />
+      <polygon points="452,10 470,7 470,21 452,18" fill="none" stroke="#1C2833" stroke-width="1.1" />
+
+      <!-- Field Content -->
+      <text x="10" y="19" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="bold" fill="#1C2833">AIR-CLASSIFIER IMPACT MILL (SECTION A-A)</text>
+      <text x="383" y="19" font-family="Courier, monospace" font-size="10.5" font-weight="bold" fill="#C0392B">DWG-MCH-02</text>
+
+      <text x="10" y="45" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#566573">UNIT OP:</text>
+      <text x="58" y="45" font-family="Helvetica, Arial, sans-serif" font-size="9" font-weight="bold" fill="#1C2833">Mechanical Spheronization (Stage 2)</text>
+      <text x="383" y="45" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#566573">STD: ISO 128</text>
+      <text x="442" y="45" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1C2833">REV 2.0</text>
+
+      <text x="10" y="73" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#117A65">AUDIT METRICS: Elec: 1.899 kWh/kg uSPG | Core Yield: 45.05% | Fines: 54.73%</text>
+      <text x="10" y="98" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-style="italic" fill="#5D6D7E">PRIMARY PROVENANCE: ANL GREET ANL-22/74 Table 3; Engels (2022); IEA (2024)</text>
+    </g>
+
+</svg>

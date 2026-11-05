@@ -1,0 +1,112 @@
+@startuml ccus_04_isa88_tvsa_cycle_and_thermodynamics
+!pragma layout smetana
+skinparam backgroundColor #FDFEFE
+skinparam defaultFontName "Helvetica"
+skinparam roundCorner 8
+skinparam shadowing false
+
+skinparam state {
+  BackgroundColor #EAEDED
+  BorderColor #7F8C8D
+  FontColor #2C3E50
+  ArrowColor #2980B9
+  ArrowThickness 1.5
+}
+
+title ANSI/ISA-88 Batch Recipe State Machine & Direct Air Capture TVSA Thermodynamics\n(IEC 61512 Procedure Model: Temperature-Vacuum Swing Adsorption Cycle, Specific Exergy & Second-Law Efficiency)
+
+[*] --> IDLE_STANDBY : Collector Module Pre-Flight & Valve Integrity Check
+
+state IDLE_STANDBY {
+  IDLE_STANDBY : • Duration: Standby / Scheduled Maintenance
+  IDLE_STANDBY : • Bed Temp: Ambient (15 - 25 °C) | Pressure: 1.013 bar
+  IDLE_STANDBY : • Collector front/rear louvers: Hermetically closed
+  IDLE_STANDBY : • Diagnostics: Vacuum seal check, transducer baseline, sorbent bed dP
+  IDLE_STANDBY : • Parasitic Standby Power: < 0.5 kW per contactor block
+}
+
+IDLE_STANDBY --> ADSORPTION_BLOWING : Cycle Start Permissive / Fan VFD Enabled
+
+state ADSORPTION_BLOWING #E8F8F5 {
+  ADSORPTION_BLOWING : • Phase Duration: 120 - 240 min (Until breakthrough threshold)
+  ADSORPTION_BLOWING : • Operating Conditions: T = 15 - 25 °C | P = 1.013 bar (Atmospheric)
+  ADSORPTION_BLOWING : • Air Velocity: 1.0 - 1.5 m/s | Suction Flow: ~1.5 - 2.0 x 10^6 m3 air / t CO2
+  ADSORPTION_BLOWING : • Front and rear aerodynamic louvers 100% open
+  ADSORPTION_BLOWING : • Specific Fan Electricity: 120 - 180 kWh_e / t CO2
+  ADSORPTION_BLOWING : • Thermodynamic Sorption:
+  ADSORPTION_BLOWING :   - Chemisorption on primary/secondary amine active sites
+  ADSORPTION_BLOWING :   - CO2 + 2 RNH2 <-> RNHCOO- + RNH3+ (Carbamate route)
+  ADSORPTION_BLOWING :   - Exothermic Adsorption Enthalpy: Delta H_ads = -70 to -95 kJ / mol CO2
+  ADSORPTION_BLOWING :   - Simultaneous co-adsorption of ambient moisture: 1.5 - 2.5 t H2O / t CO2
+  ADSORPTION_BLOWING : • Sorbent Loading Achieved: 1.0 - 2.2 mmol CO2 / g sorbent
+}
+
+ADSORPTION_BLOWING --> CHAMBER_EVACUATION : CO2 Breakthrough Detected (Exhaust [CO2] > 250 ppm)
+
+state CHAMBER_EVACUATION #FEF9E7 {
+  ADSORPTION_BLOWING --> CHAMBER_EVACUATION : Front/Rear Louvers Actuated Closed
+  CHAMBER_EVACUATION : • Phase Duration: 15 - 30 min
+  CHAMBER_EVACUATION : • Operating Conditions: Evacuate from 1.013 bar -> 0.10 - 0.20 bar (Vacuum)
+  CHAMBER_EVACUATION : • Vacuum Train: Multi-stage Roots blower + rotary claw roughing pumps
+  CHAMBER_EVACUATION : • Specific Vacuum Electricity: 35 - 65 kWh_e / t CO2
+  CHAMBER_EVACUATION : • Unit Objective: Dead-Space Inert Evacuation
+  CHAMBER_EVACUATION :   - Vents non-adsorbed interstitial atmospheric N2, O2, and Ar
+  CHAMBER_EVACUATION :   - Prevents oxidative degradation of amine sorbent during subsequent heating
+  CHAMBER_EVACUATION :   - Protects CO2 product purity (>95 - 98 vol%)
+}
+
+CHAMBER_EVACUATION --> STEAM_HEATING_DESORPTION : Vacuum Setpoint Reached (P < 0.15 bar)
+
+state STEAM_HEATING_DESORPTION #FDEDEC {
+  STEAM_HEATING_DESORPTION : • Phase Duration: 60 - 120 min (Thermal Desorption Peak)
+  STEAM_HEATING_DESORPTION : • Temperature Ramp: 25 °C -> 95 - 102 °C | Pressure: 0.10 - 0.25 bar
+  STEAM_HEATING_DESORPTION : • Heat Supply: Low-pressure saturated steam (100 °C) or hot water jacket
+  STEAM_HEATING_DESORPTION : • Specific Thermal Energy Input: 5.76 - 7.50 GJ_th / t CO2 (1,600 - 2,080 kWh_th / t)
+  STEAM_HEATING_DESORPTION : • Endothermic Desorption Reaction:
+  STEAM_HEATING_DESORPTION :   - Cleavage of carbamate bonds: RNHCOO- + RNH3+ -> CO2(g) + 2 RNH2
+  STEAM_HEATING_DESORPTION :   - Evolution of concentrated CO2 gas + co-desorbed water vapor
+  STEAM_HEATING_DESORPTION : • Flash Condensation Knockout:
+  STEAM_HEATING_DESORPTION :   - Knockout of condensed water (1.5 - 2.5 t H2O / t CO2 recovered)
+  STEAM_HEATING_DESORPTION :   - Pure CO2 gas stream drawn to booster compressor header
+}
+
+STEAM_HEATING_DESORPTION --> COOLING_REPRESSURIZATION : Desorption Flow Decays (<5% peak rate)
+
+state COOLING_REPRESSURIZATION #EBF5FB {
+  COOLING_REPRESSURIZATION : • Phase Duration: 20 - 45 min
+  COOLING_REPRESSURIZATION : • Temperature Decay: 100 °C -> 30 °C | Pressure: 0.15 bar -> 1.013 bar
+  COOLING_REPRESSURIZATION : • Sensible Heat Rejection: ~1.2 - 1.8 GJ / t CO2 rejected via cooling water
+  COOLING_REPRESSURIZATION : • Gentle controlled repressurization with filtered atmospheric air
+  COOLING_REPRESSURIZATION : • Cooling water pump work: 10 - 15 kWh_e / t CO2
+  COOLING_REPRESSURIZATION : • Safety Interlock: Louvers remain sealed until bed T < 45 °C to prevent amine oxidation
+}
+
+COOLING_REPRESSURIZATION --> PURGE_VALVE_RESET : Bed Temperature Safe (T < 45 °C) & P = 1.013 bar
+
+state PURGE_VALVE_RESET {
+  PURGE_VALVE_RESET : • Phase Duration: 2 - 5 min
+  PURGE_VALVE_RESET : • Louver seal release & pneumatic actuator zeroing
+  PURGE_VALVE_RESET : • Cycle Log & Sorbent Capacity Integration:
+  PURGE_VALVE_RESET :   - Cumulative cycles logged (Sorbent lifetime: 4,000 - 8,000 cycles / 3-5 years)
+  PURGE_VALVE_RESET :   - Specific amine degradation rate tracking: < 0.05% capacity loss per 100 cycles
+}
+
+PURGE_VALVE_RESET --> CYCLE_COMPLETE : Ready for Next Adsorption Cycle
+
+state CYCLE_COMPLETE #D5F5E3 {
+  CYCLE_COMPLETE : • Cumulative TVSA Cycle Energy (per 1,000 kg Captured CO2):
+  CYCLE_COMPLETE :   - Thermal Duty (95 - 100 °C): 5.76 - 7.50 GJ_th / t CO2
+  CYCLE_COMPLETE :   - Electric Duty (Fans + Vacuum + Compression): 400 - 650 kWh_e / t CO2
+  CYCLE_COMPLETE : • Thermodynamic Gibbs Minimum Separation Work:
+  CYCLE_COMPLETE :   - W_min = -R*T*[ ln(y0) + ((1 - y0)/y0)*ln(1 - y0) ]
+  CYCLE_COMPLETE :   - For DAC (y0 = 420 ppmv, 298.15 K): W_min = 20.3 kJ/mol = 461 kJ/kg = 128 kWh/t CO2
+  CYCLE_COMPLETE :   - For Coal Flue Gas (y0 = 12.5%, 298.15 K): W_min = 7.57 kJ/mol = 172 kJ/kg = 47.8 kWh/t CO2
+  CYCLE_COMPLETE : • Second-Law Exergy Efficiency:
+  CYCLE_COMPLETE :   - Direct Air Capture Exergy Efficiency: eta_II = W_min / W_actual ~ 6.5 - 9.2%
+  CYCLE_COMPLETE :   - Flue Gas Amine Exergy Efficiency: eta_II = W_min / W_actual ~ 18.5 - 24.0%
+}
+
+CYCLE_COMPLETE --> ADSORPTION_BLOWING : Auto-Cycle Loop
+CYCLE_COMPLETE --> IDLE_STANDBY : Maintenance / Pause Order
+
+@enduml

@@ -1,0 +1,283 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+
+  <defs>
+    <!-- Blueprint Subtle Engineering Grid -->
+    <pattern id="blueprintGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E5E8E8" stroke-width="0.6" />
+      <path d="M 20 0 L 20 40 M 0 20 L 40 20" fill="none" stroke="#F2F4F4" stroke-width="0.4" />
+    </pattern>
+
+    <!-- Steel Hatching Pattern (ISO 128 45 deg lines) -->
+    <pattern id="steelHatch" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <rect width="8" height="8" fill="#D5D8DC" fill-opacity="0.35" />
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#566573" stroke-width="1.2" />
+    </pattern>
+
+    <!-- Structured Packing / Corrugated Sheet Pattern -->
+    <pattern id="structuredPacking" width="12" height="12" patternUnits="userSpaceOnUse">
+      <rect width="12" height="12" fill="#EAECEE" />
+      <path d="M 0 0 L 6 12 L 12 0" fill="none" stroke="#2980B9" stroke-width="1.2" />
+      <path d="M 0 6 L 6 0 L 12 6" fill="none" stroke="#7FB3D5" stroke-width="0.8" stroke-dasharray="2,2" />
+    </pattern>
+
+    <!-- Refractory Brick Masonry Pattern -->
+    <pattern id="refractoryBrick" width="24" height="12" patternUnits="userSpaceOnUse">
+      <rect width="24" height="12" fill="#D35400" fill-opacity="0.25" stroke="#BA4A00" stroke-width="1" />
+      <line x1="0" y1="6" x2="24" y2="6" stroke="#BA4A00" stroke-width="1" />
+      <line x1="12" y1="0" x2="12" y2="6" stroke="#BA4A00" stroke-width="1" />
+      <line x1="0" y1="6" x2="0" y2="12" stroke="#BA4A00" stroke-width="1" />
+      <line x1="24" y1="6" x2="24" y2="12" stroke="#BA4A00" stroke-width="1" />
+    </pattern>
+
+    <!-- Geological Caprock / Shale Hatch -->
+    <pattern id="shaleHatch" width="16" height="8" patternUnits="userSpaceOnUse">
+      <rect width="16" height="8" fill="#5D6D7E" fill-opacity="0.3" />
+      <line x1="0" y1="2" x2="8" y2="2" stroke="#34495E" stroke-width="1.2" />
+      <line x1="8" y1="6" x2="16" y2="6" stroke="#34495E" stroke-width="1.2" />
+    </pattern>
+
+    <!-- Saline Sandstone Porous Hatch -->
+    <pattern id="sandstoneHatch" width="12" height="12" patternUnits="userSpaceOnUse">
+      <rect width="12" height="12" fill="#EDBB99" fill-opacity="0.35" />
+      <circle cx="3" cy="3" r="1.2" fill="#BA4A00" />
+      <circle cx="9" cy="9" r="1.5" fill="#A04000" />
+      <circle cx="9" cy="3" r="1.0" fill="#BA4A00" />
+      <circle cx="3" cy="9" r="1.2" fill="#873600" />
+    </pattern>
+
+    <!-- Basaltic Igneous Columnar Pattern -->
+    <pattern id="basaltHatch" width="16" height="20" patternUnits="userSpaceOnUse">
+      <rect width="16" height="20" fill="#2C3E50" fill-opacity="0.25" />
+      <polygon points="8,1 15,6 15,14 8,19 1,14 1,6" fill="none" stroke="#1A252F" stroke-width="1.1" />
+    </pattern>
+
+    <!-- Sorbent Monolith Channel Pattern -->
+    <pattern id="monolithChannels" width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect width="10" height="10" fill="#F4F6F6" stroke="#BDC3C7" stroke-width="0.8" />
+      <circle cx="5" cy="5" r="2.5" fill="#1ABC9C" fill-opacity="0.4" />
+    </pattern>
+
+    <!-- Gradients -->
+    <radialGradient id="heatGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFF9C4" stop-opacity="1" />
+      <stop offset="45%" stop-color="#F39C12" stop-opacity="0.85" />
+      <stop offset="85%" stop-color="#C0392B" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="#7B241C" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="gasBubble" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95" />
+      <stop offset="55%" stop-color="#D4EFDF" stop-opacity="0.8" />
+      <stop offset="90%" stop-color="#7DCEA0" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#27AE60" stop-opacity="0.9" />
+    </radialGradient>
+
+    <linearGradient id="metallicCyl" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7F8C8D" />
+      <stop offset="30%" stop-color="#ECF0F1" />
+      <stop offset="55%" stop-color="#BDC3C7" />
+      <stop offset="85%" stop-color="#566573" />
+      <stop offset="100%" stop-color="#7F8C8D" />
+    </linearGradient>
+
+    <linearGradient id="solventRichGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#AED6F1" stop-opacity="0.7" />
+      <stop offset="50%" stop-color="#5DADE2" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="#2E86C1" stop-opacity="0.95" />
+    </linearGradient>
+
+    <linearGradient id="solventLeanGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#A9DFBF" stop-opacity="0.7" />
+      <stop offset="50%" stop-color="#52BE80" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="#229954" stop-opacity="0.95" />
+    </linearGradient>
+
+    <linearGradient id="supercriticalCO2Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FADBD8" />
+      <stop offset="40%" stop-color="#F1948A" />
+      <stop offset="70%" stop-color="#E74C3C" />
+      <stop offset="100%" stop-color="#B03A2E" />
+    </linearGradient>
+
+    <!-- Arrow Markers -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#2C3E50" />
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#C0392B" />
+    </marker>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#2980B9" />
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#27AE60" />
+    </marker>
+    <marker id="arrowOrange" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#D35400" />
+    </marker>
+    <marker id="arrowTeal" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#16A085" />
+    </marker>
+  </defs>
+
+  <rect width="1200" height="800" fill="#F8F9F9" />
+
+    <!-- Background Blueprint Grid & ISO Drawing Sheet Frame -->
+    <rect x="12" y="12" width="1176" height="776" fill="url(#blueprintGrid)" stroke="#1C2833" stroke-width="2" />
+    <rect x="16" y="16" width="1168" height="768" fill="none" stroke="#566573" stroke-width="0.8" />
+
+    <!-- Upper Blueprint Header -->
+    <rect x="20" y="20" width="1160" height="52" fill="#1C2833" rx="3" />
+    <rect x="20" y="68" width="1160" height="4" fill="#2980B9" />
+    <text x="36" y="43" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#ECF0F1">LIQUID DAC OXY-FIRED CIRCULATING FLUIDIZED BED CALCINER &amp; PELLET REACTOR</text>
+    <text x="36" y="60" font-family="Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#BDC3C7">Dual-Loop High-Temperature Calcite De-carbonation &amp; Causticization (Keith et al. 2018 Joule / Carbon Engineering)</text>
+    <line x1="835" y1="26" x2="835" y2="64" stroke="#566573" stroke-width="1" />
+    <text x="1165" y="42" font-family="Courier, monospace" font-size="9" font-weight="bold" fill="#F39C12" text-anchor="end">BASIS: 1,000 kg CO2 CAPTURED VIA HIGH-T KOH / CaCO3 LOOP</text>
+    <text x="1165" y="58" font-family="Courier, monospace" font-size="8.5" fill="#ABB2B9" text-anchor="end">CAD SECTION VIEW A-A | P&amp;ID INSTRUMENTED</text>
+
+
+    <!-- ================================================================= -->
+    <!-- FLUIDIZED BED PELLET REACTOR (LEFT)                               -->
+    <!-- ================================================================= -->
+    <g id="pellet_reactor">
+      <!-- Reactor Column & Conical Bottom -->
+      <rect x="80" y="160" width="140" height="280" fill="#EAEDED" stroke="#1C2833" stroke-width="2" />
+      <polygon points="80,440 220,440 170,550 130,550" fill="#BDC3C7" stroke="#1C2833" stroke-width="2" />
+
+      <!-- Fluidized Bed of Calcite Sand / Pellets -->
+      <rect x="86" y="240" width="128" height="190" fill="#F9EBEA" stroke="#E74C3C" stroke-width="1" stroke-dasharray="2,2" />
+      <circle cx="110" cy="280" r="4" fill="#C0392B" />
+      <circle cx="140" cy="310" r="5" fill="#922B21" />
+      <circle cx="175" cy="270" r="4.5" fill="#C0392B" />
+      <circle cx="125" cy="350" r="6" fill="#78281F" />
+      <circle cx="160" cy="370" r="5.5" fill="#922B21" />
+      <circle cx="135" cy="410" r="6.5" fill="#641E16" />
+      <circle cx="170" cy="420" r="7" fill="#641E16" />
+
+      <text x="150" y="220" font-family="Helvetica, Arial, sans-serif" font-size="9" font-weight="bold" fill="#78281F" text-anchor="middle">PELLET REACTOR</text>
+      <text x="150" y="235" font-family="Courier, monospace" font-size="7.5" fill="#78281F" text-anchor="middle">Fluidized Seed Bed</text>
+
+      <!-- K2CO3 Solution Feed from Contactor -->
+      <line x1="30" y1="180" x2="80" y2="180" stroke="#2980B9" stroke-width="2.5" marker-end="url(#arrowBlue)" />
+      <text x="30" y="172" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#1F618D">K2CO3 SOL'N (2.0 M)</text>
+
+      <!-- Ca(OH)2 Slurry Feed from Slaker -->
+      <line x1="30" y1="460" x2="110" y2="460" stroke="#D35400" stroke-width="2.5" marker-end="url(#arrowOrange)" />
+      <text x="30" y="452" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#D35400">Ca(OH)2 SLURRY</text>
+
+      <!-- Regenerated KOH Overflow to Contactor -->
+      <line x1="220" y1="190" x2="270" y2="190" stroke="#27AE60" stroke-width="2" marker-end="url(#arrowGreen)" />
+      <text x="275" y="193" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#27AE60">KOH RECYCLE</text>
+
+      <!-- Dense CaCO3 Pellets Bottom Discharge -->
+      <line x1="150" y1="550" x2="150" y2="600" stroke="#1C2833" stroke-width="2" />
+      <line x1="150" y1="600" x2="280" y2="600" stroke="#C0392B" stroke-width="2.5" marker-end="url(#arrowRed)" />
+      <text x="215" y="592" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#C0392B">CaCO3 PELLETS (0.8 - 1.2 mm)</text>
+      <text x="215" y="612" font-family="Courier, monospace" font-size="7.5" fill="#78281F">90 wt% solids (2,275 kg/t CO2)</text>
+    </g>
+
+    <!-- ================================================================= -->
+    <!-- SLAKER REACTOR (CENTER BOTTOM)                                    -->
+    <!-- ================================================================= -->
+    <g id="slaker_reactor">
+      <rect x="230" y="440" width="80" height="70" rx="4" fill="#FAD7A0" stroke="#D35400" stroke-width="1.8" />
+      <text x="270" y="465" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#7E5109" text-anchor="middle">SLAKER UNIT</text>
+      <text x="270" y="480" font-family="Courier, monospace" font-size="7" fill="#7E5109" text-anchor="middle">CaO + H2O -&gt; Ca(OH)2</text>
+      <text x="270" y="492" font-family="Courier, monospace" font-size="7" fill="#7E5109" text-anchor="middle">ΔH = -65 kJ/mol</text>
+      <!-- Slaker effluent to Pellet Reactor -->
+      <path d="M 230 480 L 140 480" fill="none" stroke="#D35400" stroke-width="2" marker-end="url(#arrowOrange)" />
+    </g>
+
+    <!-- ================================================================= -->
+    <!-- OXY-FIRED CIRCULATING FLUIDIZED BED CALCINER (RIGHT)              -->
+    <!-- ================================================================= -->
+    <g id="oxy_calciner">
+      <!-- Refractory Brick Riser Column (900 °C) -->
+      <rect x="390" y="140" width="90" height="420" fill="url(#refractoryBrick)" stroke="#BA4A00" stroke-width="2" />
+      <rect x="400" y="150" width="70" height="400" fill="#FDEDEC" fill-opacity="0.7" />
+
+      <!-- Combustion Flame & Thermal Glow -->
+      <circle cx="435" cy="500" r="30" fill="url(#heatGlow)" />
+      <text x="435" y="320" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="bold" fill="#78281F" text-anchor="middle">OXY-CALCINER</text>
+      <text x="435" y="338" font-family="Courier, monospace" font-size="8.5" font-weight="bold" fill="#C0392B" text-anchor="middle">T = 900 °C</text>
+      <text x="435" y="352" font-family="Courier, monospace" font-size="7.5" fill="#78281F" text-anchor="middle">CaCO3 -&gt; CaO + CO2</text>
+      <text x="435" y="364" font-family="Courier, monospace" font-size="7.5" fill="#78281F" text-anchor="middle">ΔH = +179 kJ/mol</text>
+
+      <!-- Fuel & Oxygen Feeds -->
+      <line x1="330" y1="520" x2="390" y2="520" stroke="#C0392B" stroke-width="2.5" marker-end="url(#arrowRed)" />
+      <text x="320" y="515" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" fill="#C0392B" text-anchor="end">NATURAL GAS</text>
+      <line x1="330" y1="545" x2="390" y2="545" stroke="#2980B9" stroke-width="2.5" marker-end="url(#arrowBlue)" />
+      <text x="320" y="540" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" fill="#1F618D" text-anchor="end">PURE O2 (ASU: 110 kWh/t)</text>
+
+      <!-- Cyclone Separator -->
+      <polygon points="530,160 580,160 565,240 545,240" fill="url(#metallicCyl)" stroke="#1C2833" stroke-width="1.8" />
+      <rect x="530" y="140" width="50" height="20" fill="url(#metallicCyl)" stroke="#1C2833" stroke-width="1.5" />
+      <!-- Riser to Cyclone Duct -->
+      <path d="M 435 140 L 435 120 L 530 120 L 530 150" fill="none" stroke="#BA4A00" stroke-width="3" />
+
+      <!-- Cyclone Bottoms: Hot CaO Lime Recycle to Slaker -->
+      <path d="M 555 240 L 555 420 L 310 420 L 310 440" fill="none" stroke="#D35400" stroke-width="2.5" marker-end="url(#arrowOrange)" />
+      <text x="560" y="330" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" fill="#D35400">HOT CaO PELLETS (900 °C)</text>
+
+      <!-- Cyclone Overhead: Pure CO2 + H2O Vapor -->
+      <path d="M 555 140 L 555 100 L 630 100" fill="none" stroke="#C0392B" stroke-width="2.5" marker-end="url(#arrowRed)" />
+      <text x="635" y="96" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#C0392B">RAW CO2 + STEAM OVERHEAD</text>
+    </g>
+
+    <!-- Right Side: Heat Recovery & Gas Clean Train -->
+    <g transform="translate(680, 120)">
+      <rect x="0" y="0" width="480" height="230" fill="#FFFFFF" stroke="#BDC3C7" stroke-width="1.2" rx="4" />
+      <rect x="0" y="0" width="480" height="24" fill="#EAEDED" rx="4" />
+      <text x="12" y="17" font-family="Helvetica, Arial, sans-serif" font-size="9" font-weight="bold" fill="#2C3E50">HEAT INTEGRATION &amp; GAS CLEANUP (KEITH ET AL. 2018)</text>
+
+      <rect x="12" y="35" width="220" height="70" rx="3" fill="#FADBD8" stroke="#C0392B" stroke-width="1.2" />
+      <text x="20" y="52" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#78281F">HIGH-T STEAM GENERATOR</text>
+      <text x="20" y="68" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#78281F">• Recovers sensible heat from 900 °C gas</text>
+      <text x="20" y="80" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#78281F">• Preheats boiler feed water &amp; pellets</text>
+      <text x="20" y="92" font-family="Courier, monospace" font-size="7.5" fill="#922B21">• Heat recovery: ~1.5 GJ / t CO2</text>
+
+      <rect x="245" y="35" width="220" height="70" rx="3" fill="#D4E6F1" stroke="#2980B9" stroke-width="1.2" />
+      <text x="253" y="52" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1B4F72">DIRECT CONTACT CONDENSER</text>
+      <text x="253" y="68" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#1B4F72">• Quenches gas to 30 °C; knocks out H2O</text>
+      <text x="253" y="80" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#1B4F72">• Condenses water from oxy-combustion</text>
+      <text x="253" y="92" font-family="Courier, monospace" font-size="7.5" fill="#154360">• CO2 Purity: &gt; 98.5 vol% (Bone dry)</text>
+
+      <!-- Mass & Energy Summary -->
+      <rect x="12" y="115" width="453" height="100" fill="#F4F6F7" stroke="#D5D8DC" rx="3" />
+      <text x="20" y="132" font-family="Courier, monospace" font-size="8" font-weight="bold" fill="#1C2833">THERMAL &amp; ELECTRIC ENERGETICS (PER 1,000 kg CO2):</text>
+      <text x="20" y="150" font-family="Courier, monospace" font-size="8" fill="#78281F">• Thermal Fuel Input (900 °C):    5.25 - 8.81 GJ_th / t CO2 (Keith 2018)</text>
+      <text x="20" y="165" font-family="Courier, monospace" font-size="8" fill="#154360">• Contactor Air Fans:             61.0 kWh_e / t CO2 (v = 1.5 m/s, dP = 120 Pa)</text>
+      <text x="20" y="180" font-family="Courier, monospace" font-size="8" fill="#154360">• Air Separation Unit (ASU):      110.0 kWh_e / t CO2 (High-purity O2)</text>
+      <text x="20" y="195" font-family="Courier, monospace" font-size="8" fill="#154360">• Pellet pumps &amp; auxiliaries:     100.0 kWh_e / t CO2 | Comp: 90 kWh_e / t</text>
+      <text x="20" y="208" font-family="Courier, monospace" font-size="8" font-weight="bold" fill="#117A65">• Total Electric Consumption:     361 - 440 kWh_e / t CO2 | LCOC: $190-$232/t</text>
+    </g>
+    
+
+    <!-- ISO 7200 Technical Title Block -->
+    <g transform="translate(680, 672)" id="iso_title_block">
+      <rect x="0" y="0" width="500" height="108" fill="#FFFFFF" stroke="#1C2833" stroke-width="1.8" />
+      <rect x="0" y="0" width="500" height="28" fill="#F2F4F4" stroke="#1C2833" stroke-width="1.2" />
+      <line x1="0" y1="56" x2="500" y2="56" stroke="#1C2833" stroke-width="1.0" />
+      <line x1="0" y1="82" x2="500" y2="82" stroke="#1C2833" stroke-width="1.0" />
+      <line x1="375" y1="0" x2="375" y2="56" stroke="#1C2833" stroke-width="1.0" />
+      <line x1="435" y1="28" x2="435" y2="56" stroke="#1C2833" stroke-width="1.0" />
+
+      <!-- First-Angle Projection Symbol -->
+      <circle cx="482" cy="14" r="6" fill="none" stroke="#1C2833" stroke-width="1.1" />
+      <circle cx="482" cy="14" r="2.5" fill="none" stroke="#1C2833" stroke-width="1.1" />
+      <polygon points="452,10 470,7 470,21 452,18" fill="none" stroke="#1C2833" stroke-width="1.1" />
+
+      <!-- Field Content -->
+      <text x="10" y="19" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#1C2833">OXY-CALCINER &amp; FLUIDIZED BED PELLET REACTOR</text>
+      <text x="383" y="19" font-family="Courier, monospace" font-size="10.5" font-weight="bold" fill="#C0392B">DWG-CCUS-MACH-03</text>
+
+      <text x="10" y="45" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#566573">UNIT OP:</text>
+      <text x="58" y="45" font-family="Helvetica, Arial, sans-serif" font-size="9" font-weight="bold" fill="#1C2833">Liquid DAC High-T Regeneration (Stage 3)</text>
+      <text x="383" y="45" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#566573">STD: ISO 128</text>
+      <text x="442" y="45" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1C2833">REV 2.0</text>
+
+      <text x="10" y="73" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#117A65">AUDIT METRICS: Thermal: 5.25-8.81 GJ_th / t | ASU Elec: 110 kWh_e / t | Temp: 900 °C</text>
+      <text x="10" y="98" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-style="italic" fill="#5D6D7E">PRIMARY PROVENANCE: Keith et al. (2018) Joule; ANL GREET (2023)</text>
+    </g>
+
+</svg>

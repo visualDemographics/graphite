@@ -1,0 +1,82 @@
+@startuml ccus_01_global_source_to_sink_topology
+!pragma layout smetana
+skinparam backgroundColor #FDFDFD
+skinparam defaultFontName "Helvetica"
+skinparam roundCorner 8
+skinparam shadowing false
+skinparam ArrowColor #2C3E50
+skinparam ArrowThickness 1.5
+
+skinparam package {
+  BackgroundColor #F4F6F7
+  BorderColor #BDC3C7
+  FontColor #2C3E50
+  FontStyle bold
+}
+
+skinparam rectangle {
+  BackgroundColor #FFFFFF
+  BorderColor #7F8C8D
+  FontColor #2C3E50
+}
+
+skinparam rectangle<<Upstream>> {
+  BackgroundColor #EBF5FB
+  BorderColor #2980B9
+}
+
+skinparam rectangle<<MidstreamChokepoint>> {
+  BackgroundColor #FDEDEC
+  BorderColor #C0392B
+  FontColor #900C3F
+  FontStyle bold
+}
+
+skinparam rectangle<<Downstream>> {
+  BackgroundColor #EAFAF1
+  BorderColor #27AE60
+}
+
+title Global CCUS & DAC Value-Chain Topology: Source Concentration, Separation Duties & Geological Sinks\nSysML Material Flow, Cost Escalation & Geological Storage Ledger (IEA CCUS 2024, GCCSI 2024, NETL Rev 4a)
+
+package "1. Upstream Capture Sources & Concentration Spectrum" {
+  rectangle "High-Purity Biogenic & Chemical Streams\n(Bioethanol, Ammonia, SMR Syngas)\n---\n* <b>Inlet Concentration:</b> 45% - 99% CO2\n* <b>Minimum Work W_min:</b> 0.25 - 3.2 kJ/mol (1.6 - 20 kWh/t)\n* <b>Capture Tech:</b> Water Knockout, MDEA, PSA\n* <b>Operational Share:</b> ~17% (~8.7 Mt/yr)\n---\n<b>Levelized Capture Cost:</b> $15 - $45 / t CO2" as HighPurity <<Upstream>>
+
+  rectangle "Natural Gas Processing & LNG Sweetening\n(Historically Dominant Operational Baseline)\n---\n* <b>Inlet Concentration:</b> 15% - 85% CO2 (Acid gas)\n* <b>Minimum Work W_min:</b> 1.5 - 5.0 kJ/mol (10 - 32 kWh/t)\n* <b>Capture Tech:</b> Formulated Amine / Membrane\n* <b>Operational Share:</b> 64% (33.2 Mt/yr of 51 Mt total)\n---\n<b>Levelized Capture Cost:</b> $20 - $35 / t CO2\n<b>Key Sites:</b> Shute Creek, Century, Santos Pre-Salt" as NGProcessing <<Upstream>>
+
+  rectangle "Dilute Industrial Point Sources (Power, Cement, Steel)\n(Hard-to-Abate Post-Combustion Flue Gases)\n---\n* <b>Inlet Concentration:</b> 4% (NGCC), 12.5% (Coal), 20% (Cement)\n* <b>Minimum Work W_min:</b> 5.6 - 9.8 kJ/mol (35 - 62 kWh/t)\n* <b>Capture Tech:</b> Advanced Amine (CANSOLV / KS-1) & Oxyfuel\n* <b>Operational Share:</b> ~5.2% (~2.7 Mt/yr commercial)\n---\n<b>Levelized Capture Cost:</b> $60 - $120 / t CO2\n<b>Key Sites:</b> Boundary Dam 3, Petra Nova, Brevik Cement" as DilutePoint <<Upstream>>
+
+  rectangle "Direct Air Capture (DAC)\n(Ultra-Dilute Atmospheric Removal)\n---\n* <b>Inlet Concentration:</b> ~420 ppm (0.042% CO2)\n* <b>Minimum Work W_min:</b> 20.0 kJ/mol (126.5 kWh/t CO2)\n* <b>Capture Tech:</b> Liquid KOH Calcination / Solid TVSA\n* <b>Operational Share:</b> 0.08% (~0.04 Mt/yr operational)\n---\n<b>Levelized Capture Cost:</b> $350 - $700 / t CO2\n<b>Key Sites:</b> Climeworks Orca & Mammoth (Iceland)" as DACStream <<Upstream>>
+}
+
+package "2. Midstream Conditioning, Compression & Transport Chokepoints" {
+  rectangle "TEG Dehydration & Multi-Stage Compression\n---\n* <b>Inlet Pressure:</b> Atmospheric (~0.1 MPa)\n* <b>Discharge Pressure:</b> 11.0 - 15.3 MPa (Dense Supercritical)\n* <b>Power Duty:</b> 80 - 120 kWh_e / t CO2 (Centrifugal with Intercooling)\n* <b>Moisture Limit:</b> <50 ppmv H2O (prevents H2CO3 corrosion)\n---\n<b>Conditioning Cost:</b> $10 - $22 / t CO2\n<color:#C0392B><b>CORROSION CHOKEPOINT: Dense-phase dryness mandatory</b></color>" as CompressionDehydration <<MidstreamChokepoint>>
+
+  rectangle "Dense-Phase Trunk Pipeline Networks\n---\n* <b>Fluid State:</b> Dense supercritical (density 600 - 900 kg/m3)\n* <b>Operating Envelope:</b> 8.5 - 15.0 MPa at 15 - 30 °C\n* <b>Transport Economics:</b> $2.50 - $6.00 / t per 100 km onshore\n* <b>Global Pipeline Network:</b> >8,000 km (primarily USA EOR)\n---\n<b>Major Networks:</b> Canyon Reef, Cortez (Permian), ACTL (Alberta)" as PipelineTransport <<MidstreamChokepoint>>
+
+  rectangle "Liquid CO2 Ship Transport & Multi-User Hub Terminals\n---\n* <b>Semi-Refrigerated Transport:</b> -25 °C to -50 °C at 7 - 15 bar\n* <b>Cross-Border Hubs:</b> Open-access reception & buffer tanks\n* <b>Shipping Economics:</b> $15 - $35 / t for offshore North Sea routes\n---\n<b>Flagship Hub:</b> Northern Lights (1.5 Mt/yr Phase 1, Norway)" as ShippingHub <<MidstreamChokepoint>>
+
+  HighPurity -down-> CompressionDehydration : 99% Dry Gas
+  NGProcessing -down-> CompressionDehydration : 64% World Stream
+  DilutePoint -down-> CompressionDehydration : Flue Gas Concentrated
+  DACStream -down-> CompressionDehydration : Air-Captured Desorbate
+
+  CompressionDehydration -down-> PipelineTransport : Supercritical Fluid
+  CompressionDehydration -down-> ShippingHub : Liquefied Stream
+}
+
+package "3. Downstream Sequestration Sinks & Trapping Permanence" {
+  rectangle "Enhanced Oil Recovery (EOR Utilization)\n(75% - 80% Historical Operational Share)\n---\n* <b>Mechanism:</b> Miscible displacement of residual crude in mature reservoirs\n* <b>Economic Revenue:</b> Crude oil sales ($60-$80/bbl offset)\n* <b>Permanence:</b> Geologically trapped; partially counterbalanced by Scope 3 combustion\n---\n<b>Operational Capacity:</b> ~39 Mt/yr (US Permian Basin, Santos Basin Brazil)" as EORUtilization <<Downstream>>
+
+  rectangle "Dedicated Deep Saline Aquifer Formations\n(Class VI Injection Wells — Rapidly Growing)\n---\n* <b>Storage Depth:</b> >800 m (>8 MPa hydrostatic head, dense phase)\n* <b>Caprock Requirement:</b> Thick impermeable shale/mudstone/evaporite\n* <b>Well Casing:</b> Triple-cased through USDW, 13Cr/25Cr corrosion-resistant alloy\n* <b>Capacity Resource:</b> US 3,000 Gt (USGS); Global 2,000 - 10,000+ Gt\n---\n<b>Levelized Storage Cost:</b> $5 - $15 / t CO2 | <b>Pipeline Share:</b> >70% planned" as SalineAquifer <<Downstream>>
+
+  rectangle "In-Situ Basalt Mineralization (Carbfix Trapping)\n(Permanent Solid Carbonate Immobilization)\n---\n* <b>Reaction:</b> (Ca,Mg)SiO3 + CO2 -> (Ca,Mg)CO3 + SiO2 (Exothermic)\n* <b>Dissolution Co-Injection:</b> 25 t H2O / t CO2 at P > 25 bar (zero buoyant gas)\n* <b>Kinetics:</b> >95% converted to solid calcite in <2 years (<24 months)\n---\n<b>Permanence:</b> Absolute chemical fixation (>10,000+ years); zero leakage risk" as BasaltMineralization <<Downstream>>
+
+  PipelineTransport -down-> EORUtilization : Terrestrial Piped CO2
+  PipelineTransport -down-> SalineAquifer : Onshore Deep Formations
+  ShippingHub -down-> SalineAquifer : Subsea Utsira/Johansen Storage
+  PipelineTransport .down.> BasaltMineralization : Volcanic Basalt In-Situ
+}
+
+@enduml
+

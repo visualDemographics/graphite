@@ -1,0 +1,20 @@
+route,stage,electricity_kwh,thermal_energy_gj,solvent_makeup_kg,stage_description
+PostCombustion_Amine_MEA,1_Pretreatment_Quench_Fan,35.0,0.0,0.0,"DCC flue gas cooling to 40C, SO2 scrubbing <1 ppm, booster fan"
+PostCombustion_Amine_MEA,2_Absorption_Stripping_Reboiler,18.0,3.45,1.5,"Counter-current packed absorber, steam reboiler desorption at 120C"
+PostCombustion_Amine_MEA,3_Compression_Dehydration,82.0,0.0,0.0,6-stage centrifugal compression to 15.3 MPa + TEG dehydration
+PostCombustion_CANSOLV_Coal,1_Pretreatment_Quench_Fan,30.9,0.0,0.0,"Pre-scrubbing quench, CWS cooling tower auxiliaries, booster fan"
+PostCombustion_CANSOLV_Coal,2_Absorption_Stripping_Reboiler,15.5,2.45,0.45,Low-pressure steam extraction at 120C (vendor-optimized 2.4 MJ/kg)
+PostCombustion_CANSOLV_Coal,3_Compression_Dehydration,80.1,0.0,0.0,"8-stage centrifugal compression with intercooling to 15.3 MPa (2,217 psia)"
+PostCombustion_CANSOLV_NGCC,1_Pretreatment_Blower_Fan,60.8,0.0,0.0,Large volumetric blower work handling 3x carrier gas volume per ton CO2
+PostCombustion_CANSOLV_NGCC,2_Absorption_Stripping_Reboiler,18.2,2.55,0.5,LP crossover steam reboiler extraction for dilute 4.1 mol% feed
+PostCombustion_CANSOLV_NGCC,3_Compression_Dehydration,80.0,0.0,0.0,Supercritical centrifugal compression to 15.3 MPa pipeline spec
+OxyFuel_Combustion,1_Air_Separation_Unit_ASU,435.0,0.0,0.0,"Cryogenic distillation producing 95% O2 (195 kWh/t O2, 2.23 t O2/t CO2)"
+OxyFuel_Combustion,2_Flue_Gas_Recycle_Cooling,35.0,0.0,0.0,Recycled flue gas temperature moderation & condensation
+OxyFuel_Combustion,3_Purification_Compression,105.0,0.0,0.0,"DeNOx, DeSOx cryogenic distillation and compression to 15 MPa"
+DAC_Liquid_KOH_Loop,1_Air_Contactor_Pumping,180.0,0.0,2.5,Cross-flow PVC packing air contactor fans and KOH circulation
+DAC_Liquid_KOH_Loop,2_Pellet_Causticizer_Slaker,125.0,0.0,0.0,Fluidized-bed calcite pellet crystallization and lime slaking
+DAC_Liquid_KOH_Loop,3_Oxy_Calciner_900C,61.0,5.25,0.0,Oxy-fired CFB calciner at 900C (hybrid config: 5.25 GJ gas + 366 kWh/t)
+DAC_Liquid_KOH_Loop,4_Compression_Clean_Gas,90.0,0.0,0.0,Centrifugal compression of clean co-captured stream to 15 MPa
+DAC_Solid_Amine_TVSA,1_Intake_Air_Fans,320.0,0.0,0.0,"High-volume axial fans moving ~2,500 m3 air per kg CO2"
+DAC_Solid_Amine_TVSA,2_Vacuum_Desorption_Swing,260.0,6.8,0.8,Vacuum swing pumps & low-temperature heat at 100C (amine on silica/cellulose)
+DAC_Solid_Amine_TVSA,3_Water_Recovery_Compression,90.0,0.0,0.0,Condenser water extraction and compression to 15 MPa

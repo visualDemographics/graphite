@@ -1,0 +1,537 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+
+  <defs>
+    <!-- Blueprint Subtle Engineering Grid -->
+    <pattern id="blueprintGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E5E8E8" stroke-width="0.6" />
+      <path d="M 20 0 L 20 40 M 0 20 L 40 20" fill="none" stroke="#F2F4F4" stroke-width="0.4" />
+    </pattern>
+
+    <!-- Steel Hatching Pattern (ISO 128 45 deg lines) -->
+    <pattern id="steelHatch" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <rect width="8" height="8" fill="#D5D8DC" fill-opacity="0.35" />
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#566573" stroke-width="1.2" />
+    </pattern>
+
+    <!-- Elastomer / Polyurethane Wear Liner Pattern (Cross-hatch) -->
+    <pattern id="rubberLiner" width="6" height="6" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <rect width="6" height="6" fill="#2C3E50" fill-opacity="0.18" />
+      <line x1="0" y1="0" x2="0" y2="6" stroke="#1F618D" stroke-width="1.0" />
+      <line x1="0" y1="0" x2="6" y2="0" stroke="#1F618D" stroke-width="1.0" />
+    </pattern>
+
+    <!-- Refractory Brick Masonry Pattern -->
+    <pattern id="refractoryBrick" width="24" height="12" patternUnits="userSpaceOnUse">
+      <rect width="24" height="12" fill="#D35400" fill-opacity="0.25" stroke="#BA4A00" stroke-width="1" />
+      <line x1="0" y1="6" x2="24" y2="6" stroke="#BA4A00" stroke-width="1" />
+      <line x1="12" y1="0" x2="12" y2="6" stroke="#BA4A00" stroke-width="1" />
+      <line x1="0" y1="6" x2="0" y2="12" stroke="#BA4A00" stroke-width="1" />
+      <line x1="24" y1="6" x2="24" y2="12" stroke="#BA4A00" stroke-width="1" />
+    </pattern>
+
+    <!-- PTFE / Fluoropolymer Corrosion Lining Pattern -->
+    <pattern id="ptfeHatch" width="8" height="8" patternTransform="rotate(-45 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#16A085" stroke-width="1.5" />
+      <line x1="0" y1="4" x2="8" y2="4" stroke="#16A085" stroke-width="0.8" stroke-dasharray="2,2" />
+    </pattern>
+
+    <!-- Granular Resistor Coke Bed Pattern -->
+    <pattern id="cokeBed" width="16" height="16" patternUnits="userSpaceOnUse">
+      <rect width="16" height="16" fill="#2C3E50" fill-opacity="0.15" />
+      <circle cx="4" cy="4" r="2.2" fill="#34495E" />
+      <circle cx="12" cy="12" r="2.8" fill="#2C3E50" />
+      <circle cx="13" cy="4" r="1.8" fill="#1A252F" />
+      <circle cx="4" cy="12" r="2.0" fill="#2C3E50" />
+    </pattern>
+
+    <!-- Polyhedral Mineralized Froth Cellular Pattern -->
+    <pattern id="frothCells" width="18" height="16" patternUnits="userSpaceOnUse">
+      <rect width="18" height="16" fill="#EAEDED" />
+      <polygon points="9,1 17,5 17,11 9,15 1,11 1,5" fill="#F8F9F9" stroke="#566573" stroke-width="1.2" />
+      <circle cx="9" cy="8" r="3.5" fill="#FFFFFF" opacity="0.8" />
+      <path d="M 1,5 L 9,1 L 17,5" fill="none" stroke="#1C2833" stroke-width="1.6" stroke-dasharray="3,1" />
+    </pattern>
+
+    <!-- Thermal Plume & Incandescent Gradients -->
+    <radialGradient id="heatGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFF9C4" stop-opacity="1" />
+      <stop offset="45%" stop-color="#F39C12" stop-opacity="0.85" />
+      <stop offset="85%" stop-color="#C0392B" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="#7B241C" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="bubbleGrad" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.98" />
+      <stop offset="55%" stop-color="#D6EAF8" stop-opacity="0.85" />
+      <stop offset="90%" stop-color="#85C1E9" stop-opacity="0.75" />
+      <stop offset="100%" stop-color="#2E86C1" stop-opacity="0.9" />
+    </radialGradient>
+
+    <linearGradient id="metallicCyl" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7F8C8D" />
+      <stop offset="30%" stop-color="#ECF0F1" />
+      <stop offset="55%" stop-color="#BDC3C7" />
+      <stop offset="85%" stop-color="#566573" />
+      <stop offset="100%" stop-color="#7F8C8D" />
+    </linearGradient>
+
+    <linearGradient id="slurryGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#D6DBDF" stop-opacity="0.72" />
+      <stop offset="35%" stop-color="#AEB6BF" stop-opacity="0.84" />
+      <stop offset="75%" stop-color="#5D6D7E" stop-opacity="0.92" />
+      <stop offset="100%" stop-color="#2C3E50" stop-opacity="0.98" />
+    </linearGradient>
+
+    <linearGradient id="frothGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2C3E50" stop-opacity="0.85" />
+      <stop offset="30%" stop-color="#5D6D7E" stop-opacity="0.75" />
+      <stop offset="100%" stop-color="#D5D8DC" stop-opacity="0.9" />
+    </linearGradient>
+
+    <!-- Arrow Markers -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#2C3E50" />
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#C0392B" />
+    </marker>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#2980B9" />
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#27AE60" />
+    </marker>
+    <marker id="arrowOrange" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#D35400" />
+    </marker>
+    <marker id="dimTick" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 2 L 8 5 L 0 8 z" fill="#34495E" />
+    </marker>
+  </defs>
+
+  <rect width="1200" height="800" fill="#F8F9F9" />
+
+    <!-- Background Blueprint Grid & ISO Drawing Sheet Frame -->
+    <rect x="12" y="12" width="1176" height="776" fill="url(#blueprintGrid)" stroke="#1C2833" stroke-width="2" />
+    <rect x="16" y="16" width="1168" height="768" fill="none" stroke="#566573" stroke-width="0.8" />
+
+    <!-- Upper Blueprint Header -->
+    <rect x="20" y="20" width="1160" height="52" fill="#1C2833" rx="3" />
+    <rect x="20" y="68" width="1160" height="4" fill="#C0392B" />
+    <text x="36" y="43" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="bold" fill="#ECF0F1">FORCED-AIR MECHANICAL FROTH FLOTATION CELL (TANKCELL ARCHITECTURE)</text>
+    <text x="36" y="60" font-family="Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#BDC3C7">Stage 1 Beneficiation: Hydrophobic Natural Flake Attachment vs. Depressed Silicate Gangue (ISO 10628 / ANL-22/74 Table 3)</text>
+    <line x1="855" y1="26" x2="855" y2="64" stroke="#566573" stroke-width="1" />
+    <text x="1165" y="42" font-family="Courier, monospace" font-size="9.5" font-weight="bold" fill="#F39C12" text-anchor="end">BASIS: 1,000 kg FINISHED cSPG (24,300 kg ROM ORE)</text>
+    <text x="1165" y="58" font-family="Courier, monospace" font-size="8.5" fill="#ABB2B9" text-anchor="end">CAD SECTION VIEW A-A | P&amp;ID INSTRUMENTED</text>
+
+
+    <!-- ================================================================= -->
+    <!-- LEFT PANEL: REALISTIC CAD CROSS-SECTION OF FLOTATION CELL         -->
+    <!-- ================================================================= -->
+    <g id="flotation_cell_assembly">
+
+      <!-- Structural Support I-Beam Legs & Concrete Plinths -->
+      <rect x="175" y="535" width="22" height="115" fill="url(#metallicCyl)" stroke="#1C2833" stroke-width="1.5" />
+      <rect x="523" y="535" width="22" height="115" fill="url(#metallicCyl)" stroke="#1C2833" stroke-width="1.5" />
+      <rect x="155" y="650" width="60" height="14" fill="#7F8C8D" stroke="#1C2833" stroke-width="1.5" />
+      <rect x="505" y="650" width="60" height="14" fill="#7F8C8D" stroke="#1C2833" stroke-width="1.5" />
+      <!-- Anchor Bolts -->
+      <line x1="168" y1="644" x2="168" y2="668" stroke="#1C2833" stroke-width="2" />
+      <line x1="202" y1="644" x2="202" y2="668" stroke="#1C2833" stroke-width="2" />
+      <line x1="518" y1="644" x2="518" y2="668" stroke="#1C2833" stroke-width="2" />
+      <line x1="552" y1="644" x2="552" y2="668" stroke="#1C2833" stroke-width="2" />
+
+      <!-- Outer Welded Carbon-Steel Shell (ISO 128 Section Hatching) -->
+      <path d="M 170 205 L 170 495 L 265 585 L 455 585 L 550 495 L 550 205 Z" fill="url(#steelHatch)" stroke="#1C2833" stroke-width="2.2" />
+      <!-- Top & Side Bolted Reinforcing Flanges -->
+      <rect x="162" y="200" width="16" height="8" fill="#566573" stroke="#1C2833" stroke-width="1" />
+      <rect x="542" y="200" width="16" height="8" fill="#566573" stroke="#1C2833" stroke-width="1" />
+      <rect x="162" y="340" width="8" height="12" fill="#566573" stroke="#1C2833" stroke-width="1" />
+      <rect x="550" y="340" width="8" height="12" fill="#566573" stroke="#1C2833" stroke-width="1" />
+
+      <!-- Internal Polyurethane / Elastomer Abrasion Liner (6 mm) -->
+      <path d="M 184 205 L 184 488 L 272 573 L 448 573 L 536 488 L 536 205 Z" fill="url(#rubberLiner)" stroke="#1F618D" stroke-width="1.5" />
+      <path d="M 190 205 L 190 484 L 276 567 L 444 567 L 530 484 L 530 205 Z" fill="#FFFFFF" stroke="#1C2833" stroke-width="1.2" />
+
+      <!-- HYDRODYNAMIC ZONE 1: Quiescent Separation & Active Pulp Zone (30-35% Solids) -->
+      <path d="M 190 265 L 190 484 L 276 567 L 444 567 L 530 484 L 530 265 Z" fill="url(#slurryGradient)" />
+
+      <!-- Pulp-Froth Interface Meniscus (Turbulence-Damped Transition) -->
+      <path d="M 190 265 Q 235 261, 280 265 T 360 265 T 445 265 T 530 265" fill="none" stroke="#1F618D" stroke-width="2" stroke-dasharray="6,3" />
+      <text x="488" y="278" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#1F618D" text-anchor="end">PULP-FROTH INTERFACE</text>
+
+      <!-- HYDRODYNAMIC ZONE 2: Mineralized Polyhedral Froth Bed (205 to 265) -->
+      <rect x="190" y="205" width="340" height="60" fill="url(#frothCells)" opacity="0.92" />
+      <rect x="190" y="205" width="340" height="60" fill="url(#frothGradient)" opacity="0.55" stroke="#566573" stroke-width="1" />
+
+      <!-- Coalescing Froth Bubbles Coated with Black Graphite Platelets -->
+      <g id="froth_bubbles">
+        <circle cx="212" cy="222" r="8" fill="#D6EAF8" stroke="#1C2833" stroke-width="2" stroke-dasharray="4,2" />
+        <circle cx="232" cy="236" r="10" fill="#D6EAF8" stroke="#1C2833" stroke-width="2.2" stroke-dasharray="5,2" />
+        <circle cx="255" cy="218" r="11" fill="#EBF5FB" stroke="#1C2833" stroke-width="2.4" stroke-dasharray="5,2" />
+        <circle cx="282" cy="242" r="9" fill="#D6EAF8" stroke="#1C2833" stroke-width="2" stroke-dasharray="4,2" />
+        <circle cx="308" cy="224" r="10" fill="#EBF5FB" stroke="#1C2833" stroke-width="2.2" stroke-dasharray="5,2" />
+        <circle cx="412" cy="224" r="10" fill="#EBF5FB" stroke="#1C2833" stroke-width="2.2" stroke-dasharray="5,2" />
+        <circle cx="438" cy="242" r="9" fill="#D6EAF8" stroke="#1C2833" stroke-width="2" stroke-dasharray="4,2" />
+        <circle cx="465" cy="218" r="11" fill="#EBF5FB" stroke="#1C2833" stroke-width="2.4" stroke-dasharray="5,2" />
+        <circle cx="488" cy="236" r="10" fill="#D6EAF8" stroke="#1C2833" stroke-width="2.2" stroke-dasharray="5,2" />
+        <circle cx="508" cy="222" r="8" fill="#D6EAF8" stroke="#1C2833" stroke-width="2" stroke-dasharray="4,2" />
+      </g>
+
+      <!-- Internal Froth Crowder Cones (Accelerates Radial Froth Transport to Launder) -->
+      <polygon points="315,205 335,205 335,262 325,262" fill="#566573" stroke="#1C2833" stroke-width="1.2" />
+      <polygon points="405,205 385,205 385,262 395,262" fill="#566573" stroke="#1C2833" stroke-width="1.2" />
+      <text x="292" y="254" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" fill="#1C2833" text-anchor="end">FROTH CROWDER</text>
+
+      <!-- Wall Anti-Swirl Radial Baffles (4 vertical baffles eliminating vortexing) -->
+      <rect x="192" y="290" width="18" height="175" fill="#2C3E50" fill-opacity="0.65" stroke="#1C2833" stroke-width="1.2" />
+      <rect x="510" y="290" width="18" height="175" fill="#2C3E50" fill-opacity="0.65" stroke="#1C2833" stroke-width="1.2" />
+      <text x="215" y="340" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#ECF0F1">WALL BAFFLE</text>
+
+      <!-- Internal Draft-Tube & False Bottom Circulation Cone -->
+      <polygon points="245,380 265,380 295,465 280,465" fill="#95A5A6" stroke="#1C2833" stroke-width="1.2" />
+      <polygon points="475,380 455,380 425,465 440,465" fill="#95A5A6" stroke="#1C2833" stroke-width="1.2" />
+      <!-- False Bottom Deflector Apron -->
+      <path d="M 220 515 L 295 495 M 500 515 L 425 495" stroke="#95A5A6" stroke-width="3.5" stroke-linecap="round" />
+
+      <!-- Peripheral Froth Overflow Lip, Rotary Skimmer Paddles & Sloped Launders -->
+      <path d="M 190 205 L 138 205 L 138 252 L 170 268 L 170 222 L 190 222 Z" fill="#BDC3C7" stroke="#1C2833" stroke-width="1.6" />
+      <path d="M 530 205 L 582 205 L 582 252 L 550 268 L 550 222 L 530 222 Z" fill="#BDC3C7" stroke="#1C2833" stroke-width="1.6" />
+      <!-- Froth Overflow Cascades -->
+      <path d="M 190 204 Q 168 196, 155 225 L 145 245 L 166 255 Z" fill="#2C3E50" opacity="0.85" />
+      <path d="M 530 204 Q 552 196, 565 225 L 575 245 L 554 255 Z" fill="#2C3E50" opacity="0.85" />
+      <!-- Motorized Rotary Froth Skimmer Paddles (Left & Right) -->
+      <circle cx="184" cy="198" r="9" fill="#E67E22" stroke="#1C2833" stroke-width="1.5" />
+      <line x1="172" y1="198" x2="196" y2="198" stroke="#1C2833" stroke-width="2" />
+      <line x1="184" y1="186" x2="184" y2="210" stroke="#1C2833" stroke-width="2" />
+      <circle cx="536" cy="198" r="9" fill="#E67E22" stroke="#1C2833" stroke-width="1.5" />
+      <line x1="524" y1="198" x2="548" y2="198" stroke="#1C2833" stroke-width="2" />
+      <line x1="536" y1="186" x2="536" y2="210" stroke="#1C2833" stroke-width="2" />
+      <text x="155" y="182" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" fill="#B9770E" text-anchor="middle">SKIMMER PADDLE</text>
+    </g>
+
+    <!-- ================================================================= -->
+    <!-- SUPERSTRUCTURE: MOTOR, V-BELT PULLEY, STANDPIPE & ROTOR-STATOR    -->
+    <!-- ================================================================= -->
+    <g id="drive_and_rotor_stator">
+      <!-- Top Structural Bridge I-Beam across Cell -->
+      <rect x="150" y="162" width="420" height="14" fill="url(#metallicCyl)" stroke="#1C2833" stroke-width="1.6" />
+      <line x1="150" y1="166" x2="570" y2="166" stroke="#1C2833" stroke-width="0.8" />
+      <line x1="150" y1="172" x2="570" y2="172" stroke="#1C2833" stroke-width="0.8" />
+
+      <!-- Finned TEFC Squirrel-Cage Induction Motor (Offset Left on Bridge) -->
+      <rect x="242" y="92" width="64" height="54" fill="#1F618D" stroke="#154360" stroke-width="1.8" rx="4" />
+      <!-- Cooling Fins on Motor Stator -->
+      <line x1="248" y1="102" x2="300" y2="102" stroke="#85C1E9" stroke-width="1.2" />
+      <line x1="248" y1="110" x2="300" y2="110" stroke="#85C1E9" stroke-width="1.2" />
+      <line x1="248" y1="118" x2="300" y2="118" stroke="#85C1E9" stroke-width="1.2" />
+      <line x1="248" y1="126" x2="300" y2="126" stroke="#85C1E9" stroke-width="1.2" />
+      <line x1="248" y1="134" x2="300" y2="134" stroke="#85C1E9" stroke-width="1.2" />
+      <text x="274" y="86" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#154360" text-anchor="middle">TEFC MOTOR (45 kW)</text>
+
+      <!-- V-Belt Guard & Driven Sheave Box -->
+      <rect x="268" y="146" width="110" height="16" fill="#F39C12" fill-opacity="0.85" stroke="#9C640C" stroke-width="1.4" rx="2" />
+      <line x1="274" y1="152" x2="360" y2="152" stroke="#1C2833" stroke-width="1.5" stroke-dasharray="4,2" />
+      <line x1="274" y1="157" x2="360" y2="157" stroke="#1C2833" stroke-width="1.5" stroke-dasharray="4,2" />
+
+      <!-- Upper Cylindrical Bearing Cartridge & Air Plenum Manifold -->
+      <rect x="338" y="114" width="44" height="48" fill="url(#metallicCyl)" stroke="#1C2833" stroke-width="1.6" />
+      <!-- Forced Air Side Blow-In Nozzle & Butterfly Damper (FIC-102) -->
+      <rect x="382" y="122" width="42" height="16" fill="url(#metallicCyl)" stroke="#1C2833" stroke-width="1.4" />
+      <line x1="424" y1="118" x2="424" y2="142" stroke="#1C2833" stroke-width="2.5" />
+
+      <!-- Concentric Air Standpipe & Inner Solid Impeller Drive Shaft -->
+      <!-- Outer Air Standpipe Sleeve -->
+      <rect x="342" y="176" width="36" height="292" fill="url(#metallicCyl)" fill-opacity="0.88" stroke="#1C2833" stroke-width="1.5" />
+      <!-- Internal Annular Air Downflow Arrows -->
+      <line x1="348" y1="195" x2="348" y2="445" stroke="#27AE60" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowGreen)" />
+      <line x1="372" y1="195" x2="372" y2="445" stroke="#27AE60" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowGreen)" />
+      <!-- Inner High-Tensile Steel Drive Shaft -->
+      <rect x="355" y="110" width="10" height="370" fill="#2C3E50" stroke="#17202A" stroke-width="1.2" />
+
+      <!-- High-Shear Multi-Blade Rotor & Slotted Dispersion Stator Cage (Outotec FloatForce Style) -->
+      <!-- Stator Hood Ring -->
+      <rect x="296" y="465" width="128" height="10" fill="#34495E" stroke="#17202A" stroke-width="1.5" rx="2" />
+      <!-- Slotted Stator Dispersion Bars (Left & Right) -->
+      <rect x="298" y="475" width="10" height="42" fill="#2C3E50" stroke="#17202A" stroke-width="1.2" />
+      <rect x="314" y="475" width="8" height="42" fill="#2C3E50" stroke="#17202A" stroke-width="1.2" />
+      <rect x="398" y="475" width="8" height="42" fill="#2C3E50" stroke="#17202A" stroke-width="1.2" />
+      <rect x="412" y="475" width="10" height="42" fill="#2C3E50" stroke="#17202A" stroke-width="1.2" />
+      <!-- Central Shaped Rotor Impeller (Pumping Slurry + Air Radially Outward) -->
+      <path d="M 332 472 L 388 472 L 396 512 L 372 518 L 348 518 L 324 512 Z" fill="#C0392B" stroke="#641E16" stroke-width="1.6" />
+      <!-- Rotor Internal Air/Pulp Channels -->
+      <path d="M 352 472 L 332 504 M 368 472 L 388 504" stroke="#FADBD8" stroke-width="2" />
+      <text x="360" y="532" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#FADBD8" text-anchor="middle">ROTOR-STATOR IMPELLER (v_tip = 6.5 m/s)</text>
+
+      <!-- Hydrodynamic Double-Toroidal Flow Loops & Micro-Bubble Plume -->
+      <!-- Lower Radial Pumping & Recirculation Loop -->
+      <path d="M 294 496 C 235 496, 215 440, 255 395 C 280 370, 315 420, 325 468" fill="none" stroke="#E74C3C" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrowRed)" />
+      <path d="M 426 496 C 485 496, 505 440, 465 395 C 440 370, 405 420, 395 468" fill="none" stroke="#E74C3C" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrowRed)" />
+      <!-- Rising Bubble-Particle Aggregate Streamlines -->
+      <path d="M 285 460 Q 250 380, 265 272" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-dasharray="3,3" marker-end="url(#arrowBlue)" />
+      <path d="M 435 460 Q 470 380, 455 272" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-dasharray="3,3" marker-end="url(#arrowBlue)" />
+
+      <!-- Rising Micro-Bubble Swarm carrying Black Graphite Flakes -->
+      <g id="rising_bubble_swarm">
+        <circle cx="275" cy="445" r="4.5" fill="url(#bubbleGrad)" /><rect x="271" y="449" width="8" height="2.2" fill="#17202A" />
+        <circle cx="255" cy="410" r="5.5" fill="url(#bubbleGrad)" /><rect x="250" y="415" width="10" height="2.5" fill="#17202A" />
+        <circle cx="290" cy="375" r="6.0" fill="url(#bubbleGrad)" /><rect x="284" y="381" width="11" height="2.5" fill="#17202A" />
+        <circle cx="245" cy="340" r="6.5" fill="url(#bubbleGrad)" /><rect x="239" y="346" width="12" height="2.5" fill="#17202A" />
+        <circle cx="280" cy="305" r="7.0" fill="url(#bubbleGrad)" /><rect x="273" y="312" width="13" height="2.8" fill="#17202A" />
+
+        <circle cx="445" cy="445" r="4.5" fill="url(#bubbleGrad)" /><rect x="441" y="449" width="8" height="2.2" fill="#17202A" />
+        <circle cx="465" cy="410" r="5.5" fill="url(#bubbleGrad)" /><rect x="460" y="415" width="10" height="2.5" fill="#17202A" />
+        <circle cx="430" cy="375" r="6.0" fill="url(#bubbleGrad)" /><rect x="424" y="381" width="11" height="2.5" fill="#17202A" />
+        <circle cx="475" cy="340" r="6.5" fill="url(#bubbleGrad)" /><rect x="469" y="346" width="12" height="2.5" fill="#17202A" />
+        <circle cx="440" cy="305" r="7.0" fill="url(#bubbleGrad)" /><rect x="433" y="312" width="13" height="2.8" fill="#17202A" />
+      </g>
+
+      <!-- Settling Hydrophilic Silicate Gangue Grains (Quartz / Mica sinking to underflow) -->
+      <g fill="#D35400" stroke="#78281F" stroke-width="0.8">
+        <polygon points="235,480 242,485 238,492 230,488" />
+        <polygon points="278,525 286,530 282,538 274,534" />
+        <polygon points="315,548 323,552 319,560 311,556" />
+        <polygon points="405,548 413,552 409,560 401,556" />
+        <polygon points="442,525 450,530 446,538 438,534" />
+        <polygon points="485,480 492,485 488,492 480,488" />
+      </g>
+
+      <!-- Bottom Tailings Dart Valve / Pneumatic Control Valve (LCV-101) -->
+      <rect x="342" y="573" width="36" height="32" fill="url(#metallicCyl)" stroke="#1C2833" stroke-width="1.5" />
+      <!-- Dart Plug inside Cone -->
+      <polygon points="348,572 372,572 360,552" fill="#E74C3C" stroke="#641E16" stroke-width="1.4" />
+      <!-- P&ID Control Valve Bowtie & Diaphragm Dome (LCV-101) -->
+      <polygon points="344,612 376,628 376,612 344,628" fill="#FFFFFF" stroke="#1C2833" stroke-width="1.5" />
+      <path d="M 392 610 A 10 10 0 0 1 392 630 Z" fill="#27AE60" stroke="#1C2833" stroke-width="1.4" />
+      <line x1="360" y1="620" x2="384" y2="620" stroke="#1C2833" stroke-width="1.5" />
+    </g>
+
+    <!-- ================================================================= -->
+    <!-- P&ID INSTRUMENTATION LOOP & ENGINEERING DIMENSION CALLOUTS        -->
+    <!-- ================================================================= -->
+    <g id="pid_and_dimensions">
+      <!-- Ultrasonic Froth Level Transmitter (LT-101) & Controller (LIC-101) -->
+      <circle cx="495" cy="122" r="14" fill="#FFFFFF" stroke="#1C2833" stroke-width="1.5" />
+      <line x1="481" y1="122" x2="509" y2="122" stroke="#1C2833" stroke-width="1" />
+      <text x="495" y="119" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#1C2833" text-anchor="middle">LIC</text>
+      <text x="495" y="131" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#1C2833" text-anchor="middle">101</text>
+      <!-- Sensor Probe into Froth -->
+      <line x1="495" y1="136" x2="495" y2="215" stroke="#1C2833" stroke-width="1.2" stroke-dasharray="2,2" />
+      <!-- Pneumatic / 4-20mA Signal Line from LIC-101 to LCV-101 -->
+      <path d="M 509 122 L 602 122 L 602 620 L 392 620" fill="none" stroke="#27AE60" stroke-width="1.2" stroke-dasharray="4,3" />
+
+      <!-- Forced Air Flow Controller (FIC-102) -->
+      <circle cx="452" cy="95" r="13" fill="#FFFFFF" stroke="#27AE60" stroke-width="1.5" />
+      <line x1="439" y1="95" x2="465" y2="95" stroke="#27AE60" stroke-width="1" />
+      <text x="452" y="93" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" fill="#1E8449" text-anchor="middle">FIC</text>
+      <text x="452" y="103" font-family="Helvetica, Arial, sans-serif" font-size="7" fill="#1E8449" text-anchor="middle">102</text>
+
+      <!-- CAD Dimension Line: Cell Active Diameter -->
+      <line x1="170" y1="598" x2="332" y2="598" stroke="#34495E" stroke-width="1" marker-start="url(#dimTick)" />
+      <line x1="550" y1="598" x2="388" y2="598" stroke="#34495E" stroke-width="1" marker-start="url(#dimTick)" />
+      <text x="255" y="594" font-family="Courier, monospace" font-size="8.5" font-weight="bold" fill="#34495E" text-anchor="middle">D_cell = 3,200 mm</text>
+    </g>
+
+    <!-- ================================================================= -->
+    <!-- PROCESS STREAM CALLOUT BOXES (STRICT MASS & ENERGY BALANCE)       -->
+    <!-- ================================================================= -->
+    <g id="process_streams">
+      <!-- 1. Conditioned Pulp Feed Inlet (Lower-Left Tangential Nozzle) -->
+      <rect x="135" y="368" width="35" height="18" fill="url(#metallicCyl)" stroke="#1C2833" stroke-width="1.4" />
+      <line x1="40" y1="377" x2="132" y2="377" stroke="#2980B9" stroke-width="3.5" marker-end="url(#arrowBlue)" />
+      <rect x="26" y="302" width="136" height="66" fill="#EBF5FB" stroke="#2980B9" stroke-width="1.2" rx="3" />
+      <text x="32" y="316" font-family="Helvetica, Arial, sans-serif" font-size="9" font-weight="bold" fill="#1B4F72">1. CONDITIONED PULP FEED</text>
+      <text x="32" y="329" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#1C2833">• ROM Ore: 24,300 kg (10.43% C)</text>
+      <text x="32" y="341" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#1C2833">• Pulp Density: 32 wt% solids</text>
+      <text x="32" y="353" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#154360">• Kerosene: 150 g/t | MIBC: 60 g/t</text>
+      <text x="32" y="364" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#5D6D7E">• Na2SiO3 Depressant: 400 g/t</text>
+
+      <!-- 2. Froth Concentrate Overflow (Upper-Left Launder Discharge) -->
+      <line x1="145" y1="258" x2="65" y2="258" stroke="#C0392B" stroke-width="3.5" marker-end="url(#arrowRed)" />
+      <rect x="26" y="182" width="124" height="68" fill="#FDEDEC" stroke="#C0392B" stroke-width="1.2" rx="3" />
+      <text x="32" y="196" font-family="Helvetica, Arial, sans-serif" font-size="9" font-weight="bold" fill="#900C3F">2. FLAKE CONCENTRATE</text>
+      <text x="32" y="209" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#78281F">• Mass: 2,534 kg (104.3 kg/t)</text>
+      <text x="32" y="221" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#1C2833">• Mass Yield: 10.43% of ROM</text>
+      <text x="32" y="233" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#1C2833">• Grade: 94-97% C (+80/-100#)</text>
+      <text x="32" y="245" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#900C3F">• Market Price: $793-$830/t</text>
+
+      <!-- 3. Forced Low-Pressure Blower Air Inlet -->
+      <line x1="468" y1="130" x2="428" y2="130" stroke="#27AE60" stroke-width="3" marker-end="url(#arrowGreen)" />
+      <text x="474" y="150" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1E8449">3. BLOWER AIR (25 kPa)</text>
+      <text x="474" y="161" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#145A32">J_g = 1.2 cm/s (0.9 m3/m2·min)</text>
+
+      <!-- 4. Silicate Gangue Tailings Underflow -->
+      <line x1="360" y1="630" x2="360" y2="695" stroke="#566573" stroke-width="3.5" marker-end="url(#arrow)" />
+      <rect x="26" y="675" width="320" height="62" fill="#F2F4F4" stroke="#566573" stroke-width="1.2" rx="3" />
+      <text x="34" y="690" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#2C3E50">4. HYDROPHILIC SILICATE GANGUE TAILINGS UNDERFLOW</text>
+      <text x="34" y="704" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#1C2833">• Depressed Quartz (SiO2), Mica &amp; Feldspar: 21,730 kg (894.2 kg/t ore | 89.42%)</text>
+      <text x="34" y="717" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#5D6D7E">• Unallocated Slimes / Handling Residual: 36 kg (1.5 kg/t ore | 0.15% &lt; 5% Audit Cap)</text>
+      <text x="34" y="730" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#117A65">• Stage 1 Energy: 0.484 kWh/kg conc (1.352 kWh/kg cSPG) + 2.88 MJ/kg Thermal</text>
+
+      <!-- Hydrodynamic Zone Legend Box (Left Middle) -->
+      <rect x="26" y="420" width="136" height="105" fill="#FFFFFF" stroke="#7F8C8D" stroke-width="1.2" rx="3" />
+      <rect x="26" y="420" width="136" height="18" fill="#34495E" rx="2" />
+      <text x="94" y="432" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#FFFFFF" text-anchor="middle">CELL ZONE PROFILE</text>
+      <text x="32" y="450" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" fill="#2C3E50">Zone I: Froth Drainage</text>
+      <text x="32" y="461" font-family="Helvetica, Arial, sans-serif" font-size="7" fill="#5D6D7E">H_f = 150-350 mm; gangue dropback</text>
+      <text x="32" y="476" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" fill="#1F618D">Zone II: Quiescent Collection</text>
+      <text x="32" y="487" font-family="Helvetica, Arial, sans-serif" font-size="7" fill="#5D6D7E">Laminar bubble-flake rise</text>
+      <text x="32" y="502" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" fill="#C0392B">Zone III: Intense Shear</text>
+      <text x="32" y="513" font-family="Helvetica, Arial, sans-serif" font-size="7" fill="#5D6D7E">Turbulent dissipation eps = 15 W/kg</text>
+    </g>
+
+    <!-- ================================================================= -->
+    <!-- RIGHT PANEL: DIDACTIC THREE-PHASE PHYSICOCHEMICAL INSET           -->
+    <!-- ================================================================= -->
+    <g transform="translate(650, 88)" id="micro_inset">
+      <rect x="0" y="0" width="530" height="572" fill="#FFFFFF" stroke="#1C2833" stroke-width="1.8" rx="5" />
+      <rect x="0" y="0" width="530" height="28" fill="#1C2833" rx="4" />
+      <text x="14" y="18" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="bold" fill="#ECF0F1">PHYSICOCHEMICAL INSET: THREE-PHASE CONTACT &amp; CRYSTALLOGRAPHIC SELECTIVITY</text>
+
+      <!-- SUB-PANEL A: Young-Dupre Three-Phase Contact Line & Interfacial Tension Vectors -->
+      <rect x="14" y="38" width="502" height="238" fill="#F4F9FD" stroke="#85C1E9" stroke-width="1.2" rx="4" />
+      <text x="24" y="55" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="bold" fill="#1B4F72">A. YOUNG-DUPRE THREE-PHASE CONTACT MECHANICS (HYDROPHOBIC GRAPHITE BASAL PLANE)</text>
+
+      <!-- Layered Natural Graphite Flake Substrate (Showing sp2 Basal Sheets vs Polar Edge) -->
+      <g transform="translate(35, 185)">
+        <!-- Stacked Graphene Layers inside Flake -->
+        <rect x="0" y="0" width="320" height="8" fill="#1C2833" stroke="#000000" stroke-width="0.8" />
+        <rect x="4" y="10" width="316" height="8" fill="#2C3E50" stroke="#000000" stroke-width="0.8" />
+        <rect x="0" y="20" width="320" height="8" fill="#1C2833" stroke="#000000" stroke-width="0.8" />
+        <rect x="6" y="30" width="314" height="8" fill="#34495E" stroke="#000000" stroke-width="0.8" />
+        <text x="160" y="52" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1C2833" text-anchor="middle">NATURAL CRYSTALLINE GRAPHITE FLAKE (sp2 Basal Cleavage Plane {0001} — Non-Polar Hydrophobic)</text>
+
+        <!-- Adsorbed Kerosene Collector Hydrocarbon Chains (C12-C16 Alkanes on Basal Plane) -->
+        <path d="M 30 0 L 34 -6 L 30 -12 L 34 -18 M 50 0 L 54 -6 L 50 -12 L 54 -18 M 70 0 L 74 -6 L 70 -12 L 74 -18 M 250 0 L 254 -6 L 250 -12 L 254 -18 M 270 0 L 274 -6 L 270 -12 L 274 -18" fill="none" stroke="#D35400" stroke-width="1.6" />
+        <text x="16" y="-23" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#BA4A00">Kerosene C12-C16 Collector Film</text>
+        <text x="16" y="-13" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#78281F">(pi-alkyl van der Waals adsorption)</text>
+
+        <!-- Reactive Prismatic Edge Defect (Right Edge of Flake with -COOH / -OH groups) -->
+        <circle cx="324" cy="4" r="3.5" fill="#E74C3C" />
+        <circle cx="324" cy="24" r="3.5" fill="#E74C3C" />
+        <text x="334" y="12" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#C0392B">Polar Prismatic Edge {10-10}</text>
+        <text x="334" y="23" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#78281F">(-COOH / -OH groups; Kerosene</text>
+        <text x="334" y="33" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#78281F">masks edge hydration defects)</text>
+      </g>
+
+      <!-- Attached Air Bubble Dome on Graphite Basal Surface (Contact Point at x=125, y=185 and x=265, y=185) -->
+      <path d="M 125 185 A 75 75 0 1 1 265 185 Z" fill="url(#bubbleGrad)" stroke="#2980B9" stroke-width="2.5" />
+      <text x="195" y="132" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="bold" fill="#154360" text-anchor="middle">AIR BUBBLE (GAS)</text>
+      <text x="195" y="146" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#1F618D" text-anchor="middle">d_32 = 0.8 - 1.5 mm</text>
+      <text x="195" y="158" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#117A65" text-anchor="middle">MIBC Frother @ Gas-Liquid Interface</text>
+
+      <!-- Three-Phase Contact Angle (theta_c = 82 deg) & Surface Tension Vectors at Left Contact Point (125, 185) -->
+      <!-- Arc for Contact Angle inside Gas Phase -->
+      <path d="M 155 185 A 30 30 0 0 0 130 156" fill="none" stroke="#C0392B" stroke-width="2.2" />
+      <text x="160" y="176" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="bold" fill="#C0392B">theta_c = 75°-86°</text>
+      <!-- Vector gamma_SG (Solid-Gas, pointing right into bubble base) -->
+      <line x1="125" y1="185" x2="175" y2="185" stroke="#27AE60" stroke-width="2.2" marker-end="url(#arrowGreen)" />
+      <text x="165" y="198" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1E8449">gamma_SG</text>
+      <!-- Vector gamma_SL (Solid-Liquid, pointing left into slurry) -->
+      <line x1="125" y1="185" x2="78" y2="185" stroke="#2980B9" stroke-width="2.2" marker-end="url(#arrowBlue)" />
+      <text x="82" y="198" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1F618D">gamma_SL</text>
+      <!-- Vector gamma_LG (Liquid-Gas tangent along bubble wall) -->
+      <line x1="125" y1="185" x2="138" y2="120" stroke="#C0392B" stroke-width="2.4" marker-end="url(#arrowRed)" />
+      <text x="108" y="114" font-family="Helvetica, Arial, sans-serif" font-size="9" font-weight="bold" fill="#C0392B">gamma_LG</text>
+
+      <!-- Thermodynamic Equations Box (Top Right of Sub-Panel A) -->
+      <rect x="335" y="64" width="172" height="106" fill="#FFFFFF" stroke="#2980B9" stroke-width="1" rx="3" />
+      <text x="343" y="79" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1B4F72">THERMODYNAMIC CRITERIA:</text>
+      <text x="343" y="94" font-family="Courier, monospace" font-size="8" font-weight="bold" fill="#1C2833">gamma_SL - gamma_SG =</text>
+      <text x="355" y="106" font-family="Courier, monospace" font-size="8" font-weight="bold" fill="#1C2833">gamma_LG * cos(theta_c)</text>
+      <line x1="343" y1="113" x2="498" y2="113" stroke="#BDC3C7" stroke-width="0.8" />
+      <text x="343" y="126" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#C0392B">Work of Adhesion (Delta G_att):</text>
+      <text x="343" y="139" font-family="Courier, monospace" font-size="8" font-weight="bold" fill="#900C3F">W_a = gamma_LG(1 - cos theta_c)</text>
+      <text x="343" y="152" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#145A32">• Native Flake: theta_c = 75°-82°</text>
+      <text x="343" y="163" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#145A32">• +Kerosene: theta_c = 85°-92°</text>
+
+      <!-- SUB-PANEL B: Silicate Gangue Depression vs. Flake Collection Kinetics -->
+      <rect x="14" y="286" width="502" height="142" fill="#FEF9E7" stroke="#F39C12" stroke-width="1.2" rx="4" />
+      <text x="24" y="303" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="bold" fill="#B9770E">B. ELECTROSTATIC DEPRESSION OF QUARTZ / MICA GANGUE (SODIUM SILICATE MECHANISM)</text>
+
+      <!-- Depressed Quartz Grain surrounded by Hydrated H2SiO3 / SiO3(2-) Double Layer -->
+      <circle cx="95" cy="358" r="34" fill="#D6EAF8" stroke="#2980B9" stroke-width="1.5" stroke-dasharray="3,2" />
+      <polygon points="75,342 115,338 122,368 92,382 68,365" fill="#D35400" stroke="#78281F" stroke-width="1.5" />
+      <text x="95" y="358" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle">SiO2 / Mica</text>
+      <text x="95" y="369" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#FADBD8" text-anchor="middle">Gangue</text>
+      <!-- Negative Zeta Potential Charges around Quartz -->
+      <text x="95" y="319" font-family="Courier, monospace" font-size="8.5" font-weight="bold" fill="#1F618D" text-anchor="middle">-  SiO3(2-)  H2O  -</text>
+      <text x="95" y="404" font-family="Courier, monospace" font-size="8.5" font-weight="bold" fill="#1F618D" text-anchor="middle">-  zeta = -45 mV  -</text>
+      <!-- Gravity Settling Arrow -->
+      <line x1="145" y1="335" x2="145" y2="385" stroke="#C0392B" stroke-width="2.5" marker-end="url(#arrowRed)" />
+      <text x="154" y="362" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#C0392B">SINKS</text>
+
+      <!-- Explanation of Selectivity & Collection Probability -->
+      <text x="198" y="324" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1C2833">1. Hydrophilic Hydration Shell (theta_c &lt; 15°):</text>
+      <text x="206" y="337" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#34495E">Na2SiO3 adsorbs as polymeric silicic acid on quartz/mica,</text>
+      <text x="206" y="349" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#34495E">creating a repulsive negative electrical double layer (zeta = -45 mV).</text>
+      <text x="198" y="366" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1C2833">2. Flotation Collection Probability (P_col = P_c * P_a * (1 - P_d)):</text>
+      <text x="206" y="379" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#34495E">Coarse flakes (+80 mesh, 180 um) require quiescent froth zone</text>
+      <text x="206" y="391" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#34495E">to prevent turbulent detachment (P_d) while multi-stage cleaner</text>
+      <text x="206" y="403" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#34495E">re-grinding liberates locked interlamellar silicate ash to 94-97% C.</text>
+      <text x="206" y="418" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#900C3F">• Rejects 894.2 kg gangue per 1,000 kg ROM ore at Stage 1!</text>
+
+      <!-- SUB-PANEL C: Stage 1 Industrial Operating & LCI Ledger Table -->
+      <rect x="14" y="438" width="502" height="122" fill="#EAFAF1" stroke="#27AE60" stroke-width="1.2" rx="4" />
+      <text x="24" y="455" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="bold" fill="#0E6251">C. VERIFIED STAGE 1 MASS, REAGENT &amp; ENERGY LEDGER (ANL-22/74 TABLE 3; USGS 2025)</text>
+      <line x1="24" y1="462" x2="504" y2="462" stroke="#27AE60" stroke-width="0.8" />
+
+      <!-- Two-Column Ledger -->
+      <text x="24" y="477" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1C2833">• Run-of-Mine (ROM) Ore Feed:</text>
+      <text x="185" y="477" font-family="Courier, monospace" font-size="8.5" font-weight="bold" fill="#0E6251">24.30 t ore / t cSPG</text>
+      <text x="24" y="492" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1C2833">• Flake Concentrate Output:</text>
+      <text x="185" y="492" font-family="Courier, monospace" font-size="8.5" font-weight="bold" fill="#0E6251">2.534 t conc / t cSPG</text>
+      <text x="24" y="507" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1C2833">• Concentrate Mass Yield:</text>
+      <text x="185" y="507" font-family="Courier, monospace" font-size="8.5" font-weight="bold" fill="#0E6251">10.43% (104.3 kg/t ore)</text>
+      <text x="24" y="522" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1C2833">• Tailings + Loss Partition:</text>
+      <text x="185" y="522" font-family="Courier, monospace" font-size="8.5" font-weight="bold" fill="#C0392B">894.2 + 1.5 kg/t ore</text>
+      <text x="24" y="537" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1C2833">• Flotation Circuit Config:</text>
+      <text x="185" y="537" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#34495E">1 Rougher + 3-4 Cleaners</text>
+      <text x="24" y="552" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1C2833">• Concentrate Market Value:</text>
+      <text x="185" y="552" font-family="Courier, monospace" font-size="8.5" font-weight="bold" fill="#1B4F72">$793-$830/t (-100 mesh)</text>
+
+      <line x1="298" y1="465" x2="298" y2="555" stroke="#A3E4D7" stroke-width="1" />
+
+      <text x="308" y="477" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1C2833">• Stage Elec (per kg conc):</text>
+      <text x="442" y="477" font-family="Courier, monospace" font-size="8.5" font-weight="bold" fill="#0E6251">0.484 kWh/kg</text>
+      <text x="308" y="492" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1C2833">• Cumul. Elec (per kg cSPG):</text>
+      <text x="442" y="492" font-family="Courier, monospace" font-size="8.5" font-weight="bold" fill="#0E6251">1.352 kWh/kg</text>
+      <text x="308" y="507" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1C2833">• Stage Thermal Fuel:</text>
+      <text x="442" y="507" font-family="Courier, monospace" font-size="8.5" font-weight="bold" fill="#D35400">2.880 MJ/kg</text>
+      <text x="308" y="522" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1C2833">• Kerosene Collector:</text>
+      <text x="442" y="522" font-family="Courier, monospace" font-size="8.5" fill="#34495E">150 g/t ore</text>
+      <text x="308" y="537" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1C2833">• MIBC / Pine Oil Frother:</text>
+      <text x="442" y="537" font-family="Courier, monospace" font-size="8.5" fill="#34495E">60 g/t ore</text>
+      <text x="308" y="552" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1C2833">• Global Mining Chokepoint:</text>
+      <text x="442" y="552" font-family="Courier, monospace" font-size="8.5" font-weight="bold" fill="#C0392B">79.38% China</text>
+    </g>
+
+
+    <!-- ISO 7200 Technical Title Block -->
+    <g transform="translate(680, 672)" id="iso_title_block">
+      <rect x="0" y="0" width="500" height="108" fill="#FFFFFF" stroke="#1C2833" stroke-width="1.8" />
+      <rect x="0" y="0" width="500" height="28" fill="#F2F4F4" stroke="#1C2833" stroke-width="1.2" />
+      <line x1="0" y1="56" x2="500" y2="56" stroke="#1C2833" stroke-width="1.0" />
+      <line x1="0" y1="82" x2="500" y2="82" stroke="#1C2833" stroke-width="1.0" />
+      <line x1="375" y1="0" x2="375" y2="56" stroke="#1C2833" stroke-width="1.0" />
+      <line x1="435" y1="28" x2="435" y2="56" stroke="#1C2833" stroke-width="1.0" />
+
+      <!-- First-Angle Projection Symbol -->
+      <circle cx="482" cy="14" r="6" fill="none" stroke="#1C2833" stroke-width="1.1" />
+      <circle cx="482" cy="14" r="2.5" fill="none" stroke="#1C2833" stroke-width="1.1" />
+      <polygon points="452,10 470,7 470,21 452,18" fill="none" stroke="#1C2833" stroke-width="1.1" />
+
+      <!-- Field Content -->
+      <text x="10" y="19" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#1C2833">MECHANICAL FROTH FLOTATION CELL (SECTION A-A)</text>
+      <text x="383" y="19" font-family="Courier, monospace" font-size="10.5" font-weight="bold" fill="#C0392B">DWG-MCH-01</text>
+
+      <text x="10" y="45" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#566573">UNIT OP:</text>
+      <text x="58" y="45" font-family="Helvetica, Arial, sans-serif" font-size="9" font-weight="bold" fill="#1C2833">Comminution &amp; Froth Flotation (Stage 1)</text>
+      <text x="383" y="45" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#566573">STD: ISO 128</text>
+      <text x="442" y="45" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1C2833">REV 2.0</text>
+
+      <text x="10" y="73" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#117A65">AUDIT METRICS: Elec: 0.484 kWh/kg conc (1.352 kWh/kg cSPG) | Yield: 10.43% | 94-97% C</text>
+      <text x="10" y="98" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-style="italic" fill="#5D6D7E">PRIMARY PROVENANCE: ANL GREET ANL-22/74 Table 3; Surovtseva (2022); USGS MCS (2025)</text>
+    </g>
+
+</svg>

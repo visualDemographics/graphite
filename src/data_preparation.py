@@ -42,6 +42,60 @@ SYNTHETIC_ANODE_SERIES = {
     2024: 2700000.0
 }
 
+# Synthetic Graphite Battery Anode Throughput by Country (2024e, kt)
+# Sourced from IEA Global Critical Minerals Outlook 2024 (p. 173-176), USGS Minerals Yearbook 2022 (p. 32.5), and Benchmark MI
+SYNTHETIC_COUNTRY_THROUGHPUT_2024 = [
+    {
+        "country": "China",
+        "throughput_2024e_kt": 2550.0,
+        "share_pct": 95.86,
+        "primary_producers": "BTR, Shanshan, Putailai, Kaijin, Zichen",
+        "data_source": "IEA Critical Minerals 2024 / Benchmark MI 2024"
+    },
+    {
+        "country": "Japan",
+        "throughput_2024e_kt": 45.0,
+        "share_pct": 1.69,
+        "primary_producers": "Resonac (Showa Denko), Mitsubishi Chemical",
+        "data_source": "IEA Critical Minerals 2024 / USGS MYB 2022"
+    },
+    {
+        "country": "South Korea",
+        "throughput_2024e_kt": 22.0,
+        "share_pct": 0.83,
+        "primary_producers": "POSCO Future M (Pohang)",
+        "data_source": "IEA Critical Minerals 2024 / SNE Research"
+    },
+    {
+        "country": "United States",
+        "throughput_2024e_kt": 14.0,
+        "share_pct": 0.53,
+        "primary_producers": "Novonix, Anovion, Superior Graphite",
+        "data_source": "USGS MYB 2022 p. 32.5 / Fastmarkets"
+    },
+    {
+        "country": "India",
+        "throughput_2024e_kt": 8.0,
+        "share_pct": 0.30,
+        "primary_producers": "Epsilon Advanced Materials",
+        "data_source": "IEA Critical Minerals 2024 / Benchmark MI"
+    },
+    {
+        "country": "Europe (Norway/UK)",
+        "throughput_2024e_kt": 6.0,
+        "share_pct": 0.23,
+        "primary_producers": "Vianode, Elkem, Phillips 66 Humber",
+        "data_source": "IEA Critical Minerals 2024 / Bruegel"
+    },
+    {
+        "country": "Rest of World",
+        "throughput_2024e_kt": 15.0,
+        "share_pct": 0.56,
+        "primary_producers": "Various specialty & pilot facilities",
+        "data_source": "IEA Critical Minerals 2024 / Benchmark MI"
+    }
+]
+
 # Flake concentrate spot import unit value estimates for 2023-2024 (USGS MCS 2025 p. 84)
 NOMINAL_UNIT_VALUE_2023 = 1080.0
 NOMINAL_UNIT_VALUE_2024 = 1070.0
@@ -573,6 +627,18 @@ def prepare_supply_chain_flows_dataset():
     print(f"✓ Exported {len(SUPPLY_CHAIN_FLOW_SPECS)} supply-chain allocation flows to graphite_supply_chain_flows.csv")
 
 
+def prepare_synthetic_country_throughput_dataset():
+    out_csv = os.path.join(DATASETS_DIR, "graphite_synthetic_production_by_country.csv")
+    with open(out_csv, "w", newline="", encoding="utf-8") as f:
+        fields = ["country", "throughput_2024e_kt", "share_pct", "primary_producers", "data_source"]
+        writer = csv.DictWriter(f, fieldnames=fields)
+        writer.writeheader()
+        writer.writerows(SYNTHETIC_COUNTRY_THROUGHPUT_2024)
+
+    assert len(SYNTHETIC_COUNTRY_THROUGHPUT_2024) == 7
+    print(f"✓ Exported {len(SYNTHETIC_COUNTRY_THROUGHPUT_2024)} synthetic producer countries to graphite_synthetic_production_by_country.csv")
+
+
 def generate_datasets_documentation():
     doc_path = os.path.join(DATASETS_DIR, "datasets.md")
     content = """# Empirical Datasets & Data Dictionary
@@ -588,7 +654,16 @@ All active empirical datasets in `datasets/` are derived deterministically by `s
   - `reserves_tonnes` (float): Economically extractable reserves in metric tonnes (-1.0 if withheld or unmeasured).
   - `is_major_producer` (integer): Indicator (1 = major producer >=10 kt or reserves >=5 Mt; 0 = other).
 
-## 2. `graphite_historical_production_and_prices.csv`
+## 2. `graphite_synthetic_production_by_country.csv`
+- **Source**: International Energy Agency (IEA), Global Critical Minerals Outlook 2024 (pp. 173–176), USGS Minerals Yearbook 2022 (p. 32.5), and Benchmark Mineral Intelligence (2024).
+- **Fields**:
+  - `country` (string): Manufacturing country or region.
+  - `throughput_2024e_kt` (float): Estimated annual synthetic battery anode throughput/production in thousand metric tonnes (kt).
+  - `share_pct` (float): Percentage share of global synthetic battery anode output.
+  - `primary_producers` (string): Leading operational corporate manufacturers.
+  - `data_source` (string): Primary institutional literature citation.
+
+## 3. `graphite_historical_production_and_prices.csv`
 - **Source**: USGS Data Series 140 (`rawdata/ds140-graphite-2022.xlsx`), supplemented with USGS MCS 2025 and Federal Reserve Economic Data (FRED) monthly CPI-U (`rawdata/fred_cpi_monthly.csv`).
 - **Fields**:
   - `year` (integer): Observation year (1950 to 2024).
@@ -598,7 +673,7 @@ All active empirical datasets in `datasets/` are derived deterministically by `s
   - `world_mine_production_tonnes` (float): Global natural graphite mine production in metric tonnes.
   - `synthetic_aam_production_tonnes` (float): Estimated global synthetic graphite active anode material (AAM) production in metric tonnes (IEA Critical Minerals Outlook 2024). Note: active anode material reflects downstream finished battery product, whereas mine production reflects upstream concentrate.
 
-## 3. `graphite_grade_price_spectrum.csv`
+## 4. `graphite_grade_price_spectrum.csv`
 - **Source**: USGS Minerals Yearbook 2022, Table 4 ('Representative Yearend Graphite Prices') and industry benchmarks.
 - **Fields**:
   - `grade_id` (string): Unique identifier (e.g., `AMORPHOUS`, `FINE_FLAKE`, `MEDIUM_FLAKE`, `LARGE_FLAKE`, `UNCOATED_SPG`, `US_IMPORT_SPG`, `SYNTHETIC_ANODE_IMPORT`, `COATED_CSPG_ESTIMATE`).
@@ -606,7 +681,7 @@ All active empirical datasets in `datasets/` are derived deterministically by `s
   - `price_mid_usd_t` (float): Midpoint market transaction price in USD per metric ton.
   - `is_primary_source` (integer): Flag (1 = official USGS Minerals Yearbook statistical table; 0 = secondary trade-press estimate).
 
-## 4. `graphite_process_energy_lca.csv`
+## 5. `graphite_process_energy_lca.csv`
 - **Source**: Argonne National Laboratory GREET Model (Report ANL-22/74 Tables 2 & 3), Engels et al. (2022), and Surovtseva et al. (2022).
 - **Fields**:
   - `route` (string): Processing pathway (`Natural_Chemical_HF`, `Natural_Thermal`, `Synthetic_Acheson`, `Synthetic_LWG_Castner`).
@@ -618,7 +693,7 @@ All active empirical datasets in `datasets/` are derived deterministically by `s
   - `cumulative_mass_factor` (float): Kilograms of starting raw material required per kilogram of stage output.
   - `acid_reagent_kg_per_t` (float): Chemical acid and neutralizing reagent consumption in kg per metric ton.
 
-## 5. `graphite_supply_chain_flows.csv`
+## 6. `graphite_supply_chain_flows.csv`
 - **Source**: Physical mass-balance accounting across 4 functional supply tiers.
 - **Fields**:
   - `tier` (string): Functional supply tier (`Ore_Extraction_Partition`, `Spheronization_Mass_Partition`, `Synthetic_Precursor_Partition`, `Global_AAM_Market_Allocation`).
@@ -627,7 +702,7 @@ All active empirical datasets in `datasets/` are derived deterministically by `s
   - `value` (float): Mass in kg (per 1,000 kg input) or market share in percent.
   - `unit` (string): Measurement unit (`kg` or `pct`).
 
-## 6. `literature_empirical_benchmarks.csv`
+## 7. `literature_empirical_benchmarks.csv`
 - **Source**: Verbatim quotes, table coordinates, and SHA-256 verified PDF sources in `literature/`.
 """
     with open(doc_path, "w", encoding="utf-8") as f:
@@ -648,6 +723,7 @@ def main():
 
     # 3. Build datasets
     prepare_country_production_dataset(benchmarks)
+    prepare_synthetic_country_throughput_dataset()
     prepare_historical_production_and_prices(annual_cpi, benchmarks)
     prepare_grade_price_spectrum()
     prepare_process_energy_lca_dataset()

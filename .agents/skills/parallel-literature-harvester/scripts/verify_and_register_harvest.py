@@ -103,7 +103,9 @@ def verify_file(fpath: str, keywords_csv: str = "") -> dict:
             if num_pages < 1:
                 return {"status": "FAIL", "path": fpath, "error": "PDF has 0 pages."}
             text_chunks = []
-            for idx in range(min(num_pages, 50)):
+            # Scan up to 120 pages for large government baseline reports (e.g. NETL, IPCC)
+            scan_limit = min(num_pages, 120)
+            for idx in range(scan_limit):
                 text_chunks.append(reader.pages[idx].extract_text() or "")
             extracted_text = "\n".join(text_chunks)
             details["pages"] = num_pages

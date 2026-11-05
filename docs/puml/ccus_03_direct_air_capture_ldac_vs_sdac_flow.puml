@@ -1,0 +1,122 @@
+@startuml ccus_03_direct_air_capture_ldac_vs_sdac_flow
+!pragma layout smetana
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName "Helvetica"
+skinparam roundCorner 6
+skinparam shadowing false
+skinparam ArrowColor #34495E
+skinparam ArrowThickness 1.5
+
+skinparam rectangle {
+  BackgroundColor #F8F9F9
+  BorderColor #7F8C8D
+  FontColor #2C3E50
+}
+
+skinparam card {
+  BackgroundColor #EAEDED
+  BorderColor #95A5A6
+  FontColor #2C3E50
+}
+
+skinparam node {
+  BackgroundColor #E8F8F5
+  BorderColor #1ABC9C
+  FontColor #16A085
+  FontStyle bold
+}
+
+skinparam queue {
+  BackgroundColor #FEF5E7
+  BorderColor #F39C12
+}
+
+skinparam storage {
+  BackgroundColor #FADBD8
+  BorderColor #E74C3C
+  FontColor #922B21
+}
+
+title Direct Air Capture (DAC) Flowsheet Archetype Comparison\nISO 10628 PFD Standard: Liquid Solvent KOH/CaCO3 Calcination Loop vs Solid Sorbent Monolith TVSA Matrix\n(Normalized Basis: 1,000 kg Net Atmospheric CO2 Captured | Sources: Keith et al. 2018 Joule; Deutz & Bardow 2021 Nature Energy)
+
+' ============================================================================
+' LEFT ARCHETYPE: LIQUID DAC (L-DAC: KEITH ET AL. 2018 / CARBON ENGINEERING)
+' ============================================================================
+package "Archetype A: Liquid Chemical Solvent DAC (L-DAC) - Dual KOH / Ca(OH)2 Loop [High-T Calcination]" #F9EBEA {
+
+  queue "Ambient Atmosphere Inlet\n[CO2] = 420 ppmv (0.042 mol%)\n• Gas Volume Processed: ~1,600,000 m3 / t CO2\n• Air Flow Velocity: 1.5 - 2.0 m/s\n• Ambient T: 10 - 25 °C | P: 1.013 bar" as LDAC_Air_In
+
+  package "L-DAC Contactor & Potassium Carbonate Loop" #FDEDEC {
+    rectangle "Cross-Flow Air Contactor\nStructured PVC Packing + Spray Nozzles\n• Solvent: 2.0 M KOH Solution (pH ~ 14)\n• Reaction: 2 KOH + CO2 -> K2CO3 + H2O\n• Fast kinetics; capture fraction: ~75%\n• Fan Power: 61 kWh_e / t CO2" as LDAC_Contactor
+    storage "CO2-Depleted Atmospheric Air Vent\n[CO2] ~ 105 ppmv\nMass: ~2,000,000 kg Air" as LDAC_Air_Vent
+    card "Aqueous K2CO3 + KOH Spent Solution\nRich Loading Solution to Pellet Reactor\nTemp: 20 °C | Recirculation Rate: High" as LDAC_K2CO3
+  }
+
+  package "L-DAC Pellet Reactor & Causticizer Loop" #FADBD8 {
+    rectangle "Fluidized-Bed Pellet Reactor\nRecirculating Calcite Seed Sand\n• Reaction: K2CO3 + Ca(OH)2 -> 2 KOH + CaCO3(s)\n• Heterogeneous nucleation on sand seed\n• Produces dense spherical CaCO3 pellets (0.8 - 1.2 mm)\n• Cake solids: ~90 wt% after washing/draining" as LDAC_Pellet_Reactor
+    card "Regenerated 2.0 M KOH Solution\nWashed & recycled to Air Contactor" as LDAC_KOH_Recycle
+    card "Drained CaCO3 Pellets\nPre-heated slurry feed to Oxy-Calciner\nMass: ~2,275 kg CaCO3 / t CO2" as LDAC_Pellet_Feed
+    rectangle "Slaker Unit (Exothermic Slaking)\nCaO Hydration: CaO + H2O -> Ca(OH)2\n• Exothermic Heat: Delta H = -65 kJ/mol\n• Generates hot Ca(OH)2 slurry for Pellet Reactor" as LDAC_Slaker
+  }
+
+  package "L-DAC Oxy-Fired Calciner & CO2 Purification" #F5B7B1 {
+    rectangle "Oxy-Fired Circulating Fluidized Bed Calciner\nDirect Natural Gas / Biomass Combustion in Pure O2\n• Operating Temp: 900 °C | P: 1.1 bar\n• Reaction: CaCO3 -> CaO + CO2 (Endothermic: +179 kJ/mol)\n• Thermal Fuel Input: 5.25 - 8.81 GJ_th / t CO2\n• Air Separation Unit (ASU) Power: ~110 kWh_e / t CO2" as LDAC_Calciner
+    card "Hot Calcined Lime (CaO Pellets)\nCycled to Slaker via Steam Preheating" as LDAC_CaO_Stream
+    rectangle "Gas Cleanup & Steam Condensation Unit\nFlue Gas Quench + Acid Gas Dehydration\n• Condenses H2O from oxy-combustion & pellet moisture\n• CO2 Stream Purity: >98.5 vol%" as LDAC_Condenser
+    node "Supercritical CO2 Compression Train\nMulti-Stage Intercooled Compressor\n• Inlet: 0.1 MPa -> Discharge: 15.0 MPa\n• Electric Work: ~90 kWh_e / t CO2" as LDAC_Compressor
+    card "L-DAC Product CO2 Delivery\n1,000 kg CO2 (Supercritical Dense Phase)\n• Total Thermal: 5.25 - 8.81 GJ_th / t CO2\n• Total Electricity: 361 - 440 kWh_e / t CO2\n• Levelized Cost: $190 - $232 / t CO2" as LDAC_Product
+  }
+
+  LDAC_Air_In --> LDAC_Contactor : Raw Air
+  LDAC_Contactor --> LDAC_Air_Vent : Clean Air Vent
+  LDAC_Contactor --> LDAC_K2CO3 : Carbonated Brine
+  LDAC_K2CO3 --> LDAC_Pellet_Reactor : Causticization
+  LDAC_Pellet_Reactor --> LDAC_KOH_Recycle : Regenerated KOH
+  LDAC_KOH_Recycle --> LDAC_Contactor : Recycle
+  LDAC_Pellet_Reactor --> LDAC_Pellet_Feed : CaCO3 Pellets
+  LDAC_Pellet_Feed --> LDAC_Calciner : Calcination Feed
+  LDAC_Calciner --> LDAC_CaO_Stream : Hot CaO Lime
+  LDAC_CaO_Stream --> LDAC_Slaker : Slaking
+  LDAC_Slaker --> LDAC_Pellet_Reactor : Ca(OH)2 Slurry
+  LDAC_Calciner --> LDAC_Condenser : Raw Overhead Gas (CO2 + H2O)
+  LDAC_Condenser --> LDAC_Compressor : Dehydrated CO2
+  LDAC_Compressor --> LDAC_Product : Pipeline Spec (15 MPa)
+}
+
+' ============================================================================
+' RIGHT ARCHETYPE: SOLID SORBENT TVSA (S-DAC: DEUTZ & BARDOW 2021 / CLIMEWORKS)
+' ============================================================================
+package "Archetype B: Solid Sorbent DAC (S-DAC) - Modular TVSA Matrix [Low-T Desorption]" #E8F8F5 {
+
+  queue "Ambient Atmosphere Inlet\n[CO2] = 420 ppmv (0.042 mol%)\n• Matrix Fan Suction Volume: ~1,500,000 m3 / t CO2\n• Ambient RH: 40 - 80% | T: -10 to +35 °C" as SDAC_Air_In
+
+  package "S-DAC Modular Collector Bank & Adsorption Phase" #D1F2EB {
+    rectangle "Modular Fan Contactor Unit\nMulti-Fan Collector Wall (Stacked Matrix)\n• Low-pressure-drop axial fans (150 - 300 Pa)\n• Adsorption Velocity: 1.0 - 1.5 m/s\n• Contactor Fan Power: ~120 - 180 kWh_e / t CO2" as SDAC_Fans
+    rectangle "Solid Sorbent Monolithic Matrix\nAmine-Functionalized Nanofibrillated Cellulose / Silica / MOF\n• Active Sites: Primary/Secondary Amines (PEI / APS)\n• Adsorption Phase: Ambient T (20 °C), 1.0 bar (P_CO2 = 0.42 mbar)\n• Working Capacity: 1.0 - 2.5 mmol CO2 / g sorbent\n• Cycle Duration: 2 - 4 hours adsorption" as SDAC_Adsorber
+    storage "Atmospheric Air Exhaust\n[CO2] ~ 80 - 120 ppmv (70-80% capture)\nDepleted air returned to ambient" as SDAC_Air_Vent
+  }
+
+  package "S-DAC Desorption, Vacuum Evacuation & Heat Recovery" #A3E4D7 {
+    rectangle "Vacuum & Desorption Manifold\nEvacuation: Rotary Vane / Roots Blowers\n• Evacuation Pressure: 0.10 - 0.20 bar (Vacuum)\n• Electric Vacuum Work: 40 - 80 kWh_e / t CO2\n• Removes interstitial air, prevents N2/O2 contamination" as SDAC_Vacuum
+    rectangle "Low-Temperature Steam Heating Circuit\nSaturated Steam or Hot Water Jacket\n• Desorption Temp: 90 - 100 °C (Mild conditions)\n• Thermal Energy Input: 5.76 - 7.50 GJ_th / t CO2\n• Heat Source: Geothermal, Industrial Waste Heat, or Heat Pump\n• Desorption Cycle: 1 - 2 hours" as SDAC_Thermal_Desorption
+    storage "Co-Desorbed Water Condenser & Separator\nCondenses co-adsorbed atmospheric humidity\n• Water Yield: 1.5 - 2.5 t H2O / t CO2 (Net Water Producer!)\n• High purity condensate for green hydrogen or district use" as SDAC_Water_Out
+  }
+
+  package "S-DAC Gas Conditioning & Supercritical Export" #76D7C4 {
+    rectangle "Direct CO2 Condenser & Chiller\nCools vapor to 15 °C to knock out moisture\n• CO2 Overhead Gas Purity: 95.0 - 99.0 vol%" as SDAC_Gas_Clean
+    node "Supercritical Compressor Train\nMulti-Stage Intercooled Compression\n• Inlet: 0.15 bar -> Final: 15.0 MPa\n• Electric Work: ~110 - 140 kWh_e / t CO2" as SDAC_Compressor
+    card "S-DAC Product CO2 Delivery\n1,000 kg CO2 (Supercritical Dense Phase)\n• Total Thermal: 5.76 - 7.50 GJ_th / t CO2 (@ 100 °C)\n• Total Electricity: 400 - 650 kWh_e / t CO2\n• Levelized Cost: $400 - $600 / t CO2 ($150 FOAK -> $100 Target)" as SDAC_Product
+  }
+
+  SDAC_Air_In --> SDAC_Fans : Suction Air
+  SDAC_Fans --> SDAC_Adsorber : Forced Convection
+  SDAC_Adsorber --> SDAC_Air_Vent : Depleted Air
+  SDAC_Adsorber --> SDAC_Vacuum : Chamber Sealed & Evacuated
+  SDAC_Vacuum --> SDAC_Thermal_Desorption : 100 °C Steam Injection
+  SDAC_Thermal_Desorption --> SDAC_Water_Out : Condensed Moisture
+  SDAC_Thermal_Desorption --> SDAC_Gas_Clean : Desorbed CO2 Gas
+  SDAC_Gas_Clean --> SDAC_Compressor : Dehydrated CO2 Stream
+  SDAC_Compressor --> SDAC_Product : Dense Supercritical Pipeline
+}
+
+@enduml

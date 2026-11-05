@@ -1,0 +1,421 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+
+  <defs>
+    <!-- Blueprint Subtle Engineering Grid -->
+    <pattern id="blueprintGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E5E8E8" stroke-width="0.6" />
+      <path d="M 20 0 L 20 40 M 0 20 L 40 20" fill="none" stroke="#F2F4F4" stroke-width="0.4" />
+    </pattern>
+
+    <!-- Steel Hatching Pattern (ISO 128 45 deg lines) -->
+    <pattern id="steelHatch" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <rect width="8" height="8" fill="#D5D8DC" fill-opacity="0.35" />
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#566573" stroke-width="1.2" />
+    </pattern>
+
+    <!-- Elastomer / Polyurethane Wear Liner Pattern (Cross-hatch) -->
+    <pattern id="rubberLiner" width="6" height="6" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <rect width="6" height="6" fill="#2C3E50" fill-opacity="0.18" />
+      <line x1="0" y1="0" x2="0" y2="6" stroke="#1F618D" stroke-width="1.0" />
+      <line x1="0" y1="0" x2="6" y2="0" stroke="#1F618D" stroke-width="1.0" />
+    </pattern>
+
+    <!-- Refractory Brick Masonry Pattern -->
+    <pattern id="refractoryBrick" width="24" height="12" patternUnits="userSpaceOnUse">
+      <rect width="24" height="12" fill="#D35400" fill-opacity="0.25" stroke="#BA4A00" stroke-width="1" />
+      <line x1="0" y1="6" x2="24" y2="6" stroke="#BA4A00" stroke-width="1" />
+      <line x1="12" y1="0" x2="12" y2="6" stroke="#BA4A00" stroke-width="1" />
+      <line x1="0" y1="6" x2="0" y2="12" stroke="#BA4A00" stroke-width="1" />
+      <line x1="24" y1="6" x2="24" y2="12" stroke="#BA4A00" stroke-width="1" />
+    </pattern>
+
+    <!-- PTFE / Fluoropolymer Corrosion Lining Pattern -->
+    <pattern id="ptfeHatch" width="8" height="8" patternTransform="rotate(-45 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#16A085" stroke-width="1.5" />
+      <line x1="0" y1="4" x2="8" y2="4" stroke="#16A085" stroke-width="0.8" stroke-dasharray="2,2" />
+    </pattern>
+
+    <!-- Granular Resistor Coke Bed Pattern -->
+    <pattern id="cokeBed" width="16" height="16" patternUnits="userSpaceOnUse">
+      <rect width="16" height="16" fill="#2C3E50" fill-opacity="0.15" />
+      <circle cx="4" cy="4" r="2.2" fill="#34495E" />
+      <circle cx="12" cy="12" r="2.8" fill="#2C3E50" />
+      <circle cx="13" cy="4" r="1.8" fill="#1A252F" />
+      <circle cx="4" cy="12" r="2.0" fill="#2C3E50" />
+    </pattern>
+
+    <!-- Polyhedral Mineralized Froth Cellular Pattern -->
+    <pattern id="frothCells" width="18" height="16" patternUnits="userSpaceOnUse">
+      <rect width="18" height="16" fill="#EAEDED" />
+      <polygon points="9,1 17,5 17,11 9,15 1,11 1,5" fill="#F8F9F9" stroke="#566573" stroke-width="1.2" />
+      <circle cx="9" cy="8" r="3.5" fill="#FFFFFF" opacity="0.8" />
+      <path d="M 1,5 L 9,1 L 17,5" fill="none" stroke="#1C2833" stroke-width="1.6" stroke-dasharray="3,1" />
+    </pattern>
+
+    <!-- Thermal Plume & Incandescent Gradients -->
+    <radialGradient id="heatGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFF9C4" stop-opacity="1" />
+      <stop offset="45%" stop-color="#F39C12" stop-opacity="0.85" />
+      <stop offset="85%" stop-color="#C0392B" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="#7B241C" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="bubbleGrad" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.98" />
+      <stop offset="55%" stop-color="#D6EAF8" stop-opacity="0.85" />
+      <stop offset="90%" stop-color="#85C1E9" stop-opacity="0.75" />
+      <stop offset="100%" stop-color="#2E86C1" stop-opacity="0.9" />
+    </radialGradient>
+
+    <linearGradient id="metallicCyl" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7F8C8D" />
+      <stop offset="30%" stop-color="#ECF0F1" />
+      <stop offset="55%" stop-color="#BDC3C7" />
+      <stop offset="85%" stop-color="#566573" />
+      <stop offset="100%" stop-color="#7F8C8D" />
+    </linearGradient>
+
+    <linearGradient id="slurryGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#D6DBDF" stop-opacity="0.72" />
+      <stop offset="35%" stop-color="#AEB6BF" stop-opacity="0.84" />
+      <stop offset="75%" stop-color="#5D6D7E" stop-opacity="0.92" />
+      <stop offset="100%" stop-color="#2C3E50" stop-opacity="0.98" />
+    </linearGradient>
+
+    <linearGradient id="frothGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2C3E50" stop-opacity="0.85" />
+      <stop offset="30%" stop-color="#5D6D7E" stop-opacity="0.75" />
+      <stop offset="100%" stop-color="#D5D8DC" stop-opacity="0.9" />
+    </linearGradient>
+
+    <!-- Arrow Markers -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#2C3E50" />
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#C0392B" />
+    </marker>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#2980B9" />
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#27AE60" />
+    </marker>
+    <marker id="arrowOrange" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#D35400" />
+    </marker>
+    <marker id="dimTick" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 2 L 8 5 L 0 8 z" fill="#34495E" />
+    </marker>
+  </defs>
+
+  <rect width="1200" height="800" fill="#F8F9F9" />
+
+    <!-- Background Blueprint Grid & ISO Drawing Sheet Frame -->
+    <rect x="12" y="12" width="1176" height="776" fill="url(#blueprintGrid)" stroke="#1C2833" stroke-width="2" />
+    <rect x="16" y="16" width="1168" height="768" fill="none" stroke="#566573" stroke-width="0.8" />
+
+    <!-- Upper Blueprint Header -->
+    <rect x="20" y="20" width="1160" height="52" fill="#1C2833" rx="3" />
+    <rect x="20" y="68" width="1160" height="4" fill="#C0392B" />
+    <text x="36" y="43" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#ECF0F1">ULTRA-HIGH-TEMPERATURE GRAPHITIZATION FURNACES: ACHESON VS. LWG (2,800 - 3,000 °C)</text>
+    <text x="36" y="60" font-family="Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#BDC3C7">Synthetic Anode Stage 3: Indirect Resistor-Bed Batch Heating (12.50 kWh/kg) vs. Direct Axial Joule Heating (7.40 kWh/kg | ANL-22/74 Table 2)</text>
+    <line x1="855" y1="26" x2="855" y2="64" stroke="#566573" stroke-width="1" />
+    <text x="1165" y="42" font-family="Courier, monospace" font-size="9.5" font-weight="bold" fill="#F39C12" text-anchor="end">BASIS: 1,000 kg FINISHED cSPG (24,300 kg ROM ORE)</text>
+    <text x="1165" y="58" font-family="Courier, monospace" font-size="8.5" fill="#ABB2B9" text-anchor="end">CAD SECTION VIEW A-A | P&amp;ID INSTRUMENTED</text>
+
+
+    <!-- ================================================================= -->
+    <!-- TOP-LEFT PANEL: ARCHITECTURE A — BATCH ACHESON RESISTANCE FURNACE -->
+    <!-- ================================================================= -->
+    <g transform="translate(22, 92)" id="acheson_furnace_panel">
+      <rect x="0" y="0" width="564" height="418" fill="#FFFFFF" stroke="#C0392B" stroke-width="1.8" rx="5" />
+      <rect x="0" y="0" width="564" height="28" fill="#900C3F" rx="4" />
+      <text x="12" y="18" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="bold" fill="#FFFFFF">A. TRADITIONAL BATCH ACHESON RESISTANCE FURNACE (INDIRECT COKE-BED HEATING)</text>
+
+      <!-- Exhaust Fume Extraction Hood (Captures CO, SO2, and SiO2/S Puffing Volatiles) -->
+      <polygon points="150,36 414,36 444,54 120,54" fill="#D5D8DC" stroke="#566573" stroke-width="1.2" />
+      <line x1="282" y1="54" x2="282" y2="38" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrow)" />
+      <text x="282" y="49" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" fill="#2C3E50" text-anchor="middle">OFF-GAS HOOD: CO(g) + SO2(g) + SiO(g) Volatiles to Scrubber</text>
+
+      <!-- Concrete Foundation Piers & Under-Floor Air-Cooling Channels -->
+      <rect x="54" y="316" width="456" height="14" fill="#7F8C8D" stroke="#1C2833" stroke-width="1.4" />
+      <g fill="#FFFFFF" stroke="#1C2833" stroke-width="1">
+        <rect x="92" y="319" width="36" height="8" /><rect x="172" y="319" width="36" height="8" /><rect x="264" y="319" width="36" height="8" />
+        <rect x="356" y="319" width="36" height="8" /><rect x="436" y="319" width="36" height="8" />
+      </g>
+      <text x="282" y="341" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" fill="#1F618D" text-anchor="middle">UNDER-BED CONVECTIVE AIR-COOLING CHANNELS (Prevents Concrete Foundation Meltdown)</text>
+
+      <!-- U-Trough Refractory Brick Enclosure & Removable Side Blocks -->
+      <path d="M 62 64 L 502 64 L 502 300 L 472 316 L 92 316 L 62 300 Z" fill="url(#refractoryBrick)" stroke="#BA4A00" stroke-width="1.8" />
+      <path d="M 78 64 L 486 64 L 486 292 L 460 304 L 104 304 L 78 292 Z" fill="#FDFEFE" stroke="#BA4A00" stroke-width="1.2" />
+
+      <!-- Outer Thermal Insulation Blanket (SiC + Quartz Sand + Coke Breeze + Sawdust) -->
+      <rect x="78" y="64" width="408" height="40" fill="#BDC3C7" fill-opacity="0.7" stroke="#7F8C8D" stroke-width="1" />
+      <rect x="78" y="266" width="408" height="38" fill="#BDC3C7" fill-opacity="0.7" stroke="#7F8C8D" stroke-width="1" />
+      <text x="282" y="80" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#2C3E50" text-anchor="middle">TOP THERMAL INSULATION BLANKET (250 mm SiO2 Sand + SiC + Coke Breeze)</text>
+      <text x="282" y="93" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#78281F" text-anchor="middle">Parasitic Side-Reaction at 1,700°C: SiO2(s) + 3C(s) -&gt; beta-SiC(s) + 2CO(g) (Consumes Energy)</text>
+
+      <!-- Granular Metallurgical Coke Resistor Packing Bed (Indirect Joule Heating Medium) -->
+      <rect x="94" y="104" width="376" height="162" fill="url(#cokeBed)" stroke="#34495E" stroke-width="1.2" />
+      <text x="282" y="118" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#1C2833" text-anchor="middle">METALLURGICAL COKE RESISTOR PACKING BED (Indirect Heating: Q = I^2 * R_bed)</text>
+
+      <!-- Water-Cooled Graphite Head Electrodes & Copper Busbars (Left & Right) -->
+      <rect x="16" y="152" width="46" height="68" fill="#D35400" stroke="#78281F" stroke-width="1.5" rx="2" />
+      <rect x="62" y="146" width="32" height="80" fill="#2C3E50" stroke="#17202A" stroke-width="1.8" />
+      <text x="35" y="144" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" fill="#900C3F" text-anchor="middle">Cu BUSBAR</text>
+      <text x="35" y="234" font-family="Helvetica, Arial, sans-serif" font-size="7" fill="#1F618D" text-anchor="middle">H2O Cooled</text>
+
+      <rect x="470" y="146" width="32" height="80" fill="#2C3E50" stroke="#17202A" stroke-width="1.8" />
+      <rect x="502" y="152" width="46" height="68" fill="#D35400" stroke="#78281F" stroke-width="1.5" rx="2" />
+      <text x="531" y="144" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" fill="#900C3F" text-anchor="middle">ELECTRODE</text>
+      <text x="531" y="234" font-family="Helvetica, Arial, sans-serif" font-size="7" fill="#1C2833" text-anchor="middle">60 - 100 kA</text>
+
+      <!-- Incandescent Core Thermal Plume (2,800 - 3,000 °C) -->
+      <ellipse cx="282" cy="188" rx="176" ry="66" fill="url(#heatGlow)" />
+
+      <!-- Transverse Cylindrical Graphite Sagger Crucibles Packed with Needle Coke Anode Powder -->
+      <g stroke="#F39C12" stroke-width="1.6" fill="#1C2833">
+        <rect x="116" y="142" width="42" height="88" rx="3" />
+        <rect x="184" y="142" width="42" height="88" rx="3" />
+        <rect x="252" y="142" width="42" height="88" rx="3" />
+        <rect x="320" y="142" width="42" height="88" rx="3" />
+        <rect x="388" y="142" width="42" height="88" rx="3" />
+      </g>
+      <!-- Crucible Caps & Internal Anode Powder -->
+      <g fill="#566573" stroke="#1C2833" stroke-width="1">
+        <rect x="114" y="138" width="46" height="6" /><rect x="182" y="138" width="46" height="6" /><rect x="250" y="138" width="46" height="6" />
+        <rect x="318" y="138" width="46" height="6" /><rect x="386" y="138" width="46" height="6" />
+      </g>
+      <text x="273" y="182" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle">SAGGER CRUCIBLES (x50-80)</text>
+      <text x="273" y="194" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#FAD7A0" text-anchor="middle">1,020 kg Green Coke -&gt; 1,000 kg Anode</text>
+
+      <!-- Radial Thermal Gradient Annotation (Core 3,000°C vs Wall 2,600°C) -->
+      <path d="M 92 248 L 472 248" stroke="#C0392B" stroke-width="1.2" stroke-dasharray="4,2" />
+      <text x="282" y="260" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" fill="#900C3F" text-anchor="middle">Steep Radial Delta-T (~250 °C Core-to-Wall Gradient) -&gt; Batch-to-Batch d002 Variance</text>
+      <text x="282" y="286" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#2C3E50" text-anchor="middle">BOTTOM SILICON CARBIDE &amp; SAND BED (300 mm Thermal Barrier above Concrete Floor)</text>
+
+      <!-- Bottom Metrics Summary Strip -->
+      <rect x="10" y="348" width="544" height="62" fill="#FDEDEC" stroke="#C0392B" stroke-width="1.2" rx="3" />
+      <text x="18" y="362" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#900C3F">ACHESON BATCH OPERATING LEDGER (ANL-22/74 TABLE 2; SUROVTSEVA 2022):</text>
+      <text x="18" y="376" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#1C2833">• Stage 3 Electricity: 12.50 kWh/kg (90.6% of total 13.79 kWh/kg Synthetic Acheson Route)</text>
+      <text x="18" y="389" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#78281F">• Thermal Efficiency: ~28 - 32% (~70% heat wasted in 3:1 resistor coke &amp; sand pack; 12-18 day cycle)</text>
+      <text x="18" y="402" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#900C3F">• Coal-Grid Footprint: 19.65 kg CO2e/kg (Inner Mongolia) vs. 4.60 kg CO2e/kg (Hydro Grid) | Cost: +$2,100/t</text>
+    </g>
+
+    <!-- ================================================================= -->
+    <!-- TOP-RIGHT PANEL: ARCHITECTURE B — LONGITUDINAL LWG (CASTNER)      -->
+    <!-- ================================================================= -->
+    <g transform="translate(604, 92)" id="lwg_furnace_panel">
+      <rect x="0" y="0" width="576" height="418" fill="#FFFFFF" stroke="#27AE60" stroke-width="1.8" rx="5" />
+      <rect x="0" y="0" width="576" height="28" fill="#0E6251" rx="4" />
+      <text x="12" y="18" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="bold" fill="#FFFFFF">B. LONGITUDINAL GRAPHITIZATION FURNACE — LWG / CASTNER (DIRECT JOULE HEATING)</text>
+
+      <!-- Optical Pyrometer & Argon Purge Hood on Top -->
+      <circle cx="288" cy="48" r="11" fill="#FFFFFF" stroke="#2980B9" stroke-width="1.4" />
+      <text x="288" y="46" font-family="Helvetica, Arial, sans-serif" font-size="6.5" font-weight="bold" fill="#154360" text-anchor="middle">TI</text>
+      <text x="288" y="54" font-family="Helvetica, Arial, sans-serif" font-size="6.5" fill="#154360" text-anchor="middle">402</text>
+      <line x1="288" y1="59" x2="288" y2="132" stroke="#2980B9" stroke-width="1.2" stroke-dasharray="3,2" />
+      <text x="304" y="48" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" fill="#154360">Optical Pyrometer Sight Tube (T_core = 2,950 °C)</text>
+      <text x="304" y="58" font-family="Helvetica, Arial, sans-serif" font-size="7" fill="#5D6D7E">Closed Hood + Low-Flow N2/Ar Blanket (Minimizes Carbon Oxidation Loss)</text>
+
+      <!-- Concrete Piers & Air-Cooled Steel Support Frame -->
+      <rect x="64" y="316" width="448" height="14" fill="#7F8C8D" stroke="#1C2833" stroke-width="1.4" />
+      <text x="288" y="341" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" fill="#0E6251" text-anchor="middle">MODULAR SEGMENTED SHELL (3 - 5 Day Fast Cooling &amp; Automated Crane Discharge)</text>
+
+      <!-- Insulated U-Frame Refractory Shell -->
+      <rect x="74" y="68" width="428" height="248" fill="url(#refractoryBrick)" stroke="#BA4A00" stroke-width="1.8" />
+      <rect x="90" y="82" width="396" height="220" fill="#FDFEFE" stroke="#BA4A00" stroke-width="1.2" />
+
+      <!-- Stationary Graphitized Carbon Black Insulation Layer (Zero Resistor Coke!) -->
+      <rect x="90" y="82" width="396" height="44" fill="#D5D8DC" fill-opacity="0.75" stroke="#7F8C8D" stroke-width="1" />
+      <rect x="90" y="256" width="396" height="46" fill="#D5D8DC" fill-opacity="0.75" stroke="#7F8C8D" stroke-width="1" />
+      <text x="288" y="100" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#1C2833" text-anchor="middle">STATIONARY CARBON BLACK INSULATION BLANKET (Low k_th = 0.4 W/m·K)</text>
+      <text x="288" y="114" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" fill="#0E6251" text-anchor="middle">ZERO INTER-CRUCIBLE RESISTOR COKE BED -&gt; Eliminates 40.8% Parasitic Thermal Mass!</text>
+
+      <!-- Left & Right Hydraulic Axial Clamping Rams (10-30 MPa Contact Pressure) -->
+      <rect x="12" y="164" width="34" height="54" fill="url(#metallicCyl)" stroke="#1C2833" stroke-width="1.5" />
+      <line x1="18" y1="191" x2="40" y2="191" stroke="#C0392B" stroke-width="3" marker-end="url(#arrowRed)" />
+      <rect x="46" y="152" width="44" height="78" fill="#2C3E50" stroke="#17202A" stroke-width="1.8" />
+      <text x="38" y="136" font-family="Helvetica, Arial, sans-serif" font-size="7.2" font-weight="bold" fill="#C0392B" text-anchor="middle">HYDRAULIC RAM</text>
+      <text x="38" y="146" font-family="Helvetica, Arial, sans-serif" font-size="7" fill="#1C2833" text-anchor="middle">P = 10-30 MPa</text>
+
+      <rect x="486" y="152" width="44" height="78" fill="#2C3E50" stroke="#17202A" stroke-width="1.8" />
+      <rect x="530" y="164" width="34" height="54" fill="url(#metallicCyl)" stroke="#1C2833" stroke-width="1.5" />
+      <line x1="558" y1="191" x2="536" y2="191" stroke="#C0392B" stroke-width="3" marker-end="url(#arrowRed)" />
+      <text x="538" y="136" font-family="Helvetica, Arial, sans-serif" font-size="7.2" font-weight="bold" fill="#C0392B" text-anchor="middle">TAIL ELECTRODE</text>
+      <text x="538" y="146" font-family="Helvetica, Arial, sans-serif" font-size="7" fill="#1F618D" text-anchor="middle">80-150 kA DC</text>
+
+      <!-- Incandescent Axial Carbon Column (Direct Self-Heating) -->
+      <rect x="90" y="130" width="396" height="122" fill="url(#heatGlow)" rx="4" />
+
+      <!-- End-to-End Clamped Conductive Graphite Box-Crucibles / Anode Columns -->
+      <g fill="#1C2833" stroke="#F1C40F" stroke-width="2">
+        <rect x="96" y="146" width="90" height="90" />
+        <rect x="192" y="146" width="92" height="90" />
+        <rect x="290" y="146" width="92" height="90" />
+        <rect x="388" y="146" width="90" height="90" />
+      </g>
+      <!-- Inter-Column Contact Interfaces (High J^2 * R_contact Heating) -->
+      <g stroke="#F39C12" stroke-width="3">
+        <line x1="189" y1="146" x2="189" y2="236" />
+        <line x1="287" y1="146" x2="287" y2="236" />
+        <line x1="385" y1="146" x2="385" y2="236" />
+      </g>
+
+      <!-- Direct Axial DC Current Path Vector through the Carbon Column -->
+      <line x1="92" y1="191" x2="478" y2="191" stroke="#F1C40F" stroke-width="3.5" stroke-dasharray="8,4" marker-end="url(#arrowOrange)" />
+      <text x="288" y="176" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle">DIRECT AXIAL DC CURRENT (I = 80 - 150 kA THROUGH ANODE COLUMN)</text>
+      <text x="288" y="212" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#FAD7A0" text-anchor="middle">Self-Heating: q&apos;&apos;&apos; = J^2 * rho(T) | Uniform Axial Temp (2,900 ± 40 °C)</text>
+      <text x="288" y="226" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#F9E79F" text-anchor="middle">Graphite Box-Crucibles act as the electrical conductor (No resistor bed)</text>
+
+      <text x="288" y="280" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#2C3E50" text-anchor="middle">REUSABLE GRAPHITE FOIL &amp; CARBON BLACK BASE INSULATION (250 mm)</text>
+
+      <!-- Bottom Metrics Summary Strip -->
+      <rect x="10" y="348" width="556" height="62" fill="#E8F8F5" stroke="#16A085" stroke-width="1.2" rx="3" />
+      <text x="18" y="362" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#0E6251">LWG / CASTNER OPERATING LEDGER (SUROVTSEVA ET AL. 2022; IEA 2024):</text>
+      <text x="18" y="376" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#1C2833">• Stage 3 Electricity: 7.40 kWh/kg (-40.8% vs. Acheson | Total Route: 8.69 kWh/kg, -37.0%)</text>
+      <text x="18" y="389" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#145A32">• Thermal Efficiency: ~50 - 60% (Direct Joule heating of column; rapid 3-5 day turnover)</text>
+      <text x="18" y="402" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#0E6251">• Coal-Grid Footprint: 12.40 kg CO2e/kg (-36.9% vs. Acheson) vs. 2.90 kg CO2e/kg (Hydro) | Cost: +$1,250/t</text>
+    </g>
+
+    <!-- ================================================================= -->
+    <!-- BOTTOM-LEFT PANEL: THERMAL REGIMES & ENERGY WATERFALL LEDGER      -->
+    <!-- ================================================================= -->
+    <g transform="translate(22, 522)" id="thermal_physics_and_ledger">
+      <rect x="0" y="0" width="642" height="258" fill="#FFFFFF" stroke="#1C2833" stroke-width="1.6" rx="5" />
+      <rect x="0" y="0" width="642" height="26" fill="#1C2833" rx="4" />
+      <text x="12" y="17" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="bold" fill="#ECF0F1">THERMODYNAMIC &amp; CRYSTALLOGRAPHIC REGIMES (800 -&gt; 3,000 °C) &amp; HEAT-BALANCE BREAKDOWN</text>
+
+      <!-- Left Sub-Box: 4 Temperature Regimes from Green Coke to ABAB Graphite -->
+      <rect x="10" y="32" width="308" height="218" fill="#F4F9FD" stroke="#85C1E9" stroke-width="1.1" rx="3" />
+      <text x="18" y="47" font-family="Helvetica, Arial, sans-serif" font-size="8.8" font-weight="bold" fill="#1B4F72">1. TEMPERATURE-STAGE REACTION ZONES (NEEDLE COKE)</text>
+
+      <!-- Zone 1 -->
+      <rect x="16" y="54" width="296" height="42" fill="#EBF5FB" stroke="#5DADE2" stroke-width="0.9" rx="2" />
+      <text x="22" y="66" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#154360">Zone I: 800 - 1,350 °C | Calcination &amp; Pitch Binder Coking</text>
+      <text x="22" y="78" font-family="Helvetica, Arial, sans-serif" font-size="7.4" fill="#1C2833">• Coal-tar pitch (150 kg/t) carbonizes; C-H volatiles (CH4, H2) evolve.</text>
+      <text x="22" y="89" font-family="Helvetica, Arial, sans-serif" font-size="7.4" fill="#5D6D7E">• Stage 1-2 Inputs: 1.288 kWh/kg elec + 8.69 MJ/kg natural gas/fuel oil.</text>
+
+      <!-- Zone 2 -->
+      <rect x="16" y="100" width="296" height="44" fill="#FEF9E7" stroke="#F39C12" stroke-width="0.9" rx="2" />
+      <text x="22" y="112" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#B9770E">Zone II: 1,400 - 2,000 °C | Heteroatom &quot;Puffing&quot; &amp; Desulfurization</text>
+      <text x="22" y="124" font-family="Helvetica, Arial, sans-serif" font-size="7.4" fill="#1C2833">• Irreversible expansion as thiophenic S &amp; N2 erupt (CS2, H2S, SO2).</text>
+      <text x="22" y="135" font-family="Helvetica, Arial, sans-serif" font-size="7.4" fill="#7E5109">• Requires low-S needle coke (&lt;0.5% S) + Fe2O3 puffing inhibitor.</text>
+
+      <!-- Zone 3 -->
+      <rect x="16" y="148" width="296" height="44" fill="#FDEDEC" stroke="#E74C3C" stroke-width="0.9" rx="2" />
+      <text x="22" y="160" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#900C3F">Zone III: 2,000 - 2,500 °C | Thermal Ash Volatilization (No HF!)</text>
+      <text x="22" y="172" font-family="Helvetica, Arial, sans-serif" font-size="7.4" fill="#1C2833">• Metallic &amp; silicate impurities (Fe, Si, Al, Ca, V) boil off as vapors.</text>
+      <text x="22" y="183" font-family="Helvetica, Arial, sans-serif" font-size="7.4" fill="#78281F">• Intrinsic purity reaches &gt;= 99.95% C with zero chemical acid waste.</text>
+
+      <!-- Zone 4 -->
+      <rect x="16" y="196" width="296" height="48" fill="#E8F8F5" stroke="#16A085" stroke-width="0.9" rx="2" />
+      <text x="22" y="208" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#0E6251">Zone IV: 2,500 - 3,000 °C | 3D ABAB Hexagonal Graphitization</text>
+      <text x="22" y="220" font-family="Helvetica, Arial, sans-serif" font-size="7.4" fill="#1C2833">• Turbostratic d002 = 0.3440 nm (g=0%) -&gt; 0.3356-0.3360 nm (g=88-95%).</text>
+      <text x="22" y="232" font-family="Helvetica, Arial, sans-serif" font-size="7.4" font-weight="bold" fill="#145A32">• Crystallite L_c grows 2-&gt;45 nm; unlocks 355-365 mAh/g LiC6 capacity.</text>
+
+      <!-- Right Sub-Box: Energy Heat-Balance Bars & Comparative Ledger -->
+      <rect x="326" y="32" width="306" height="218" fill="#FEF9E7" stroke="#F39C12" stroke-width="1.1" rx="3" />
+      <text x="334" y="47" font-family="Helvetica, Arial, sans-serif" font-size="8.8" font-weight="bold" fill="#B9770E">2. SPECIFIC ENERGY PARTITION (PER kg SYNTHETIC ANODE)</text>
+
+      <!-- Acheson Stacked Bar (12.50 kWh/kg = 280 px wide) -->
+      <text x="334" y="62" font-family="Helvetica, Arial, sans-serif" font-size="7.8" font-weight="bold" fill="#900C3F">Acheson Batch: 12.50 kWh/kg (45.0 MJ/kg Electrical Input)</text>
+      <rect x="334" y="66" width="85" height="18" fill="#27AE60" stroke="#1C2833" stroke-width="1" />
+      <rect x="419" y="66" width="110" height="18" fill="#E74C3C" stroke="#1C2833" stroke-width="1" />
+      <rect x="529" y="66" width="85" height="18" fill="#F39C12" stroke="#1C2833" stroke-width="1" />
+      <text x="376" y="78" font-family="Helvetica, Arial, sans-serif" font-size="7" font-weight="bold" fill="#FFFFFF" text-anchor="middle">3.8 kWh Anode</text>
+      <text x="474" y="78" font-family="Helvetica, Arial, sans-serif" font-size="7" font-weight="bold" fill="#FFFFFF" text-anchor="middle">4.9 kWh Coke Bed</text>
+      <text x="571" y="78" font-family="Helvetica, Arial, sans-serif" font-size="7" font-weight="bold" fill="#1C2833" text-anchor="middle">3.8 kWh Wall</text>
+
+      <!-- LWG Stacked Bar (7.40 kWh/kg = 166 px wide) -->
+      <text x="334" y="98" font-family="Helvetica, Arial, sans-serif" font-size="7.8" font-weight="bold" fill="#0E6251">LWG Longitudinal: 7.40 kWh/kg (26.6 MJ/kg, -40.8% Savings)</text>
+      <rect x="334" y="102" width="85" height="18" fill="#27AE60" stroke="#1C2833" stroke-width="1" />
+      <rect x="419" y="102" width="47" height="18" fill="#F39C12" stroke="#1C2833" stroke-width="1" />
+      <rect x="466" y="102" width="34" height="18" fill="#85C1E9" stroke="#1C2833" stroke-width="1" />
+      <text x="376" y="114" font-family="Helvetica, Arial, sans-serif" font-size="7" font-weight="bold" fill="#FFFFFF" text-anchor="middle">3.8 kWh Anode</text>
+      <text x="442" y="114" font-family="Helvetica, Arial, sans-serif" font-size="6.8" font-weight="bold" fill="#1C2833" text-anchor="middle">2.1 Ins</text>
+      <text x="506" y="114" font-family="Helvetica, Arial, sans-serif" font-size="7" font-weight="bold" fill="#0E6251">-5.10 kWh/kg Saved!</text>
+
+      <!-- Comparison Table -->
+      <line x1="334" y1="128" x2="622" y2="128" stroke="#D4AC0D" stroke-width="0.9" />
+      <text x="334" y="140" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" fill="#566573">BENCHMARK METRIC</text>
+      <text x="466" y="140" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" fill="#900C3F">ACHESON</text>
+      <text x="552" y="140" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" fill="#0E6251">LWG / CASTNER</text>
+
+      <text x="334" y="154" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#1C2833">• Green Coke + Pitch Feed:</text>
+      <text x="466" y="154" font-family="Courier, monospace" font-size="7.5" fill="#1C2833">1,020 + 150 kg</text>
+      <text x="552" y="154" font-family="Courier, monospace" font-size="7.5" fill="#1C2833">1,020 + 150 kg</text>
+
+      <text x="334" y="168" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#1C2833">• Stage 3 Mass Yield:</text>
+      <text x="466" y="168" font-family="Courier, monospace" font-size="7.5" fill="#1C2833">98.0% (1.0 t)</text>
+      <text x="552" y="168" font-family="Courier, monospace" font-size="7.5" fill="#1C2833">98.0% (1.0 t)</text>
+
+      <text x="334" y="182" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#1C2833">• Stage 3 Electricity:</text>
+      <text x="466" y="182" font-family="Courier, monospace" font-size="7.5" font-weight="bold" fill="#C0392B">12.50 kWh/kg</text>
+      <text x="552" y="182" font-family="Courier, monospace" font-size="7.5" font-weight="bold" fill="#0E6251">7.40 kWh/kg</text>
+
+      <text x="334" y="196" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#1C2833">• Total Route Power:</text>
+      <text x="466" y="196" font-family="Courier, monospace" font-size="7.5" font-weight="bold" fill="#C0392B">13.79 kWh/kg</text>
+      <text x="552" y="196" font-family="Courier, monospace" font-size="7.5" font-weight="bold" fill="#0E6251">8.69 kWh/kg</text>
+
+      <text x="334" y="210" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#1C2833">• Total Route Thermal Fuel:</text>
+      <text x="466" y="210" font-family="Courier, monospace" font-size="7.5" fill="#34495E">8.69 MJ/kg</text>
+      <text x="552" y="210" font-family="Courier, monospace" font-size="7.5" fill="#34495E">8.69 MJ/kg</text>
+
+      <text x="334" y="224" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#1C2833">• Batch Cycle Duration:</text>
+      <text x="466" y="224" font-family="Courier, monospace" font-size="7.5" fill="#C0392B">12 - 18 days</text>
+      <text x="552" y="224" font-family="Courier, monospace" font-size="7.5" fill="#0E6251">3 - 5 days</text>
+
+      <text x="334" y="238" font-family="Helvetica, Arial, sans-serif" font-size="7.5" fill="#1C2833">• Step Conversion Cost:</text>
+      <text x="466" y="238" font-family="Courier, monospace" font-size="7.5" font-weight="bold" fill="#C0392B">+$2,100 / t</text>
+      <text x="552" y="238" font-family="Courier, monospace" font-size="7.5" font-weight="bold" fill="#0E6251">+$1,250 / t</text>
+    </g>
+
+    <!-- ================================================================= -->
+    <!-- MIDDLE-RIGHT PANEL: GRID CARBON INTENSITY & SUPPLY CHAIN LEDGER   -->
+    <!-- ================================================================= -->
+    <g transform="translate(675, 522)" id="grid_decarbonization_panel">
+      <rect x="0" y="0" width="505" height="138" fill="#EAFAF1" stroke="#27AE60" stroke-width="1.5" rx="5" />
+      <rect x="0" y="0" width="505" height="24" fill="#0E6251" rx="4" />
+      <text x="12" y="16" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#FFFFFF">GRID CARBON SENSITIVITY &amp; SYNTHETIC ANODE LCA (HYPOTHESIS H1 VERIFIED)</text>
+
+      <text x="12" y="39" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" fill="#1C2833">Why Grid Electricity Mix Governs Synthetic Graphite Climate Impact:</text>
+      <text x="12" y="52" font-family="Helvetica, Arial, sans-serif" font-size="7.6" fill="#34495E">• Graphitization consumes 90.6% (Acheson) to 85.2% (LWG) of all synthetic route electricity.</text>
+      <text x="12" y="65" font-family="Helvetica, Arial, sans-serif" font-size="7.6" font-weight="bold" fill="#900C3F">• 1. Inner Mongolia Coal Grid (~1,050 g CO2e/kWh): Acheson = 19.65 kg CO2e/kg | LWG = 12.40 kg CO2e/kg</text>
+      <text x="12" y="78" font-family="Helvetica, Arial, sans-serif" font-size="7.6" font-weight="bold" fill="#1B4F72">• 2. US Average Grid Mix (~380 g CO2e/kWh):      Acheson = 8.90 kg CO2e/kg  | LWG = 5.95 kg CO2e/kg</text>
+      <text x="12" y="91" font-family="Helvetica, Arial, sans-serif" font-size="7.6" font-weight="bold" fill="#0E6251">• 3. Sichuan / Nordic Hydro (~25 g CO2e/kWh):   Acheson = 4.60 kg CO2e/kg  | LWG = 2.90 kg CO2e/kg (-85%!)</text>
+      <line x1="12" y1="98" x2="493" y2="98" stroke="#A3E4D7" stroke-width="1" />
+      <text x="12" y="112" font-family="Helvetica, Arial, sans-serif" font-size="7.6" fill="#1C2833">• Residual ~2.6-2.9 kg CO2e/kg floor on 100% hydro comes from direct process CO2 during baking/calcination</text>
+      <text x="12" y="124" font-family="Helvetica, Arial, sans-serif" font-size="7.6" font-weight="bold" fill="#145A32">  and upstream petroleum needle coke production (Surovtseva et al. 2022; ANL-22/74 Table 2).</text>
+    </g>
+
+
+    <!-- ISO 7200 Technical Title Block -->
+    <g transform="translate(680, 672)" id="iso_title_block">
+      <rect x="0" y="0" width="500" height="108" fill="#FFFFFF" stroke="#1C2833" stroke-width="1.8" />
+      <rect x="0" y="0" width="500" height="28" fill="#F2F4F4" stroke="#1C2833" stroke-width="1.2" />
+      <line x1="0" y1="56" x2="500" y2="56" stroke="#1C2833" stroke-width="1.0" />
+      <line x1="0" y1="82" x2="500" y2="82" stroke="#1C2833" stroke-width="1.0" />
+      <line x1="375" y1="0" x2="375" y2="56" stroke="#1C2833" stroke-width="1.0" />
+      <line x1="435" y1="28" x2="435" y2="56" stroke="#1C2833" stroke-width="1.0" />
+
+      <!-- First-Angle Projection Symbol -->
+      <circle cx="482" cy="14" r="6" fill="none" stroke="#1C2833" stroke-width="1.1" />
+      <circle cx="482" cy="14" r="2.5" fill="none" stroke="#1C2833" stroke-width="1.1" />
+      <polygon points="452,10 470,7 470,21 452,18" fill="none" stroke="#1C2833" stroke-width="1.1" />
+
+      <!-- Field Content -->
+      <text x="10" y="19" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#1C2833">ACHESON VS. LWG GRAPHITIZATION FURNACES (2,800-3,000 °C)</text>
+      <text x="383" y="19" font-family="Courier, monospace" font-size="10.5" font-weight="bold" fill="#C0392B">DWG-MCH-04</text>
+
+      <text x="10" y="45" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#566573">UNIT OP:</text>
+      <text x="58" y="45" font-family="Helvetica, Arial, sans-serif" font-size="9" font-weight="bold" fill="#1C2833">High-Temp Thermal Graphitization (Stage 3)</text>
+      <text x="383" y="45" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#566573">STD: ISO 128</text>
+      <text x="442" y="45" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1C2833">REV 2.0</text>
+
+      <text x="10" y="73" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#117A65">AUDIT METRICS: Acheson: 12.50 kWh/kg (eff ~30%) | LWG: 7.40 kWh/kg (eff ~55%, -40.8%)</text>
+      <text x="10" y="98" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-style="italic" fill="#5D6D7E">PRIMARY PROVENANCE: ANL GREET ANL-22/74 Table 2; Surovtseva (2022); IEA (2024)</text>
+    </g>
+
+</svg>

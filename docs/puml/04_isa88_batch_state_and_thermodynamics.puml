@@ -1,0 +1,127 @@
+@startuml 04_isa88_batch_state_and_thermodynamics
+!pragma layout smetana
+skinparam backgroundColor #FDFEFE
+skinparam defaultFontName "Helvetica"
+skinparam roundCorner 8
+skinparam shadowing false
+
+skinparam state {
+  BackgroundColor #EAEDED
+  BorderColor #7F8C8D
+  FontColor #2C3E50
+  ArrowColor #2980B9
+  ArrowThickness 1.5
+}
+
+title ANSI/ISA-88 Batch Recipe State Machine & High-Temperature Graphitization Thermodynamics\n(IEC 61512 Procedure Model: Phase Transitions, Specific Power Consumption & Cost Bottlenecks per State)
+
+[*] --> IDLE : Furnace Inspection & Refractory Check
+
+state IDLE {
+  IDLE : • Duration: 4 - 8 hours | Specific Elec: 0.00 kWh/kg
+  IDLE : • Check water-cooling manifolds & transformer tap-changers
+  IDLE : • Clean heavy copper busbar contacts (50 - 120 kA DC capacity)
+  IDLE : • CapEx Depreciation & Standby Overhead: ~$15/t
+}
+
+IDLE --> CHARGING : Recipe Started / Operator Permissive
+
+state CHARGING {
+  CHARGING : • Duration: 16 - 24 hours (Acheson) | 2 - 4 hours (LWG Pusher)
+  CHARGING : • Specific Elec: 0.05 kWh/kg (Cranes, pneumatic conveyors)
+  CHARGING : • Unit Procedure: Furnace Bed Assembly
+  CHARGING :   1. Pack bottom insulation blanket (SiC / Recycled coke dust)
+  CHARGING :   2. Position graphite crucibles (Acheson) or axial column (LWG)
+  CHARGING :   3. Infill metallurgical resistor packing coke (Acheson only)
+  CHARGING :   4. Cover with top thermal barrier (Carbon black / Silica sand)
+  CHARGING : • State Cost Attribution: ~$140/t (Acheson consumables/labor) vs ~$65/t (LWG)
+}
+
+CHARGING --> DEVOLATILIZATION : Power Applied (Initial Ramp: 50 - 100 kW/h)
+
+state DEVOLATILIZATION #FEF9E7 {
+  DEVOLATILIZATION : • Temperature Range: 500 °C -> 1,300 °C | Duration: 12 - 20 hours
+  DEVOLATILIZATION : • Specific Energy: 1.80 kWh/kg (Acheson) | 1.10 kWh/kg (LWG)
+  DEVOLATILIZATION : • Power Cost: $81/t (CN Acheson) vs $270/t (West Acheson)
+  DEVOLATILIZATION : • Thermodynamic Reaction:
+  DEVOLATILIZATION :   - Pyrolysis of residual binder pitch & aromatic hydrocarbons
+  DEVOLATILIZATION :   - Elimination of heteroatoms: H2, CH4, N2, CO
+  DEVOLATILIZATION :   - Evolution of H2S & organosulfur gases (1,100-1,300 °C irreversible "Puffing" zone)
+  DEVOLATILIZATION : • Crystallographic State:
+  DEVOLATILIZATION :   - Disordered turbostratic carbon (random rotational stacking)
+  DEVOLATILIZATION :   - Interlayer Spacing: d002 >= 0.3440 nm (g = 0%)
+}
+
+DEVOLATILIZATION --> ASH_VOLATILIZATION : Thermal Soak Complete / Temp > 1,400 °C
+
+state ASH_VOLATILIZATION #FADBD8 {
+  ASH_VOLATILIZATION : • Temperature Range: 1,400 °C -> 2,400 °C | Duration: 16 - 28 hours
+  ASH_VOLATILIZATION : • Specific Energy: 4.50 kWh/kg (Acheson) | 2.65 kWh/kg (LWG)
+  ASH_VOLATILIZATION : • Power Cost: $203/t (CN Acheson) | $119/t (CN LWG) | $675/t (West Acheson)
+  ASH_VOLATILIZATION : • Solid-State Endothermic Mineral Reactions:
+  ASH_VOLATILIZATION :   - SiO2 + 3 C -> beta-SiC + 2 CO(g) (1,600 - 1,900 °C, Delta H = +618 kJ/mol)
+  ASH_VOLATILIZATION :   - Fe2O3 + 3 C -> 2 Fe(l/g) + 3 CO(g) (Iron vaporizes > 1,800 °C)
+  ASH_VOLATILIZATION :   - Al2O3 + 3 C -> 2 Al(g) + 3 CO(g) (Aluminum vaporizes > 2,000 °C)
+  ASH_VOLATILIZATION : • Self-Purification & Pre-Graphitization:
+  ASH_VOLATILIZATION :   - Metallic & silicate impurities boil out into scrubber exhaust
+  ASH_VOLATILIZATION :   - Interlayer Spacing contracts: d002 = 0.3440 -> 0.3385 nm (g ~ 64%)
+}
+
+ASH_VOLATILIZATION --> GRAPHITIZATION_SOAK : Temp > 2,500 °C / Peak Current 80 - 120 kA DC
+
+state GRAPHITIZATION_SOAK #FDEDEC {
+  GRAPHITIZATION_SOAK : • Temperature Range: 2,800 °C - 3,000 °C (Peak Joule Soak)
+  GRAPHITIZATION_SOAK : • Duration: 10 - 16 hours (Acheson) | 3 - 6 hours (LWG)
+  GRAPHITIZATION_SOAK : • Specific Energy: 6.10 kWh/kg (Acheson) | 3.55 kWh/kg (LWG)
+  GRAPHITIZATION_SOAK : • Power Cost: $275/t (CN Acheson) | $160/t (CN LWG) | $915/t (West Acheson)
+  GRAPHITIZATION_SOAK : • Thermodynamic Crystallization (Activation Energy Ea ~ 260 kJ/mol):
+  GRAPHITIZATION_SOAK :   - Thermal decomposition of catalytic beta-SiC -> Si(g) + C(hexagonal graphite)
+  GRAPHITIZATION_SOAK :   - Annihilation of interstitial carbon defects & in-plane dislocations
+  GRAPHITIZATION_SOAK :   - Coalescence & straightening of sp2 polyaromatic graphene lamellae
+  GRAPHITIZATION_SOAK :   - Translation/rotation into Bernal ABAB hexagonal 3D registry
+  GRAPHITIZATION_SOAK : • Lattice Parameters Achieved:
+  GRAPHITIZATION_SOAK :   - d002: 0.3354 - 0.3358 nm (Theoretical crystal limit: 0.3354 nm)
+  GRAPHITIZATION_SOAK :   - Crystallite Height Lc: 25 - 45 nm | Width La: 50 - 100 nm
+  GRAPHITIZATION_SOAK :   - Graphitization Degree g = (0.3440 - d002) / (0.3440 - 0.3354) >= 93.0%
+}
+
+GRAPHITIZATION_SOAK --> RADIATIVE_COOLING : Target kWh Integrator Met / Transformer Tripped
+
+state RADIATIVE_COOLING #EBF5FB {
+  RADIATIVE_COOLING : • Temperature Decay: 3,000 °C -> 150 °C
+  RADIATIVE_COOLING : • Duration (Primary Working-Capital & Asset-Turnover Bottleneck!):
+  RADIATIVE_COOLING :   - Acheson: 10 - 16 days (Passive conduction through thick sand/coke bed)
+  RADIATIVE_COOLING :   - LWG: 1 - 3 days (Modular cooling zones & water-cooled shell)
+  RADIATIVE_COOLING : • Specific Elec: 0.03 kWh/kg (Cooling water pumps & fume extraction fans)
+  RADIATIVE_COOLING : • Unrecovered Sensible Heat Loss: ~8.5 GJ/t (~2.36 kWh/kg thermal equivalent)
+  RADIATIVE_COOLING : • Capital Tie-Up Cost: ~$280/t (Acheson 20-day bay occupancy) vs ~$95/t (LWG 4-day cycle)
+  RADIATIVE_COOLING : • Safety Invariant: Bed must remain sealed > 400 °C to prevent rapid O2 air burn-off
+}
+
+RADIATIVE_COOLING --> UNLOADING : Temp < 150 °C / CO & O2 Monitors Safe
+
+state UNLOADING {
+  UNLOADING : • Duration: 12 - 20 hours | Specific Elec: 0.02 kWh/kg
+  UNLOADING : • Unit Procedure: Demucking, Screening & Harvest
+  UNLOADING :   1. Vacuum stripping of top insulation sand & SiC crust (recycled)
+  UNLOADING :   2. Overhead crane extraction of graphitized crucibles / column blocks
+  UNLOADING :   3. Separation of metallurgical resistor coke (sold/reused)
+  UNLOADING :   4. Sampling for XRD (002) peak & ICP-MS trace metal assay
+  UNLOADING : • State Cost Attribution: ~$125/t (Acheson demucking) vs ~$55/t (LWG automated discharge)
+}
+
+UNLOADING --> BATCH_COMPLETE : Product Transferred to Stage 4 Finishing
+
+state BATCH_COMPLETE #D5F5E3 {
+  BATCH_COMPLETE : • Cumulative Stage 3 Electricity:
+  BATCH_COMPLETE :   - Acheson Batch: 12.50 kWh/kg ($563/t Power @ CN $0.045/kWh | $1,875/t @ West $0.15/kWh)
+  BATCH_COMPLETE :   - LWG Continuous: 7.40 kWh/kg ($333/t Power @ CN $0.045/kWh | $1,110/t @ West $0.15/kWh)
+  BATCH_COMPLETE : • Total Stage 3 Conversion Cost (Power + Consumables + CapEx + Labor):
+  BATCH_COMPLETE :   - China LWG: $753/t | China Acheson: $1,210/t | West LWG: $1,760/t | West Acheson: $2,825/t
+  BATCH_COMPLETE : • Lot Release Specifications:
+  BATCH_COMPLETE :   - d002 <= 0.3358 nm (g >= 93%) | Ash <= 0.05% (Fe < 50 ppb after HGMS) | Cap >= 350 mAh/g
+}
+
+BATCH_COMPLETE --> [*]
+
+@enduml

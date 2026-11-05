@@ -1,0 +1,121 @@
+@startuml 02_natural_cspg_process_flow
+!pragma layout smetana
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName "Helvetica"
+skinparam roundCorner 6
+skinparam shadowing false
+skinparam ArrowColor #34495E
+skinparam ArrowThickness 1.5
+
+skinparam rectangle {
+  BackgroundColor #F8F9F9
+  BorderColor #7F8C8D
+  FontColor #2C3E50
+}
+
+skinparam card {
+  BackgroundColor #EAEDED
+  BorderColor #95A5A6
+  FontColor #2C3E50
+}
+
+skinparam node {
+  BackgroundColor #E8F8F5
+  BorderColor #1ABC9C
+  FontColor #16A085
+  FontStyle bold
+}
+
+skinparam queue {
+  BackgroundColor #FEF5E7
+  BorderColor #F39C12
+}
+
+skinparam storage {
+  BackgroundColor #FADBD8
+  BorderColor #E74C3C
+  FontColor #922B21
+}
+
+title Natural Graphite Battery Anode (cSPG) Industrial Process Flowsheet\nISO 10628 PFD Standard with Step-by-Step Mass, Energy & Cost Attribution (Basis: 1.0 t Finished cSPG | ANL-22/74)
+
+' --- STAGE 1: MINING & BENEFICIATION ---
+package "Stage 1: Open-Pit Mining, Comminution & Froth Flotation [Cost Share: 11.4% | Elec Share: 17.1%]" #F4F6F7 {
+  queue "Run-of-Mine Ore\n(10.43% C)\nMass: 24,300 kg\nMining Cost: ~$18-25/t ore" as ROM_Ore
+  rectangle "Primary Jaw & Cone Crushing\nSize Reduction < 10 mm\nPower: ~0.12 kWh/kg conc" as Crushing
+  rectangle "Rod/Ball Milling & Multi-Stage Flotation\nCollectors: Kerosene / Diesel (150 g/t)\nFrother: Pine Oil / MIBC (60 g/t)\n• Stage Elec: 0.484 kWh/kg conc (1.352 kWh/kg cSPG)\n• Stage Fuel: 2.88 MJ/kg conc (Diesel/Steam)\n• Processing Cost: ~$320-380/t conc" as Flotation
+  storage "Silicate Tailings (Gangue)\nQuartz, Mica, Feldspar\nMass: 21,730 kg (89.4%)\nTailings Impoundment Cost: ~$45/t conc" as Tailings
+  card "Flake Graphite Concentrate\n(94-97% C, +80/-100 mesh)\nMass: 2,534 kg (Input for 1 t cSPG)\n• Market Price: $793-$830/t ($800/t Base)\n• Raw Feed Cost for 1 t cSPG: ~$2,027\n  (before $649 fines byproduct credit)" as Flake_Conc
+
+  ROM_Ore --> Crushing
+  Crushing --> Flotation : Crushed Feed
+  Flotation --> Tailings : Flotation Underflow
+  Flotation --> Flake_Conc : Froth Concentrate (Yield: 10.43%)
+}
+
+' --- STAGE 2: MECHANICAL SPHERONIZATION ---
+package "Stage 2: Micronization & Mechanical Spheronization (ACM Train) [Cost Share: 25.0% | Elec Share: 27.4%]" #EBF5FB {
+  rectangle "Impact & Air-Classifier Milling (ACM)\nTip Speed: 15-25 m/s | Multiple Passes (8-16 cycles)\n• Stage Elec: 1.899 kWh/kg uSPG (2.167 kWh/kg cSPG)\n• Stage Fuel: 0.0 MJ/kg (100% Electric Drive)\n• Milling Power + Liner Wear Cost: +$550/t cSPG\n• Yield Loss Penalty (2.22x feed): +$1,200/t cSPG" as ACM_Mill
+  storage "Micronized Cleavage Fine Tails\n(< 5 um non-spherical scrap)\nMass: 1,387 kg (54.73% Scrap Loss)\n• Byproduct Sale (Refractory/Recarb): $468/t\n• Byproduct Credit: -$649/t cSPG" as Fines_Scrap
+  storage "Baghouse Filter Dust Buffer\nMass: 6 kg (0.22% Handling Loss)" as Dust_Loss
+  card "Uncoated Spherical Graphite (uSPG)\n(D50 = 15.0 um, Tap Density > 0.95 g/cm3)\nPurity: 95.0% C | Mass: 1,141 kg (45.05% Yield)\n• Cumulative Cost: ~$2,550/t cSPG\n• Cumulative Elec: 3.519 kWh/kg cSPG" as uSPG_Product
+
+  Flake_Conc --> ACM_Mill : Pneumatic Injection (2,534 kg)
+  ACM_Mill --> Fines_Scrap : Cyclone Classification (1,387 kg)
+  ACM_Mill --> Dust_Loss : Exhaust Filtration (6 kg)
+  ACM_Mill --> uSPG_Product : Spheronized Cores (1,141 kg)
+}
+
+' --- STAGE 3: PURIFICATION ---
+package "Stage 3: Chemical Acid Leaching vs. Thermal Purification [Cost Share: 15.7% (HF) | Elec Share: 3.5% (HF) vs 55.8% (Therm)]" #FEF9E7 {
+  node "Purification Pathway Split\nIndustrial Standard: 99.0% Chemical (China)\nCost Delta: Thermal adds +$550 to +$1,400/t" as Split
+
+  package "Route 3A: Hydrofluoric Acid Leaching (China Industry Standard)" {
+    rectangle "Agitated Acid Digestors (PTFE-lined, 60-90 °C)\nReagents per ton cSPG (Cost: ~$520/t):\n• Hydrofluoric Acid (40% HF): 180 kg (~$215)\n• Hydrochloric Acid (31% HCl): 200 kg (~$45)\n• Nitric Acid (68% HNO3): 100 kg (~$40)\n• Stage Elec: 0.276 kWh/kg (0.279 kWh/kg cSPG)\n• Stage Steam Fuel: 0.955 MJ/kg (0.965 MJ/kg cSPG)" as Acid_Leach
+    rectangle "Counter-Current Filtration & Neutralization\nWash Water: 15-25 m3/t | Lime (CaO): 400 kg (~$60)\nWastewater & Sludge Disposal Cost: ~$320/t\nTotal Route 3A Conversion Cost: +$1,100/t cSPG" as Neutralization
+    storage "Neutralized Fluoride/Chloride Tailings\nCaF2 / CaCl2 / SiF4 Sludge: ~650 kg\nHazardous Waste Landfill" as Acid_Waste
+    card "Chemically Purified Spherical Graphite\nPurity: >= 99.95% C | Mass: 1,010 kg (88.5% Yield)\n• Cumulative Cost: ~$3,650/t cSPG\n• Market Price (Purified uSPG): $2,900-$4,480/t\n• Cumulative Elec: 3.798 kWh/kg cSPG" as Chem_Pure
+  }
+
+  package "Route 3B: High-Temperature Thermal Purification (Eco Alternative)" {
+    rectangle "Induction / Resistance Furnace (2,800 - 3,000 °C)\n• Stage Elec: 9.50 kWh/kg (9.595 kWh/kg cSPG — 34x HF!)\n• Stage Fuel: 0.0 MJ/kg | Zero liquid effluent\n• Power Cost @ $0.045/kWh (CN): ~$432/t\n• Power Cost @ $0.150/kWh (EU/US): ~$1,439/t\n• Total Route 3B Conversion Cost: +$1,650 to +$2,500/t" as Thermal_Purify
+    card "Thermally Purified Spherical Graphite\nPurity: >= 99.99% C | Mass: 1,027 kg (90.0% Yield)\n• Cumulative Cost: ~$4,200-$5,050/t cSPG\n• Cumulative Elec: 13.114 kWh/kg cSPG" as Therm_Pure
+  }
+
+  uSPG_Product --> Split
+  Split -down-> Acid_Leach : Chemical Route (99% Share)
+  Acid_Leach --> Neutralization : Acid Slurry
+  Neutralization --> Acid_Waste : Waste Neutralization
+  Neutralization --> Chem_Pure : Filter Cake (1,010 kg)
+
+  Split -right-> Thermal_Purify : Thermal Route (1% Share)
+  Thermal_Purify --> Therm_Pure : High-Temp Vaporization
+}
+
+' --- STAGE 4: PITCH COATING & CARBONIZATION ---
+package "Stage 4: Surface Coating & Inert Carbonization [Cost Share: 20.7% (Coating) + 27.1% (QA/Margin) | Elec Share: 52.0%]" #EAFAF1 {
+  queue "Petroleum Pitch\n(Softening Pt: 110-120 °C)\nMass: 50 kg (5 wt%)\nFeed Cost: ~$45/t cSPG" as Pitch_Feed
+  rectangle "High-Shear Heated Kneader & Reactor\nTemp: 130 - 160 °C (Liquid pitch encapsulation)\nCore-Shell Coating Thickness: 5 - 15 nm" as Coating_Kneader
+  rectangle "Rotary / Roller Hearth Carbonization Furnace\nAtmosphere: Inert N2 blanket | Temp: 1,000 - 1,200 °C\n• Stage Elec: 4.113 kWh/kg cSPG (52.0% of HF Route Elec!)\n• Stage Fuel: 0.0 MJ/kg (Electric Resistance Kiln)\n• Stage 4 Conversion Cost (Pitch + Kiln + N2): +$1,450/t\n• De-ironing (<50 ppb Fe), Sizing, QA & Margin: +$1,900/t" as Carbonization
+  storage "Volatile Off-Gas Combustor (RTO)\nTar vapors & Light hydrocarbons: 10 kg" as Off_Gas
+  card "Finished Coated Spherical Purified Graphite (cSPG)\n• Carbon Purity: >= 99.95% C | D50: 15.5 um\n• BET Area: 1.8 - 2.5 m2/g (down from 6.5 m2/g uncoated)\n• First-Cycle Coulombic Efficiency (ICE): > 94%\n• Final Market Price: $7,000/t (8.75x Value Multiplier)\nMass: 1,000 kg (99.0% Stage Yield)" as Final_cSPG
+
+  Chem_Pure --> Coating_Kneader : Purified uSPG (1,010 kg)
+  Therm_Pure ..> Coating_Kneader : (Thermal Alternative)
+  Pitch_Feed --> Coating_Kneader : Binder Addition (50 kg)
+  Coating_Kneader --> Carbonization : Pitch-Coated uSPG
+  Carbonization --> Off_Gas : Pyrolysis Volatiles (10 kg)
+  Carbonization --> Final_cSPG : Battery Anode Material (1,000 kg)
+}
+
+note bottom of Final_cSPG
+  <b>Cumulative Process Electricity & Cost Waterfall (1.0 t Finished cSPG):</b>
+  • <b>Stage 1 (Mining & Flotation):</b> 1.352 kWh/kg cSPG (17.1%) | Base Flake Value: <b>$800/t</b>
+  • <b>Stage 2 (ACM Spheronization):</b> +2.167 kWh/kg cSPG (27.4%) | +$1,200 scrap loss + $550 milling = <b>$2,550/t</b>
+  • <b>Stage 3A (Chemical HF Leach):</b> +0.279 kWh/kg cSPG (3.5%) | +$1,100 reagents & waste = <b>$3,650/t</b>
+    <i>(vs. Stage 3B Thermal @ 2,800 °C: +9.595 kWh/kg cSPG | +$1,650-$2,500/t -> $4,200-$5,050/t)</i>
+  • <b>Stage 4 (Pitch Coating @ 1,100 °C):</b> +4.113 kWh/kg cSPG (52.0%) | +$1,450 coating + $1,900 QA/margin = <b>$7,000/t</b>
+  • <b>Total Route Electricity:</b> <b>7.91 kWh/kg cSPG</b> (HF Route) vs. <b>17.18 kWh/kg cSPG</b> (Thermal Route)
+end note
+
+@enduml

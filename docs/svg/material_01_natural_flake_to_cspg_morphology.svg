@@ -1,0 +1,342 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+
+  <defs>
+    <!-- Blueprint Subtle Engineering Grid -->
+    <pattern id="blueprintGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E5E8E8" stroke-width="0.6" />
+      <path d="M 20 0 L 20 40 M 0 20 L 40 20" fill="none" stroke="#F2F4F4" stroke-width="0.4" />
+    </pattern>
+
+    <!-- Steel Hatching Pattern (ISO 128 45 deg lines) -->
+    <pattern id="steelHatch" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <rect width="8" height="8" fill="#D5D8DC" fill-opacity="0.35" />
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#566573" stroke-width="1.2" />
+    </pattern>
+
+    <!-- Elastomer / Polyurethane Wear Liner Pattern (Cross-hatch) -->
+    <pattern id="rubberLiner" width="6" height="6" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <rect width="6" height="6" fill="#2C3E50" fill-opacity="0.18" />
+      <line x1="0" y1="0" x2="0" y2="6" stroke="#1F618D" stroke-width="1.0" />
+      <line x1="0" y1="0" x2="6" y2="0" stroke="#1F618D" stroke-width="1.0" />
+    </pattern>
+
+    <!-- Refractory Brick Masonry Pattern -->
+    <pattern id="refractoryBrick" width="24" height="12" patternUnits="userSpaceOnUse">
+      <rect width="24" height="12" fill="#D35400" fill-opacity="0.25" stroke="#BA4A00" stroke-width="1" />
+      <line x1="0" y1="6" x2="24" y2="6" stroke="#BA4A00" stroke-width="1" />
+      <line x1="12" y1="0" x2="12" y2="6" stroke="#BA4A00" stroke-width="1" />
+      <line x1="0" y1="6" x2="0" y2="12" stroke="#BA4A00" stroke-width="1" />
+      <line x1="24" y1="6" x2="24" y2="12" stroke="#BA4A00" stroke-width="1" />
+    </pattern>
+
+    <!-- PTFE / Fluoropolymer Corrosion Lining Pattern -->
+    <pattern id="ptfeHatch" width="8" height="8" patternTransform="rotate(-45 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#16A085" stroke-width="1.5" />
+      <line x1="0" y1="4" x2="8" y2="4" stroke="#16A085" stroke-width="0.8" stroke-dasharray="2,2" />
+    </pattern>
+
+    <!-- Granular Resistor Coke Bed Pattern -->
+    <pattern id="cokeBed" width="16" height="16" patternUnits="userSpaceOnUse">
+      <rect width="16" height="16" fill="#2C3E50" fill-opacity="0.15" />
+      <circle cx="4" cy="4" r="2.2" fill="#34495E" />
+      <circle cx="12" cy="12" r="2.8" fill="#2C3E50" />
+      <circle cx="13" cy="4" r="1.8" fill="#1A252F" />
+      <circle cx="4" cy="12" r="2.0" fill="#2C3E50" />
+    </pattern>
+
+    <!-- Polyhedral Mineralized Froth Cellular Pattern -->
+    <pattern id="frothCells" width="18" height="16" patternUnits="userSpaceOnUse">
+      <rect width="18" height="16" fill="#EAEDED" />
+      <polygon points="9,1 17,5 17,11 9,15 1,11 1,5" fill="#F8F9F9" stroke="#566573" stroke-width="1.2" />
+      <circle cx="9" cy="8" r="3.5" fill="#FFFFFF" opacity="0.8" />
+      <path d="M 1,5 L 9,1 L 17,5" fill="none" stroke="#1C2833" stroke-width="1.6" stroke-dasharray="3,1" />
+    </pattern>
+
+    <!-- Thermal Plume & Incandescent Gradients -->
+    <radialGradient id="heatGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFF9C4" stop-opacity="1" />
+      <stop offset="45%" stop-color="#F39C12" stop-opacity="0.85" />
+      <stop offset="85%" stop-color="#C0392B" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="#7B241C" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="bubbleGrad" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.98" />
+      <stop offset="55%" stop-color="#D6EAF8" stop-opacity="0.85" />
+      <stop offset="90%" stop-color="#85C1E9" stop-opacity="0.75" />
+      <stop offset="100%" stop-color="#2E86C1" stop-opacity="0.9" />
+    </radialGradient>
+
+    <linearGradient id="metallicCyl" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7F8C8D" />
+      <stop offset="30%" stop-color="#ECF0F1" />
+      <stop offset="55%" stop-color="#BDC3C7" />
+      <stop offset="85%" stop-color="#566573" />
+      <stop offset="100%" stop-color="#7F8C8D" />
+    </linearGradient>
+
+    <linearGradient id="slurryGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#D6DBDF" stop-opacity="0.72" />
+      <stop offset="35%" stop-color="#AEB6BF" stop-opacity="0.84" />
+      <stop offset="75%" stop-color="#5D6D7E" stop-opacity="0.92" />
+      <stop offset="100%" stop-color="#2C3E50" stop-opacity="0.98" />
+    </linearGradient>
+
+    <linearGradient id="frothGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2C3E50" stop-opacity="0.85" />
+      <stop offset="30%" stop-color="#5D6D7E" stop-opacity="0.75" />
+      <stop offset="100%" stop-color="#D5D8DC" stop-opacity="0.9" />
+    </linearGradient>
+
+    <!-- Arrow Markers -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#2C3E50" />
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#C0392B" />
+    </marker>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#2980B9" />
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#27AE60" />
+    </marker>
+    <marker id="arrowOrange" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#D35400" />
+    </marker>
+    <marker id="dimTick" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 2 L 8 5 L 0 8 z" fill="#34495E" />
+    </marker>
+  </defs>
+
+  <rect width="1200" height="800" fill="#F8F9F9" />
+
+    <!-- Background Blueprint Grid & ISO Drawing Sheet Frame -->
+    <rect x="12" y="12" width="1176" height="776" fill="url(#blueprintGrid)" stroke="#1C2833" stroke-width="2" />
+    <rect x="16" y="16" width="1168" height="768" fill="none" stroke="#566573" stroke-width="0.8" />
+
+    <!-- Upper Blueprint Header -->
+    <rect x="20" y="20" width="1160" height="52" fill="#1C2833" rx="3" />
+    <rect x="20" y="68" width="1160" height="4" fill="#C0392B" />
+    <text x="36" y="43" font-family="Helvetica, Arial, sans-serif" font-size="14.5" font-weight="bold" fill="#ECF0F1">MORPHOLOGY EVOLUTION: NATURAL FLAKE TO BATTERY-GRADE cSPG</text>
+    <text x="36" y="60" font-family="Helvetica, Arial, sans-serif" font-size="9" font-weight="normal" fill="#BDC3C7">Particle cross-sections (schematic, not to scale): planar flake -> folded uSPG -> pitch-coated cSPG | ANL-22/74 Table 3</text>
+    <line x1="855" y1="26" x2="855" y2="64" stroke="#566573" stroke-width="1" />
+    <text x="1165" y="42" font-family="Courier, monospace" font-size="9.5" font-weight="bold" fill="#F39C12" text-anchor="end">BASIS: 1,000 kg FINISHED cSPG (24,300 kg ROM ORE)</text>
+    <text x="1165" y="58" font-family="Courier, monospace" font-size="8.5" fill="#ABB2B9" text-anchor="end">CAD SECTION VIEW A-A | P&amp;ID INSTRUMENTED</text>
+
+<g transform="translate(22, 92)">
+<rect x="0" y="0" width="380" height="408" fill="#FFFFFF" stroke="#2C3E50" stroke-width="1.8" rx="5" />
+<rect x="0" y="0" width="380" height="28" fill="#EAEDED" rx="4" />
+<text x="12" y="19" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="bold" font-style="normal" fill="#2C3E50" text-anchor="start">1. RAW NATURAL FLAKE (94 - 97% C)</text>
+<text x="12" y="44" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="normal" font-style="italic" fill="#566573" text-anchor="start">Stage 1 output: froth-flotation concentrate</text>
+<g transform="translate(190, 140)">
+<rect x="-132" y="-52" width="264" height="10" fill="#34495E" stroke="#17202A" stroke-width="1" />
+<circle cx="136" cy="-47" r="3" fill="#E74C3C" />
+<rect x="-124" y="-39" width="250" height="10" fill="#2C3E50" stroke="#17202A" stroke-width="1" />
+<circle cx="130" cy="-34" r="3" fill="#E74C3C" />
+<rect x="-132" y="-26" width="264" height="10" fill="#34495E" stroke="#17202A" stroke-width="1" />
+<circle cx="136" cy="-21" r="3" fill="#E74C3C" />
+<rect x="-124" y="-13" width="250" height="10" fill="#2C3E50" stroke="#17202A" stroke-width="1" />
+<circle cx="130" cy="-8" r="3" fill="#E74C3C" />
+<rect x="-132" y="0" width="264" height="10" fill="#34495E" stroke="#17202A" stroke-width="1" />
+<circle cx="136" cy="5" r="3" fill="#E74C3C" />
+<rect x="-124" y="13" width="250" height="10" fill="#2C3E50" stroke="#17202A" stroke-width="1" />
+<circle cx="130" cy="18" r="3" fill="#E74C3C" />
+<rect x="-132" y="26" width="264" height="10" fill="#34495E" stroke="#17202A" stroke-width="1" />
+<circle cx="136" cy="31" r="3" fill="#E74C3C" />
+<rect x="-124" y="39" width="250" height="10" fill="#2C3E50" stroke="#17202A" stroke-width="1" />
+<circle cx="130" cy="44" r="3" fill="#E74C3C" />
+<circle cx="-50" cy="-6" r="7" fill="#E74C3C" stroke="#922B21" />
+<text x="-50" y="-14" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" font-style="normal" fill="#C0392B" text-anchor="middle">SiO2</text>
+<rect x="24" y="-22" width="14" height="9" fill="#E67E22" stroke="#B9770E" />
+<text x="31" y="-26" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" font-style="normal" fill="#B9770E" text-anchor="middle">Fe2O3</text>
+<line x1="-132" y1="64" x2="132" y2="64" stroke="#34495E" stroke-width="1" marker-start="url(#dimTick)" marker-end="url(#dimTick)" />
+<text x="0" y="78" font-family="Courier, monospace" font-size="8" font-weight="bold" font-style="normal" fill="#34495E" text-anchor="middle">150 - 300 um flake width (+80 mesh)</text>
+<text x="140" y="-66" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" font-style="normal" fill="#C0392B" text-anchor="end">Polar prismatic edges</text>
+<text x="-132" y="-66" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="start">sp2 basal planes (non-polar)</text>
+<text x="0" y="98" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="normal" font-style="normal" fill="#922B21" text-anchor="middle">Interlamellar silicate / iron-oxide ash locked between sheets</text>
+</g>
+<rect x="12" y="252" width="356" height="148" fill="#F8F9F9" stroke="#BDC3C7" stroke-width="1" rx="4" />
+<text x="22" y="268" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="bold" font-style="normal" fill="#2C3E50" text-anchor="start">PHYSICAL &amp; CHEMICAL AUDIT</text>
+<text x="22" y="285" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="start">Morphology</text>
+<text x="358" y="285" font-family="Courier, monospace" font-size="8.5" font-weight="normal" font-style="normal" fill="#2C3E50" text-anchor="end">planar platelet</text>
+<text x="22" y="300" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="start">D50 particle size</text>
+<text x="358" y="300" font-family="Courier, monospace" font-size="8.5" font-weight="normal" font-style="normal" fill="#2C3E50" text-anchor="end">150 - 300 um</text>
+<text x="22" y="315" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="start">Carbon purity</text>
+<text x="358" y="315" font-family="Courier, monospace" font-size="8.5" font-weight="normal" font-style="normal" fill="#2C3E50" text-anchor="end">94.0 - 97.0 % C</text>
+<text x="22" y="330" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="start">Tap density</text>
+<text x="358" y="330" font-family="Courier, monospace" font-size="8.5" font-weight="bold" font-style="normal" fill="#C0392B" text-anchor="end">0.35 - 0.45 g/cm3</text>
+<text x="22" y="345" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="start">BET surface area</text>
+<text x="358" y="345" font-family="Courier, monospace" font-size="8.5" font-weight="normal" font-style="normal" fill="#2C3E50" text-anchor="end">1.5 - 2.5 m2/g</text>
+<text x="22" y="360" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="start">Battery suitability</text>
+<text x="358" y="360" font-family="Courier, monospace" font-size="8.5" font-weight="bold" font-style="normal" fill="#C0392B" text-anchor="end">INCOMPATIBLE</text>
+<text x="22" y="375" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="start">Failure mode</text>
+<text x="358" y="375" font-family="Courier, monospace" font-size="8.5" font-weight="normal" font-style="normal" fill="#922B21" text-anchor="end">delaminates on Li+ uptake</text>
+<text x="22" y="390" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="start"></text>
+<text x="358" y="390" font-family="Courier, monospace" font-size="8.5" font-weight="normal" font-style="normal" fill="#000000" text-anchor="end"></text>
+</g>
+<g transform="translate(410, 92)">
+<rect x="0" y="0" width="380" height="408" fill="#FFFFFF" stroke="#1B4F72" stroke-width="1.8" rx="5" />
+<rect x="0" y="0" width="380" height="28" fill="#EBF5FB" rx="4" />
+<text x="12" y="19" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="bold" font-style="normal" fill="#1B4F72" text-anchor="start">2. UNCOATED SPHERICAL (uSPG)</text>
+<text x="12" y="44" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="normal" font-style="italic" fill="#566573" text-anchor="start">Stages 2-3A: impact spheronization + HF/HCl leaching</text>
+<g transform="translate(190, 140)">
+<circle cx="0" cy="0" r="86" fill="#2C3E50" stroke="#1A252F" stroke-width="2" />
+<path d="M -85 0 C -85 -55, 85 -55, 85 0 C 85 60, -70 60, -70 0 C -70 -40, 60 -40, 60 0 C 60 30, -40 30, -40 0" transform="scale(0.84)" fill="none" stroke="#7F8C8D" stroke-width="4.5" stroke-linecap="round" />
+<path d="M 0 -85 C 55 -85, 55 85, 0 85 C -50 85, -50 -60, 0 -60 C 35 -60, 35 40, 0 40" transform="scale(0.84)" fill="none" stroke="#BDC3C7" stroke-width="3.2" stroke-linecap="round" />
+<circle cx="-30" cy="-22" r="7" fill="#EBF5FB" stroke="#2980B9" /><circle cx="34" cy="26" r="9" fill="#EBF5FB" stroke="#2980B9" />
+<circle cx="8" cy="-40" r="4.5" fill="#EBF5FB" stroke="#2980B9" />
+<line x1="86.0" y1="0.0" x2="95.0" y2="0.0" stroke="#E74C3C" stroke-width="2.2" />
+<line x1="79.5" y1="32.9" x2="87.8" y2="36.4" stroke="#E74C3C" stroke-width="2.2" />
+<line x1="60.8" y1="60.8" x2="67.2" y2="67.2" stroke="#E74C3C" stroke-width="2.2" />
+<line x1="32.9" y1="79.5" x2="36.4" y2="87.8" stroke="#E74C3C" stroke-width="2.2" />
+<line x1="0.0" y1="86.0" x2="0.0" y2="95.0" stroke="#E74C3C" stroke-width="2.2" />
+<line x1="-32.9" y1="79.5" x2="-36.4" y2="87.8" stroke="#E74C3C" stroke-width="2.2" />
+<line x1="-60.8" y1="60.8" x2="-67.2" y2="67.2" stroke="#E74C3C" stroke-width="2.2" />
+<line x1="-79.5" y1="32.9" x2="-87.8" y2="36.4" stroke="#E74C3C" stroke-width="2.2" />
+<line x1="-86.0" y1="0.0" x2="-95.0" y2="0.0" stroke="#E74C3C" stroke-width="2.2" />
+<line x1="-79.5" y1="-32.9" x2="-87.8" y2="-36.4" stroke="#E74C3C" stroke-width="2.2" />
+<line x1="-60.8" y1="-60.8" x2="-67.2" y2="-67.2" stroke="#E74C3C" stroke-width="2.2" />
+<line x1="-32.9" y1="-79.5" x2="-36.4" y2="-87.8" stroke="#E74C3C" stroke-width="2.2" />
+<line x1="-0.0" y1="-86.0" x2="-0.0" y2="-95.0" stroke="#E74C3C" stroke-width="2.2" />
+<line x1="32.9" y1="-79.5" x2="36.4" y2="-87.8" stroke="#E74C3C" stroke-width="2.2" />
+<line x1="60.8" y1="-60.8" x2="67.2" y2="-67.2" stroke="#E74C3C" stroke-width="2.2" />
+<line x1="79.5" y1="-32.9" x2="87.8" y2="-36.4" stroke="#E74C3C" stroke-width="2.2" />
+<text x="-118" y="-92" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" font-style="normal" fill="#C0392B" text-anchor="start">Open edge terminations</text>
+<text x="118" y="-92" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" font-style="normal" fill="#2980B9" text-anchor="end">Acid-cleaned pores</text>
+<text x="0" y="112" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" font-style="normal" fill="#2980B9" text-anchor="middle">Concentric 'cabbage-fold' lamellae (D50 = 15 um)</text>
+<text x="0" y="126" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="normal" font-style="normal" fill="#7E5109" text-anchor="middle">Folded edges still reach the surface -&gt; high BET</text>
+</g>
+<rect x="12" y="252" width="356" height="148" fill="#F8F9F9" stroke="#BDC3C7" stroke-width="1" rx="4" />
+<text x="22" y="268" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="bold" font-style="normal" fill="#1B4F72" text-anchor="start">PHYSICAL &amp; CHEMICAL AUDIT</text>
+<text x="22" y="285" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="start">Morphology</text>
+<text x="358" y="285" font-family="Courier, monospace" font-size="8.5" font-weight="normal" font-style="normal" fill="#1B4F72" text-anchor="end">folded quasi-sphere</text>
+<text x="22" y="300" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="start">D50 particle size</text>
+<text x="358" y="300" font-family="Courier, monospace" font-size="8.5" font-weight="normal" font-style="normal" fill="#1B4F72" text-anchor="end">15.0 - 16.0 um</text>
+<text x="22" y="315" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="start">Carbon purity</text>
+<text x="358" y="315" font-family="Courier, monospace" font-size="8.5" font-weight="normal" font-style="normal" fill="#1B4F72" text-anchor="end">&gt;= 99.95 % C</text>
+<text x="22" y="330" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="start">Tap density</text>
+<text x="358" y="330" font-family="Courier, monospace" font-size="8.5" font-weight="bold" font-style="normal" fill="#117A65" text-anchor="end">0.95 - 1.02 g/cm3</text>
+<text x="22" y="345" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="start">BET surface area</text>
+<text x="358" y="345" font-family="Courier, monospace" font-size="8.5" font-weight="bold" font-style="normal" fill="#C0392B" text-anchor="end">6.5 - 9.0 m2/g</text>
+<text x="22" y="360" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="start">Limitation</text>
+<text x="358" y="360" font-family="Courier, monospace" font-size="8.5" font-weight="normal" font-style="normal" fill="#B9770E" text-anchor="end">high 1st-cycle loss</text>
+<text x="22" y="375" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="start">1st-cycle irrev. capacity</text>
+<text x="358" y="375" font-family="Courier, monospace" font-size="8.5" font-weight="bold" font-style="normal" fill="#C0392B" text-anchor="end">&gt; 15 %</text>
+<text x="22" y="390" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="start"></text>
+<text x="358" y="390" font-family="Courier, monospace" font-size="8.5" font-weight="normal" font-style="normal" fill="#000000" text-anchor="end"></text>
+</g>
+<g transform="translate(798, 92)">
+<rect x="0" y="0" width="380" height="408" fill="#FFFFFF" stroke="#0E6251" stroke-width="1.8" rx="5" />
+<rect x="0" y="0" width="380" height="28" fill="#E8F8F5" rx="4" />
+<text x="12" y="19" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="bold" font-style="normal" fill="#0E6251" text-anchor="start">3. COATED FINISHED (cSPG, BATTERY GRADE)</text>
+<text x="12" y="44" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="normal" font-style="italic" fill="#566573" text-anchor="start">Stage 4: pitch coating + carbonization</text>
+<g transform="translate(190, 140)">
+<circle cx="0" cy="0" r="96" fill="#27AE60" fill-opacity="0.35" stroke="#27AE60" stroke-width="3" />
+<circle cx="0" cy="0" r="86" fill="#1C2833" stroke="#16A085" stroke-width="2" />
+<path d="M -85 0 C -85 -55, 85 -55, 85 0 C 85 60, -70 60, -70 0 C -70 -40, 60 -40, 60 0 C 60 30, -40 30, -40 0" transform="scale(0.84)" fill="none" stroke="#566573" stroke-width="4" stroke-linecap="round" />
+<path d="M 0 -85 C 55 -85, 55 85, 0 85 C -50 85, -50 -60, 0 -60 C 35 -60, 35 40, 0 40" transform="scale(0.84)" fill="none" stroke="#7F8C8D" stroke-width="3" stroke-linecap="round" />
+<circle cx="-30" cy="-22" r="7" fill="#117A65" stroke="#27AE60" /><circle cx="34" cy="26" r="9" fill="#117A65" stroke="#27AE60" />
+<line x1="84" y1="-62" x2="114" y2="-92" stroke="#27AE60" stroke-width="1.6" marker-end="url(#arrowGreen)" />
+<text x="-118" y="-100" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="bold" font-style="normal" fill="#0E6251" text-anchor="start">Amorphous pitch shell (5 wt%, 20-50 nm)</text>
+<text x="0" y="112" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" font-style="normal" fill="#0E6251" text-anchor="middle">Crystalline graphite core + sealed carbon skin</text>
+<text x="0" y="126" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="normal" font-style="normal" fill="#145A32" text-anchor="middle">Edge planes and open pores are hermetically covered</text>
+</g>
+<rect x="12" y="252" width="356" height="148" fill="#E8F8F5" stroke="#BDC3C7" stroke-width="1" rx="4" />
+<text x="22" y="268" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="bold" font-style="normal" fill="#0E6251" text-anchor="start">BATTERY QUALIFICATION SPEC</text>
+<text x="22" y="285" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="start">Morphology</text>
+<text x="358" y="285" font-family="Courier, monospace" font-size="8.5" font-weight="normal" font-style="normal" fill="#0E6251" text-anchor="end">core-shell sphere</text>
+<text x="22" y="300" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="start">D50 / D10 / D90</text>
+<text x="358" y="300" font-family="Courier, monospace" font-size="8.5" font-weight="normal" font-style="normal" fill="#0E6251" text-anchor="end">15.5 / 8.5 / 27 um</text>
+<text x="22" y="315" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="start">Carbon purity</text>
+<text x="358" y="315" font-family="Courier, monospace" font-size="8.5" font-weight="normal" font-style="normal" fill="#0E6251" text-anchor="end">&gt;= 99.95 % C</text>
+<text x="22" y="330" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="start">Tap density</text>
+<text x="358" y="330" font-family="Courier, monospace" font-size="8.5" font-weight="bold" font-style="normal" fill="#117A65" text-anchor="end">1.00 - 1.10 g/cm3</text>
+<text x="22" y="345" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="start">BET surface area</text>
+<text x="358" y="345" font-family="Courier, monospace" font-size="8.5" font-weight="bold" font-style="normal" fill="#117A65" text-anchor="end">1.8 - 2.5 m2/g</text>
+<text x="22" y="360" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="start">Reversible capacity</text>
+<text x="358" y="360" font-family="Courier, monospace" font-size="8.5" font-weight="normal" font-style="normal" fill="#117A65" text-anchor="end">355 - 365 mAh/g</text>
+<text x="22" y="375" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="start">Initial coulombic eff. (ICE)</text>
+<text x="358" y="375" font-family="Courier, monospace" font-size="8.5" font-weight="bold" font-style="normal" fill="#0E6251" text-anchor="end">&gt;= 92.5 %</text>
+<text x="22" y="390" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="normal" font-style="normal" fill="#34495E" text-anchor="start"></text>
+<text x="358" y="390" font-family="Courier, monospace" font-size="8.5" font-weight="normal" font-style="normal" fill="#000000" text-anchor="end"></text>
+</g>
+<polygon points="398,128 418,140 398,152" fill="#C0392B" stroke="#FFFFFF" stroke-width="1.5" /><polygon points="786,128 806,140 786,152" fill="#C0392B" stroke="#FFFFFF" stroke-width="1.5" />
+<rect x="22" y="512" width="640" height="268" fill="#FFFFFF" stroke="#1C2833" stroke-width="1.6" rx="5" />
+<rect x="22" y="512" width="640" height="26" fill="#1C2833" rx="4" />
+<text x="34" y="529" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="bold" font-style="normal" fill="#ECF0F1" text-anchor="start">PROPERTY EVOLUTION ALONG THE ROUTE (MIDPOINTS OF THE RANGES ABOVE)</text>
+<text x="44" y="558" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" font-style="normal" fill="#1B4F72" text-anchor="start">TAP DENSITY (g/cm3): packing &amp; volumetric energy</text>
+<text x="364" y="558" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" font-style="normal" fill="#900C3F" text-anchor="start">BET SURFACE AREA (m2/g): SEI-forming interface</text>
+<line x1="40" y1="740" x2="300" y2="740" stroke="#1C2833" stroke-width="1.4" />
+<line x1="360" y1="740" x2="620" y2="740" stroke="#1C2833" stroke-width="1.4" />
+<rect x="60" y="690.0" width="50" height="50.0" fill="#566573" stroke="#1C2833" stroke-width="1" />
+<text x="85" y="684.0" font-family="Courier, monospace" font-size="8.5" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="middle">0.40</text>
+<rect x="140" y="616.9" width="50" height="123.1" fill="#2980B9" stroke="#1C2833" stroke-width="1" />
+<text x="165" y="610.875" font-family="Courier, monospace" font-size="8.5" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="middle">0.98</text>
+<rect x="220" y="608.8" width="50" height="131.2" fill="#27AE60" stroke="#1C2833" stroke-width="1" />
+<text x="245" y="602.75" font-family="Courier, monospace" font-size="8.5" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="middle">1.05</text>
+<rect x="380" y="706.7" width="50" height="33.3" fill="#566573" stroke="#1C2833" stroke-width="1" />
+<text x="405" y="700.66" font-family="Courier, monospace" font-size="8.5" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="middle">2.00</text>
+<rect x="460" y="610.8" width="50" height="129.2" fill="#C0392B" stroke="#1C2833" stroke-width="1" />
+<text x="485" y="604.8075" font-family="Courier, monospace" font-size="8.5" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="middle">7.75</text>
+<rect x="540" y="704.2" width="50" height="35.8" fill="#27AE60" stroke="#1C2833" stroke-width="1" />
+<text x="565" y="698.1595" font-family="Courier, monospace" font-size="8.5" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="middle">2.15</text>
+<text x="85" y="754" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="middle">Flake</text>
+<text x="165" y="754" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="middle">uSPG</text>
+<text x="245" y="754" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="middle">cSPG</text>
+<text x="405" y="754" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="middle">Flake</text>
+<text x="485" y="754" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="middle">uSPG</text>
+<text x="565" y="754" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" font-style="normal" fill="#1C2833" text-anchor="middle">cSPG</text>
+<text x="280" y="766" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" font-style="normal" fill="#117A65" text-anchor="end">+160% vs flake</text>
+<text x="600" y="766" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" font-style="normal" fill="#117A65" text-anchor="end">-72% vs uSPG (coating seals pores)</text>
+<text x="40" y="776" font-family="Helvetica, Arial, sans-serif" font-size="7.5" font-weight="normal" font-style="italic" fill="#5D6D7E" text-anchor="start">Rounding fixes packing (Stage 2); coating fixes the surface (Stage 4).</text>
+<g transform="translate(680, 512)">
+<rect x="0" y="0" width="500" height="150" fill="#FFFFFF" stroke="#1C2833" stroke-width="1.6" rx="5" />
+<rect x="0" y="0" width="500" height="26" fill="#1C2833" rx="4" />
+<text x="12" y="17" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="bold" font-style="normal" fill="#ECF0F1" text-anchor="start">WHY THE COATING MATTERS: SEI FORMATION AT THE PARTICLE SURFACE</text>
+<text x="14" y="44" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" font-style="normal" fill="#C0392B" text-anchor="start">uSPG: open edge planes</text>
+<rect x="14" y="98" width="214" height="34" fill="#2C3E50" stroke="#17202A" />
+<path d="M 14 98 L 40 98 L 40 90 L 52 90 L 52 98 L 120 98 L 120 90 L 132 90 L 132 98 L 228 98" fill="none" stroke="#E74C3C" stroke-width="2.2" />
+<rect x="14" y="80" width="214" height="16" fill="#E67E22" fill-opacity="0.75" stroke="#B9770E" />
+<text x="121" y="92" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" font-style="normal" fill="#FFFFFF" text-anchor="middle">thick, unstable SEI</text>
+<g fill="#FFFFFF" stroke="#2980B9" stroke-width="1"><circle cx="40" cy="60" r="4" /><circle cx="90" cy="54" r="4" /><circle cx="150" cy="62" r="4" /><circle cx="200" cy="56" r="4" /></g>
+<g stroke="#2980B9" stroke-width="1.2"><line x1="90" y1="60" x2="90" y2="78" marker-end="url(#arrowBlue)" /><line x1="150" y1="66" x2="150" y2="78" marker-end="url(#arrowBlue)" /></g>
+<text x="121" y="146" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" font-style="normal" fill="#922B21" text-anchor="middle">Li+ consumed -&gt; irrev. loss &gt; 15%</text>
+<text x="262" y="44" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" font-style="normal" fill="#0E6251" text-anchor="start">cSPG: sealed carbon shell</text>
+<rect x="262" y="98" width="224" height="34" fill="#2C3E50" stroke="#17202A" />
+<rect x="262" y="92" width="224" height="6" fill="#27AE60" stroke="#145A32" />
+<rect x="262" y="86" width="224" height="6" fill="#85C1E9" fill-opacity="0.9" stroke="#2980B9" />
+<text x="374" y="80" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" font-style="normal" fill="#0E6251" text-anchor="middle">thin, stable SEI</text>
+<g fill="#FFFFFF" stroke="#2980B9" stroke-width="1"><circle cx="290" cy="56" r="4" /><circle cx="350" cy="52" r="4" /><circle cx="410" cy="58" r="4" /><circle cx="462" cy="54" r="4" /></g>
+<g stroke="#2980B9" stroke-width="1.2"><line x1="350" y1="58" x2="350" y2="76" marker-end="url(#arrowBlue)" /><line x1="410" y1="64" x2="410" y2="76" marker-end="url(#arrowBlue)" /></g>
+<text x="374" y="146" font-family="Helvetica, Arial, sans-serif" font-size="8" font-weight="bold" font-style="normal" fill="#0E6251" text-anchor="middle">Li+ preserved -&gt; ICE &gt;= 92.5%</text>
+</g>
+
+    <!-- ISO 7200 Technical Title Block -->
+    <g transform="translate(680, 672)" id="iso_title_block">
+      <rect x="0" y="0" width="500" height="108" fill="#FFFFFF" stroke="#1C2833" stroke-width="1.8" />
+      <rect x="0" y="0" width="500" height="28" fill="#F2F4F4" stroke="#1C2833" stroke-width="1.2" />
+      <line x1="0" y1="56" x2="500" y2="56" stroke="#1C2833" stroke-width="1.0" />
+      <line x1="0" y1="82" x2="500" y2="82" stroke="#1C2833" stroke-width="1.0" />
+      <line x1="375" y1="0" x2="375" y2="56" stroke="#1C2833" stroke-width="1.0" />
+      <line x1="435" y1="28" x2="435" y2="56" stroke="#1C2833" stroke-width="1.0" />
+
+      <!-- First-Angle Projection Symbol -->
+      <circle cx="482" cy="14" r="6" fill="none" stroke="#1C2833" stroke-width="1.1" />
+      <circle cx="482" cy="14" r="2.5" fill="none" stroke="#1C2833" stroke-width="1.1" />
+      <polygon points="452,10 470,7 470,21 452,18" fill="none" stroke="#1C2833" stroke-width="1.1" />
+
+      <!-- Field Content -->
+      <text x="10" y="19" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#1C2833">FLAKE TO BATTERY cSPG PARTICLE CROSS-SECTIONS</text>
+      <text x="383" y="19" font-family="Courier, monospace" font-size="10.5" font-weight="bold" fill="#C0392B">DWG-MAT-01</text>
+
+      <text x="10" y="45" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#566573">UNIT OP:</text>
+      <text x="58" y="45" font-family="Helvetica, Arial, sans-serif" font-size="9" font-weight="bold" fill="#1C2833">Material Evolution (Stages 1-4)</text>
+      <text x="383" y="45" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#566573">STD: ISO 128</text>
+      <text x="442" y="45" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#1C2833">REV 2.0</text>
+
+      <text x="10" y="73" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#117A65">AUDIT METRICS: Flake (0.4 g/cm3) -> uSPG (0.95 g/cm3) -> cSPG (1.05 g/cm3, ICE >= 92.5%)</text>
+      <text x="10" y="98" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-style="italic" fill="#5D6D7E">PRIMARY PROVENANCE: ANL GREET ANL-22/74 Table 3; Engels (2022)</text>
+    </g>
+
+</svg>

@@ -75,6 +75,18 @@ def load_datasets_and_benchmarks():
                 "is_major": int(r["is_major_producer"])
             })
 
+    # 2b. Load synthetic country throughput
+    synthetic_countries = []
+    with open(os.path.join(DATASETS_DIR, "graphite_synthetic_production_by_country.csv"), "r", encoding="utf-8") as f:
+        for r in csv.DictReader(f):
+            synthetic_countries.append({
+                "country": r["country"],
+                "throughput_2024e_kt": float(r["throughput_2024e_kt"]),
+                "share_pct": float(r["share_pct"]),
+                "primary_producers": r["primary_producers"],
+                "data_source": r["data_source"]
+            })
+
     # 3. Load historical series
     hist_years, hist_nominal, hist_real_1998, hist_real_2023, hist_mine_prod, hist_synth_prod = [], [], [], [], [], []
     with open(os.path.join(DATASETS_DIR, "graphite_historical_production_and_prices.csv"), "r", encoding="utf-8") as f:
@@ -131,6 +143,7 @@ def load_datasets_and_benchmarks():
     return {
         "benchmarks": benchmarks,
         "countries": countries,
+        "synthetic_countries": synthetic_countries,
         "history": {
             "years": np.array(hist_years),
             "nominal": np.array(hist_nominal),
@@ -206,8 +219,11 @@ def compute_hypothesis_3_energy_ratios(data):
 
     for s in lca_stages:
         r = s["route"]
-        totals_inter[r] = totals_inter.get(r, 0.0) + s["electricity_intermediate"]
-        totals_cum[r] = totals_cum.get(r, 0.0) + s["electricity_cumulative"]
+        if r not in totals_inter:
+            totals_inter[r] = 0.0
+            totals_cum[r] = 0.0
+        totals_inter[r] = totals_inter[r] + s["electricity_intermediate"]
+        totals_cum[r] = totals_cum[r] + s["electricity_cumulative"]
         if "Graphitization" in s["stage"]:
             graphitization[r] = s["electricity_intermediate"]
 
@@ -415,6 +431,42 @@ def render_panel_a(ax, data, lang="en"):
 
 
 def render_panel_b(ax, data, lang="en"):
+    synth_c = data["synthetic_countries"]
+    sorted_c = sorted(synth_c, key=lambda x: x["throughput_2024e_kt"], reverse=True)
+
+    names = [c["country"] for c in sorted_c]
+    tp24 = [c["throughput_2024e_kt"] for c in sorted_c]
+
+    y_pos = np.arange(len(names))
+    colors = ["#c0392b" if "China" in n else "#e67e22" for n in names]
+
+    bars = ax.barh(y_pos, tp24, color=colors, height=0.65, edgecolor="black", lw=0.6)
+    ax.set_yticks(y_pos)
+    ax.set_yticklabels(names, fontsize=8)
+    ax.invert_yaxis()
+
+    for bar, val in zip(bars, tp24):
+        txt = f"{val:,.0f} kt" if val >= 10.0 else f"{val:.1f} kt"
+        ax.text(bar.get_width() + 25.0, bar.get_y() + bar.get_height() / 2.0, txt,
+                va="center", ha="left", fontsize=7.5, fontweight="bold")
+
+    china_val = tp24[0]
+    world_tot = sum(c["throughput_2024e_kt"] for c in synth_c)
+    china_share = (china_val / world_tot) * 100.0
+
+    ax.set_xlim(0, 3000)
+    title = (
+        f"Panel B: Synthetic Anode Output by Country (2024e, kt)\nChina: {china_val:,.0f} kt ({china_share:.1f}% World Share)"
+        if lang == "en"
+        else f"Panel B: Synthetische Anoden-Produktion nach Laendern (2024e, kt)\nChina: {china_val:,.0f} kt ({china_share:.1f}% Weltanteil)"
+    )
+    xlabel = "Synthetic Anode Throughput (Thousand Metric Tonnes)" if lang == "en" else "Synthetische Anoden-Produktion (Tausend Tonnen)"
+    ax.set_title(title, fontsize=9.5, fontweight="bold", pad=8)
+    ax.set_xlabel(xlabel, fontsize=8.5)
+    ax.grid(axis="x", linestyle=":", alpha=0.6)
+
+
+def render_panel_c(ax, data, lang="en"):
     years = data["history"]["years"]
     mine_mt = data["history"]["mine_prod"] / 1000000.0
     synth_mt = data["history"]["synth_prod"] / 1000000.0
@@ -425,7 +477,7 @@ def render_panel_b(ax, data, lang="en"):
     ax.axvspan(1989, 2002, color="#bdc3c7", alpha=0.25, label="China Flake Expansion" if lang == "en" else "China Exportexpansion")
     ax.axvspan(2020, 2024, color="#f39c12", alpha=0.20, label="EV Battery Surge" if lang == "en" else "E-Auto Boom")
 
-    title = "Panel B: 74-Year Historical Trajectory (1950-2024)\nMine Concentrate vs. Synthetic Finished Anodes" if lang == "en" else "Panel B: 74-Jahre Historische Trajektorie (1950-2024)\nMinenkonzentrat vs. Synthetisches Fertiganodenmaterial"
+    title = "Panel C: 74-Year Historical Trajectory (1950-2024)\nMine Concentrate vs. Synthetic Finished Anodes" if lang == "en" else "Panel C: 74-Jahre Historische Trajektorie (1950-2024)\nMinenkonzentrat vs. Synthetisches Fertiganodenmaterial"
     ax.set_title(title, fontsize=9.5, fontweight="bold", pad=8)
     ax.set_xlabel("Year" if lang == "en" else "Jahr", fontsize=8.5)
     ax.set_ylabel("Production (Million Tonnes / yr)" if lang == "en" else "Produktion (Millionen Tonnen / Jahr)", fontsize=8.5)
@@ -435,7 +487,7 @@ def render_panel_b(ax, data, lang="en"):
     ax.grid(True, linestyle=":", alpha=0.5)
 
 
-def render_panel_c(ax, data, lang="en"):
+def render_panel_d(ax, data, lang="en"):
     tiers = [
         "1_Natural Mining Extraction",
         "2_Flake Flotation Concentrate",
@@ -462,7 +514,7 @@ def render_panel_c(ax, data, lang="en"):
     ax.invert_yaxis()
     ax.set_xlim(0, 100)
 
-    title = "Panel C: Supply-Chain Chokepoints: China Share (%)\nUpstream Mining (79%) vs. Midstream Spherical (99%)" if lang == "en" else "Panel C: Wertschoepfungs-Flaschenhaelse: Chinas Anteil (%)\nFoerderung (79%) vs. Sphaeroidisierung (99%)"
+    title = "Panel D: Supply-Chain Chokepoints: China Share (%)\nUpstream Mining (79%) vs. Midstream Spherical (99%)" if lang == "en" else "Panel D: Wertschoepfungs-Flaschenhaelse: Chinas Anteil (%)\nFoerderung (79%) vs. Sphaeroidisierung (99%)"
     ax.set_title(title, fontsize=9.5, fontweight="bold", pad=8)
     ax.set_xlabel("Market Share (%)" if lang == "en" else "Marktanteil (%)", fontsize=8.5)
     ax.legend(loc="lower right", fontsize=8, framealpha=0.9)
@@ -472,7 +524,7 @@ def render_panel_c(ax, data, lang="en"):
         ax.text(v / 2.0, i, f"{v:.1f}%", va="center", ha="center", color="white", fontweight="bold", fontsize=8)
 
 
-def render_panel_d(ax, data, lang="en"):
+def render_panel_e(ax, data, lang="en"):
     routes = [
         ("Natural_Chemical_HF", "Natural Chemical (HF)", "#27ae60"),
         ("Natural_Thermal", "Natural Thermal (2800C)", "#2980b9"),
@@ -506,7 +558,7 @@ def render_panel_d(ax, data, lang="en"):
     ax.set_xticklabels(labels, fontsize=7.5, rotation=15, ha="right")
     ax.set_ylabel("Electricity (kWh / kg)" if lang == "en" else "Strombedarf (kWh / kg)", fontsize=8.5)
 
-    title = "Panel D: Process Electricity Intensity by Route\nIntermediate vs. Cumulative Coated Anode" if lang == "en" else "Panel D: Spezifischer Strombedarf nach Route\nZwischenstufe vs. Kumulatives Fertigprodukt"
+    title = "Panel E: Process Electricity Intensity by Route\nIntermediate vs. Cumulative Coated Anode" if lang == "en" else "Panel E: Spezifischer Strombedarf nach Route\nZwischenstufe vs. Kumulatives Fertigprodukt"
     ax.set_title(title, fontsize=9.5, fontweight="bold", pad=8)
     ax.legend(loc="upper left", fontsize=7.5, framealpha=0.9)
     ax.grid(axis="y", linestyle=":", alpha=0.5)
@@ -518,7 +570,7 @@ def render_panel_d(ax, data, lang="en"):
     ax.set_ylim(0, 18.5)
 
 
-def render_panel_e(ax, data, lang="en"):
+def render_panel_f(ax, data, lang="en"):
     grades = data["grades"]
     labels = [g["grade_name"][:22] for g in grades]
     prices = [g["price_mid"] for g in grades]
@@ -532,7 +584,7 @@ def render_panel_e(ax, data, lang="en"):
     ax.set_xticklabels(labels, fontsize=7, rotation=25, ha="right")
     ax.set_ylabel("Midpoint Price (USD / Metric Tonne)" if lang == "en" else "Mittelpreis (USD / Tonne)", fontsize=8.5)
 
-    title = "Panel E: Value-Chain Price Spectrum Across Grades\nBlue: USGS Primary Statistics | Gray: Trade Benchmark" if lang == "en" else "Panel E: Preisspektrum ueber Wertschoepfungsstufen\nBlau: USGS Primaerstatistik | Grau: Marktreferenz"
+    title = "Panel F: Value-Chain Price Spectrum Across Grades\nBlue: USGS Primary Statistics | Gray: Trade Benchmark" if lang == "en" else "Panel F: Preisspektrum ueber Wertschoepfungsstufen\nBlau: USGS Primaerstatistik | Grau: Marktreferenz"
     ax.set_title(title, fontsize=9.5, fontweight="bold", pad=8)
     ax.grid(axis="y", linestyle=":", alpha=0.5)
 
@@ -541,7 +593,7 @@ def render_panel_e(ax, data, lang="en"):
     ax.set_ylim(0, 8000)
 
 
-def render_panel_f(ax, data, surface_data, lang="en"):
+def render_panel_g(ax, data, surface_data, lang="en"):
     e_axis = surface_data["e_axis"]
     g_axis = surface_data["g_axis"]
     ghg = surface_data["GHG_surface"]
@@ -564,14 +616,14 @@ def render_panel_f(ax, data, surface_data, lang="en"):
     ax.plot(6.8, 30.0, marker="v", color="cyan", markersize=6)
     ax.text(6.8, 60.0, "Natural HF (Hydro Grid)", fontsize=7, fontweight="bold", ha="left")
 
-    title = "Panel F: 2D Carbon Surface: Electricity x Grid\nE_GHG = 2.5 + (e * g)/1000 (kg CO2e/kg)" if lang == "en" else "Panel F: 2D-Flaeche: Prozessstrom x Strommix\nE_GHG = 2.5 + (e * g)/1000 (kg CO2e/kg)"
+    title = "Panel G: 2D Carbon Surface: Electricity x Grid\nE_GHG = 2.5 + (e * g)/1000 (kg CO2e/kg)" if lang == "en" else "Panel G: 2D-Flaeche: Prozessstrom x Strommix\nE_GHG = 2.5 + (e * g)/1000 (kg CO2e/kg)"
     ax.set_title(title, fontsize=9.5, fontweight="bold", pad=8)
     ax.set_xlabel("Process Electricity (kWh/kg)" if lang == "en" else "Prozessstrom (kWh/kg)", fontsize=8.5)
     ax.set_ylabel("Grid Emission Factor (g CO2/kWh)" if lang == "en" else "Netz-Emissionsfaktor (g CO2/kWh)", fontsize=8.5)
     ax.grid(True, linestyle=":", alpha=0.4)
 
 
-def render_panel_g(ax, data, h2_data, lang="en"):
+def render_panel_h(ax, data, h2_data, lang="en"):
     years = data["history"]["years"]
     nom = data["history"]["nominal"]
     real_2023 = data["history"]["real_2023"]
@@ -594,7 +646,7 @@ def render_panel_g(ax, data, h2_data, lang="en"):
     ax.scatter([peak_yr], [peak_val], color="#c0392b", s=40, zorder=5)
     ax.text(peak_yr, peak_val + 70, f"Peak {peak_yr}: ${peak_val:.0f}/t", ha="center", fontsize=7.5, fontweight="bold")
 
-    title = "Panel G: 74-Year Real Price History (1950-2024)\nH2 Falsified: Secular Drift (+13.88 $/yr, p=2e-15)" if lang == "en" else "Panel G: 74-Jahre Reale Graphitpreise (1950-2024)\nH2 Falsifiziert: Saekulardrift (+13.88 $/J, p=2e-15)"
+    title = "Panel H: 74-Year Real Price History (1950-2024)\nH2 Falsified: Secular Drift (+13.88 $/yr, p=2e-15)" if lang == "en" else "Panel H: 74-Jahre Reale Graphitpreise (1950-2024)\nH2 Falsifiziert: Saekulardrift (+13.88 $/J, p=2e-15)"
     ax.set_title(title, fontsize=9.5, fontweight="bold", pad=8)
     ax.set_xlabel("Year" if lang == "en" else "Jahr", fontsize=8.5)
     ax.set_ylabel("Price (USD / Metric Tonne)" if lang == "en" else "Preis (USD / Tonne)", fontsize=8.5)
@@ -604,7 +656,7 @@ def render_panel_g(ax, data, h2_data, lang="en"):
     ax.grid(True, linestyle=":", alpha=0.5)
 
 
-def render_panel_h(ax, reg_data, lang="en"):
+def render_panel_i(ax, reg_data, lang="en"):
     prim = reg_data["primary"]
     all_d = reg_data["all"]
 
@@ -615,7 +667,7 @@ def render_panel_h(ax, reg_data, lang="en"):
     y_fit = prim["intercept"] + prim["slope"] * x_dense
     ax.plot(x_dense, y_fit, color="#c0392b", lw=2.0, label=f"Primary Fit (Slope={prim['slope']:.2f}, R²={prim['r_squared']:.2f})" if lang == "en" else f"Primaer-Fit (Steigung={prim['slope']:.2f}, R²={prim['r_squared']:.2f})")
 
-    title = f"Panel H: Econometric Value Escalation vs. Purity\nln(Price) = {prim['intercept']:.2f} + {prim['slope']:.2f} * [-log10(1-C)] (p={prim['pvalue']:.4f})" if lang == "en" else f"Panel H: OLS-Wertschoepfung nach Reinheitsgrad\nln(Preis) = {prim['intercept']:.2f} + {prim['slope']:.2f} * [-log10(1-C)] (p={prim['pvalue']:.4f})"
+    title = f"Panel I: Econometric Value Escalation vs. Purity\nln(Price) = {prim['intercept']:.2f} + {prim['slope']:.2f} * [-log10(1-C)] (p={prim['pvalue']:.4f})" if lang == "en" else f"Panel I: OLS-Wertschoepfung nach Reinheitsgrad\nln(Preis) = {prim['intercept']:.2f} + {prim['slope']:.2f} * [-log10(1-C)] (p={prim['pvalue']:.4f})"
     ax.set_title(title, fontsize=9.5, fontweight="bold", pad=8)
     ax.set_xlabel("Purity Index: -log10(1 - Carbon Fraction)" if lang == "en" else "Reinheitsindex: -log10(1 - Reinheit)", fontsize=8.5)
     ax.set_ylabel("Log Price ln(USD/t)" if lang == "en" else "Log-Preis ln(USD/t)", fontsize=8.5)
@@ -623,80 +675,26 @@ def render_panel_h(ax, reg_data, lang="en"):
     ax.grid(True, linestyle=":", alpha=0.5)
 
 
-def render_panel_i(ax, shapley_data, tost_data, lang="en"):
-    stages = shapley_data["stages"]
-    deltas = [shapley_data["deltas"][s] for s in stages]
-    shapley_vals = [shapley_data["shapley_values"][s] for s in stages]
-
-    labels = [
-        "1. Flake Scrap Yield Penalty",
-        "2. Micronization Grinding",
-        "3. Chemical HF Leaching",
-        "4. Pitch Coating & Carbon",
-        "5. QA Qualification & Margin"
-    ] if lang == "en" else [
-        "1. Sphaeroidisierungs-Massenausschuss",
-        "2. Mahlung & Mikronisierung",
-        "3. Chemische HF-Laugung",
-        "4. Pech-Beschichtung & Carbonisierung",
-        "5. Batterie-Qualifikation & Marge"
-    ]
-
-    base = shapley_data["base_cost"]
-    cum_levels = [base]
-    for d in deltas:
-        cum_levels.append(cum_levels[-1] + d)
-
-    x = np.arange(len(stages))
-    ax.bar(x, deltas, bottom=cum_levels[:-1], color="#34495e", edgecolor="black", lw=0.6, width=0.55, label="Stage Added Delta" if lang == "en" else "Stufen-Mehrwert")
-    ax.plot(x, shapley_vals, color="#e74c3c", marker="o", lw=1.8, label="Shapley Value (120 Permutations)" if lang == "en" else "Shapley-Wert (120 Permutationen)")
-
-    ax.set_xticks(x)
-    ax.set_xticklabels(labels, fontsize=7, rotation=20, ha="right")
-    ax.set_ylabel("Cumulative Cost (USD / Metric Tonne)" if lang == "en" else "Kumulative Kosten (USD / Tonne)", fontsize=8.5)
-    ax.set_ylim(0, 8000)
-
-    # Inset / Text box for TOST & Superiority test results
-    sup_status = "CONFIRMED" if tost_data["is_superior"] else "FAILED"
-    eq_status = "REJECTED" if not tost_data["is_equivalent"] else "CONFIRMED"
-    box_text = (
-        f"Hypothesis 4 Inferential Tests:\n"
-        f"• Superiority Test (Synth Hydro < Nat Coal):\n"
-        f"  diff = {tost_data['diff']:.2f} kg, z = {tost_data['z_superiority']:.2f}, p < 0.001 -> {sup_status}\n"
-        f"• TOST Equivalence (Margin ±{tost_data['margin']:.1f} kg):\n"
-        f"  z1 = {tost_data['z1_tost']:.2f}, z2 = {tost_data['z2_tost']:.2f}, p_TOST = {tost_data['p_tost']:.3f} -> {eq_status}"
-    ) if lang == "en" else (
-        f"Hypothese 4 Inferenz-Tests:\n"
-        f"• Ueberlegenheits-Test (Synthese Hydro < Natur Kohle):\n"
-        f"  diff = {tost_data['diff']:.2f} kg, z = {tost_data['z_superiority']:.2f}, p < 0.001 -> {sup_status}\n"
-        f"• TOST-Aequivalenz (Toleranz ±{tost_data['margin']:.1f} kg):\n"
-        f"  z1 = {tost_data['z1_tost']:.2f}, z2 = {tost_data['z2_tost']:.2f}, p_TOST = {tost_data['p_tost']:.3f} -> {eq_status}"
-    )
-
-    ax.text(0.03, 0.96, box_text, transform=ax.transAxes, fontsize=7.2,
-            va="top", ha="left", bbox=dict(boxstyle="round,pad=0.4", facecolor="#ecf0f1", edgecolor="#bdc3c7", alpha=0.95))
-
-    title = "Panel I: Shapley Value Escalation & Hypothesis 4 Tests" if lang == "en" else "Panel I: Shapley-Wertschoepfung & Hypothese-4-Tests"
-    ax.set_title(title, fontsize=9.5, fontweight="bold", pad=8)
-    ax.legend(loc="center right", fontsize=7.5, framealpha=0.9)
-    ax.grid(axis="y", linestyle=":", alpha=0.5)
-
-
 # =====================================================================
 # Composite Matrix & Documentation Generator
 # =====================================================================
 
-def generate_individual_plots(data, h2_data, reg_data, surface_data, shapley_data, tost_data, lang="en"):
+def generate_individual_plots(data, h2_data, reg_data, surface_data, lang="en"):
+    # Clean up existing PNGs to prevent orphaned figures
+    for f in os.listdir(PLOTS_DIR):
+        if f.endswith(".png"):
+            os.remove(os.path.join(PLOTS_DIR, f))
+
     plots_spec = [
         ("panel_a_global_mine_production_by_country.png", lambda ax: render_panel_a(ax, data, lang)),
-        ("panel_b_70yr_production_trajectory.png", lambda ax: render_panel_b(ax, data, lang)),
-        ("panel_c_supply_chain_chokepoints.png", lambda ax: render_panel_c(ax, data, lang)),
-        ("panel_d_process_electricity_intensity.png", lambda ax: render_panel_d(ax, data, lang)),
-        ("panel_e_grade_price_spectrum.png", lambda ax: render_panel_e(ax, data, lang)),
-        ("panel_f_2d_carbon_response_surface.png", lambda ax: render_panel_f(ax, data, surface_data, lang)),
-        ("panel_g_70yr_real_price_history.png", lambda ax: render_panel_g(ax, data, h2_data, lang)),
-        ("panel_h_econometric_price_purity_regression.png", lambda ax: render_panel_h(ax, reg_data, lang)),
-        ("panel_i_shapley_waterfall_decomposition.png", lambda ax: render_panel_i(ax, shapley_data, tost_data, lang)),
+        ("panel_b_synthetic_throughput_by_country.png", lambda ax: render_panel_b(ax, data, lang)),
+        ("panel_c_70yr_production_trajectory.png", lambda ax: render_panel_c(ax, data, lang)),
+        ("panel_d_supply_chain_chokepoints.png", lambda ax: render_panel_d(ax, data, lang)),
+        ("panel_e_process_electricity_intensity.png", lambda ax: render_panel_e(ax, data, lang)),
+        ("panel_f_grade_price_spectrum.png", lambda ax: render_panel_f(ax, data, lang)),
+        ("panel_g_2d_carbon_response_surface.png", lambda ax: render_panel_g(ax, data, surface_data, lang)),
+        ("panel_h_70yr_real_price_history.png", lambda ax: render_panel_h(ax, data, h2_data, lang)),
+        ("panel_i_econometric_price_purity_regression.png", lambda ax: render_panel_i(ax, reg_data, lang)),
     ]
 
     for fname, render_fn in plots_spec:
@@ -709,7 +707,7 @@ def generate_individual_plots(data, h2_data, reg_data, surface_data, shapley_dat
         print(f"✓ Rendered standalone figure: {fname}")
 
 
-def generate_composite_matrix(data, h2_data, reg_data, surface_data, shapley_data, tost_data, lang="en"):
+def generate_composite_matrix(data, h2_data, reg_data, surface_data, lang="en"):
     fig, axes = plt.subplots(3, 3, figsize=(18, 15), dpi=300)
 
     render_panel_a(axes[0, 0], data, lang=lang)
@@ -718,11 +716,11 @@ def generate_composite_matrix(data, h2_data, reg_data, surface_data, shapley_dat
 
     render_panel_d(axes[1, 0], data, lang=lang)
     render_panel_e(axes[1, 1], data, lang=lang)
-    render_panel_f(axes[1, 2], data, surface_data, lang=lang)
+    render_panel_f(axes[1, 2], data, lang=lang)
 
-    render_panel_g(axes[2, 0], data, h2_data, lang=lang)
-    render_panel_h(axes[2, 1], reg_data, lang=lang)
-    render_panel_i(axes[2, 2], shapley_data, tost_data, lang=lang)
+    render_panel_g(axes[2, 0], data, surface_data, lang=lang)
+    render_panel_h(axes[2, 1], data, h2_data, lang=lang)
+    render_panel_i(axes[2, 2], reg_data, lang=lang)
 
     matrix_title = (
         "Global Graphite Economy: Macro Production, Price Regimes, Energy Intensity & Carbon Coupling\n"
@@ -797,14 +795,14 @@ def write_plot_documentation(h2_data, reg_data, tost_data, benchmarks):
         "| Output File | Panel | Core Theme | Methodological Category |",
         "| :--- | :---: | :--- | :--- |",
         "| `panel_a_global_mine_production_by_country.png` | Panel A | Global natural graphite mine production by country (2024e) | `Deskriptive_Vollerhebung` |",
-        "| `panel_b_70yr_production_trajectory.png` | Panel B | 74-Year mine production trajectory vs. synthetic anode emergence | `Parametrische_Wachstumsmodellierung` |",
-        "| `panel_c_supply_chain_chokepoints.png` | Panel C | Upstream mine vs. midstream processing concentration | `Wertschoepfungs_Konzentrationsanalyse` |",
-        "| `panel_d_process_electricity_intensity.png` | Panel D | Specific electricity intensity across 4 processing pathways | `Industrielle_LCA_Inventaranalyse` |",
-        "| `panel_e_grade_price_spectrum.png` | Panel E | Price spectrum across carbon purity and morphological grades | `Markterhebung_Querschnitt` |",
-        "| `panel_f_2d_carbon_response_surface.png` | Panel F | 2D GHG response surface (process power x grid emission factor) | `Bivariate_Reaktionsflaeche_Marginalerhaltend` |",
-        "| `panel_g_70yr_real_price_history.png` | Panel G | 74-Year nominal vs. real deflated price series (1950–2024) | `Oekonometrische_Trendanalyse` |",
-        "| `panel_h_econometric_price_purity_regression.png` | Panel H | Log-log price escalation vs. carbon purity defect index | `OLS_Regressionsmodellierung` |",
-        "| `panel_i_shapley_waterfall_decomposition.png` | Panel I | Sequential cost escalation (Shapley K! permutations) & TOST | `Kausale_Shapley_Dekomposition` |",
+        "| `panel_b_synthetic_throughput_by_country.png` | Panel B | Global synthetic graphite battery anode throughput by country (2024e) | `Deskriptive_Vollerhebung` |",
+        "| `panel_c_70yr_production_trajectory.png` | Panel C | 74-Year mine production trajectory vs. synthetic anode emergence | `Parametrische_Wachstumsmodellierung` |",
+        "| `panel_d_supply_chain_chokepoints.png` | Panel D | Upstream mine vs. midstream processing concentration | `Wertschoepfungs_Konzentrationsanalyse` |",
+        "| `panel_e_process_electricity_intensity.png` | Panel E | Specific electricity intensity across 4 processing pathways | `Industrielle_LCA_Inventaranalyse` |",
+        "| `panel_f_grade_price_spectrum.png` | Panel F | Price spectrum across carbon purity and morphological grades | `Markterhebung_Querschnitt` |",
+        "| `panel_g_2d_carbon_response_surface.png` | Panel G | 2D GHG response surface (process power x grid emission factor) | `Bivariate_Reaktionsflaeche_Marginalerhaltend` |",
+        "| `panel_h_70yr_real_price_history.png` | Panel H | 74-Year nominal vs. real deflated price series (1950–2024) | `Oekonometrische_Trendanalyse` |",
+        "| `panel_i_econometric_price_purity_regression.png` | Panel I | Log-log price escalation vs. carbon purity defect index | `OLS_Regressionsmodellierung` |",
         "| `graphite_synoptic_3x3_en.png` | All A–I | Publication-ready 9-panel synoptic analysis matrix (English) | `Synoptische_Synthese_Matrix` |",
         "| `graphite_synoptic_3x3_de.png` | All A–I | Publication-ready 9-panel synoptic analysis matrix (German) | `Synoptische_Synthese_Matrix` |",
         "",
@@ -817,39 +815,38 @@ def write_plot_documentation(h2_data, reg_data, tost_data, benchmarks):
         "- **Mathematical Formula**: Bar lengths represent reported 2024e national mine extraction P_i in thousand metric tonnes (P_tot = 1,600 kt).",
         "- **Findings**: China accounts for 1,270 kt of 1,600 kt world mine production (79.38%), followed by Madagascar (89 kt, 5.56%), Mozambique (75 kt, 4.69%), and Brazil (68 kt, 4.25%).",
         "",
-        "### Panel B: 74-Year Historical Mine vs. Synthetic Battery Anode Trajectory (1950–2024)",
-        "- **Primary Sources**: USGS Data Series 140 (`rawdata/ds140-graphite-2022.xlsx`), USGS MCS 2025, and IEA Critical Minerals Outlook 2024.",
-        "- **Findings**: Global mine output expanded from 159 kt in 1950 to 1,600 kt in 2024. Finished synthetic battery anode active material (AAM) surged to 2,700 kt in 2024.",
+        "### Panel B: Global Synthetic Graphite Battery Anode Throughput by Country of Origin (2024e)",
+        "- **Primary Sources**: IEA Global Critical Minerals Outlook 2024 (`literature/IEA_Critical_Minerals_Outlook_2024.pdf`), Benchmark Mineral Intelligence 2024, USGS Minerals Yearbook 2022.",
+        "- **Mathematical Formula**: Bar lengths represent national synthetic battery anode active material (AAM) throughput T_i in thousand metric tonnes (T_tot = 2,660 kt).",
+        "- **Findings**: China accounts for 2,550 kt of 2,660 kt world synthetic anode throughput (95.86%), followed by Japan (45 kt, 1.69%), South Korea (22 kt, 0.83%), Rest of World (15 kt, 0.56%), United States (14 kt, 0.53%), India (8 kt, 0.30%), and Europe (6 kt, 0.23%).",
         "",
-        "### Panel C: Supply Chain Chokepoints: Upstream Mining vs. Downstream Refining Control",
+        "### Panel C: 74-Year Historical Mine vs. Synthetic Battery Anode Trajectory (1950–2024)",
+        "- **Primary Sources**: USGS Data Series 140 (`rawdata/ds140-graphite-2022.xlsx`), USGS MCS 2025, and IEA Critical Minerals Outlook 2024.",
+        "- **Findings**: Global mine output expanded from 159 kt in 1950 to 1,600 kt in 2024. Finished synthetic battery anode active material (AAM) surged to 2,660 kt in 2024.",
+        "",
+        "### Panel D: Supply Chain Chokepoints: Upstream Mining vs. Downstream Refining Control",
         "- **Primary Sources**: USGS MCS 2025 and IEA Global Critical Minerals Outlook 2024 (p. 173).",
         "- **Findings**: China extracts 79.4% of mined flake, but controls 99% of commercial spherical graphite (uSPG) and 97% of synthetic graphitization, confirming Hypothesis 1.",
         "",
-        "### Panel D: Process Electricity Intensity by Route (kWh/kg Anode)",
+        "### Panel E: Process Electricity Intensity by Route (kWh/kg Anode)",
         "- **Primary Sources**: Argonne National Laboratory GREET Model (Report ANL-22/74 Table 3, p. 18), Engels et al. (2022), and Surovtseva et al. (2022).",
         "- **Findings**: Chemically purified natural CSPG consumes 6.77 kWh/kg intermediate (7.91 kWh/kg finished cSPG). Synthetic Acheson consumes 13.79 kWh/kg (2.04x natural), while modern LWG consumes 8.69 kWh/kg (1.28x natural).",
         "",
-        "### Panel E: Value Escalation Across the Purity and Morphology Spectrum (USD/t)",
+        "### Panel F: Value Escalation Across the Purity and Morphology Spectrum (USD/t)",
         "- **Primary Sources**: USGS Minerals Yearbook 2022 Table 4 (p. 32.13) for primary grades and trade benchmarks.",
         "- **Findings**: Prices step from amorphous powder ($468/t) to fine flake ($793/t), medium flake ($1,100/t), large flake ($1,300/t), uSPG ($2,900/t), US SPG import ($4,480/t), and synthetic anode material ($5,130/t).",
         "",
-        "### Panel F: 2D Response Surface: Process Energy vs. Grid Carbon Footprint",
+        "### Panel G: 2D Response Surface: Process Energy vs. Grid Carbon Footprint",
         "- **Mathematical Formula**: E_GHG = 2.5 + (e * g) / 1000 (kg CO2e/kg).",
         "- **Exact Marginal Conservation**: Analytically verified across 100 x 100 mesh (drift < 1e-10).",
         "",
-        "### Panel G: 74-Year Real Price History (1950–2024)",
+        "### Panel H: 74-Year Real Price History (1950–2024)",
         "- **Primary Sources**: USGS DS140 and FRED Monthly CPIAUCSL.",
         f"- **Findings**: Empirical long-run real price mean is ${h2_data['mean_real']:.2f}/t (2023 USD). The OLS secular drift slope is +${h2_data['slope']:.2f}/yr (p = {h2_data['pvalue']:.2e}), decisively **falsifying Hypothesis 2** of non-trending mean-reversion.",
         "",
-        "### Panel H: Econometric Price vs. Purity Log Regression",
+        "### Panel I: Econometric Price vs. Purity Log Regression",
         f"- **Mathematical Model**: ln(Price) = {prim['intercept']:.3f} + {prim['slope']:.3f} * [-log10(1 - Purity)]",
-        f"  - Slope beta_1 = {prim['slope']:.3f} +/- {prim['stderr']:.3f} (R2 = {prim['r_squared']:.3f}, p = {prim['pvalue']:.4f}, n = {prim['n']}).",
-        "",
-        "### Panel I: Shapley Value Decomposition (K! Permutations) & Hypothesis 4 Inferential Tests",
-        "- **Shapley Value Formulation**: Evaluated across all 5! = 120 permutations (k=5). Total cost delta = $6,200/t.",
-        "- **Hypothesis 4 Test Outcomes**:",
-        f"  - Superiority Test: difference = {tost_data['diff']:.2f} kg CO2e/kg, z = {tost_data['z_superiority']:.2f}, p < 0.001 -> **CONFIRMED** (renewable synthetic is cleaner than coal-grid natural).",
-        f"  - TOST Equivalence: margin +/- {tost_data['margin']:.1f} kg, p_TOST = {tost_data['p_tost']:.3f} -> **REJECTED** (carbon disparity exceeds equivalence corridor)."
+        f"  - Slope beta_1 = {prim['slope']:.3f} +/- {prim['stderr']:.3f} (R2 = {prim['r_squared']:.3f}, p = {prim['pvalue']:.4f}, n = {prim['n']})."
     ]
 
     with open(doc_path, "w", encoding="utf-8") as f:
@@ -878,11 +875,11 @@ def main():
     export_hypothesis_verdicts_json(h2_data, h3_data, tost_data, data["benchmarks"])
 
     # 4. Render individual figures
-    generate_individual_plots(data, h2_data, reg_data, surface_data, shapley_data, tost_data, lang="en")
+    generate_individual_plots(data, h2_data, reg_data, surface_data, lang="en")
 
     # 5. Render composite 3x3 matrices
-    generate_composite_matrix(data, h2_data, reg_data, surface_data, shapley_data, tost_data, lang="en")
-    generate_composite_matrix(data, h2_data, reg_data, surface_data, shapley_data, tost_data, lang="de")
+    generate_composite_matrix(data, h2_data, reg_data, surface_data, lang="en")
+    generate_composite_matrix(data, h2_data, reg_data, surface_data, lang="de")
 
     # 6. Generate plot documentation
     write_plot_documentation(h2_data, reg_data, tost_data, data["benchmarks"])

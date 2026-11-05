@@ -1,0 +1,113 @@
+@startuml 03_synthetic_anode_process_flow
+!pragma layout smetana
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName "Helvetica"
+skinparam roundCorner 6
+skinparam shadowing false
+skinparam ArrowColor #2C3E50
+skinparam ArrowThickness 1.5
+
+skinparam rectangle {
+  BackgroundColor #F9EBEA
+  BorderColor #E74C3C
+  FontColor #2C3E50
+}
+
+skinparam card {
+  BackgroundColor #FDEDEC
+  BorderColor #C0392B
+  FontColor #900C3F
+  FontStyle bold
+}
+
+skinparam queue {
+  BackgroundColor #EAEDED
+  BorderColor #7F8C8D
+}
+
+skinparam storage {
+  BackgroundColor #FCF3CF
+  BorderColor #F1C40F
+}
+
+title Synthetic Graphite Battery Anode (AAM) Industrial Process Flowsheet\nISO 10628 PFD Standard: Mass, Energy & Regional Cost Attribution (Basis: 1.0 t Finished AAM | ANL-22/74)
+
+' --- STAGE 1: PRECURSOR CALCINATION ---
+package "Stage 1: Needle Coke Precursor & Calcination [Cost Share: 31.0% | Elec Share: 3.2% (Ach) / 5.1% (LWG)]" #FDFEFE {
+  queue "Green Petroleum Needle Coke\n(Delayed Coking of FCC Decant Oil)\nMass: 1,108 kg (ANL Table 2)\n• Market Price: $1,100-$1,400/t coke\n• Feed Cost per t AAM: $1,220-$1,550\n  ($1,380/t Midpoint)" as GreenCoke
+  rectangle "Rotary Kiln Calciner (1,300 °C)\nRemoval of moisture & heavy volatiles\n• Stage Elec: 0.442 kWh/kg AAM\n• Stage Fuel: 14.31 MJ/kg AAM (Natural Gas / Volatiles)\n• Residence Time: 45 - 90 min\n• Conversion Cost: +$210/t AAM" as Calciner
+  storage "Volatile Off-Gases & Soot\nCH4, H2, CO, H2S, VOCs: 258 kg (25.8%)\nCombusted in Waste-Heat Recovery Boilers" as CalcinerOffgas
+  storage "Handling & Dust Loss: 2 kg (0.2%)" as CalcinerDust
+  card "Calcined Needle Coke\n(C >= 98.5%, Real Dens: 2.12 g/cm3)\nMass: 848 kg (74.0% Stage Yield)\n• Cumulative Cost: ~$1,590/t AAM\n• Cumulative Elec: 0.442 kWh/kg AAM" as CalcinedCoke
+
+  GreenCoke --> Calciner
+  Calciner --> CalcinerOffgas : Top Flue Off-gas (258 kg)
+  Calciner --> CalcinerDust : Baghouse Dust (2 kg)
+  Calciner --> CalcinedCoke : Cooled Calcined Lump (848 kg)
+}
+
+' --- STAGE 2: COMMINUTION, BINDING & BAKING ---
+package "Stage 2: Micronization, Pitch Kneading & Ring-Furnace Baking [Cost Share: 13.5% | Elec Share: 6.2% (Ach) / 9.8% (LWG)]" #F8F9F9 {
+  rectangle "Mechanical Pin / Jet Milling & Air Classification\nGrinding to Anode Size: D50 = 8.0 - 18.0 um\n• Power: ~0.45 kWh/kg | Cost: +$190/t AAM" as Milling
+  queue "Coal Tar Binder Pitch\n(Softening Pt: 110 °C | QI < 0.5%)\nMass: 205 kg (20 wt% addition)\n• Pitch Cost: ~$750/t -> +$155/t AAM" as BinderPitch
+  rectangle "Heated High-Shear Intensive Kneader (150-180 °C)\nHomogeneous coke-pitch paste blending\n• Power: ~0.10 kWh/kg | Cost: +$75/t AAM" as Kneader
+  rectangle "Ring / Tunnel Baking Furnace (800 - 1,000 °C)\nPyrolysis of pitch binder to solid carbon bridge\n• Cycle: 10 - 20 days | Stage Elec: 0.30 kWh/kg\n• Stage Fuel: 11.70 MJ/kg AAM (Natural Gas)\n• Baking Conversion Cost: +$275/t AAM\n• Total Stage 2 Cost: +$695/t AAM (0.850 kWh/kg Elec)" as BakingFurnace
+  storage "Pitch Tar Vapors & Off-gases\nRegenerative Thermal Oxidizer (RTO): 33 kg" as BakingOffgas
+  card "Baked Green Carbon Shapes / Pellets\nTurbostratic Carbon Structure (d002 >= 0.3440 nm)\nMass: 1,020 kg (99.6% Mass Yield)\n• Cumulative Cost: ~$2,285/t AAM\n• Cumulative Elec: 1.292 kWh/kg AAM" as BakedCarbon
+
+  CalcinedCoke --> Milling : Lump Feed (848 kg)
+  Milling --> Kneader : Micronized Powder
+  BinderPitch --> Kneader : Hot Molten Pitch (205 kg)
+  Kneader --> BakingFurnace : Formed Green Paste
+  BakingFurnace --> BakingOffgas : Off-gas Destruction (33 kg)
+  BakingFurnace --> BakedCarbon : Carbonized Intermediate (1,020 kg)
+}
+
+' --- STAGE 3: HIGH-TEMPERATURE GRAPHITIZATION ---
+package "Stage 3: Ultra-High Temperature Graphitization (2,800 - 3,000 °C) [Elec Share: 90.6% (Acheson) / 85.1% (LWG)]" #FDEDEC {
+  node "Technological & Regional Tariff Chokepoint\nChina Hydro/Coal Grid ($0.045/kWh) vs. EU/US Grid ($0.150/kWh)" as GraphSplit
+
+  package "Route 3A: Traditional Batch Acheson Furnace (45% China Share)" #FFFFFF {
+    rectangle "Acheson Transverse Resistance Furnace\n• Indirect Heating: Crucibles packed in SiC/coke resistor bed\n• Temp: 2,800 - 3,000 °C | Cycle: 15 - 25 days (10-16d cooling)\n• Thermal Efficiency: ~30% (70% radial heat loss to bed/ambient)\n• Stage Electricity: 12.50 kWh/kg AAM (90.6% of Route Elec!)\n• Power Cost @ $0.045/kWh (Inner Mongolia/Yunnan): $563/t\n• Power Cost @ $0.150/kWh (EU/US Grid): $1,875/t (+$1,312/t penalty)\n• Crucible + Packing Coke + Labor + CapEx: +$647/t (CN) | +$950/t (West)\n• Total Stage 3A Cost: +$1,210/t (China) vs. +$2,825/t (EU/US)" as AchesonFurnace
+    storage "Acheson Resistor Coke Ash & SO2\nVolatilized Ash Fumes: 20 kg" as AchesonWaste
+    card "Acheson Graphitized Product\nHexagonal ABAB Carbon (Stage Yield: 98.0%)\n• Cumulative Cost (CN): ~$3,495/t\n• Cumulative Cost (West): ~$5,110/t" as AchesonProduct
+  }
+
+  package "Route 3B: Longitudinal Graphitization — LWG / Castner (55% China Share)" #FFFFFF {
+    rectangle "LWG Direct-Current Axial Resistance Furnace\n• Direct Joule Heating: Current flows axially through carbon column\n• Temp: 2,800 - 3,000 °C | Cycle: 3 - 5 days (Continuous push)\n• Thermal Efficiency: 50 - 60% (Eliminates resistor packing bed)\n• Stage Electricity: 7.40 kWh/kg AAM (-40.8% Power Saving vs Acheson!)\n• Power Cost @ $0.045/kWh (China): $333/t (-$230/t vs CN Acheson)\n• Power Cost @ $0.150/kWh (EU/US): $1,110/t (+$777/t vs CN LWG)\n• Consumables + Labor + CapEx: +$420/t (CN) | +$650/t (West)\n• Total Stage 3B Cost: +$753/t (China) vs. +$1,760/t (EU/US)" as LWGFurnace
+    storage "LWG Insulation Carbon Dust: 20 kg" as LWG_Waste
+    card "LWG Graphitized Product\nHigh-Crystallinity Carbon (Stage Yield: 98.0%)\n• Cumulative Cost (CN): ~$3,038/t\n• Cumulative Cost (West): ~$4,045/t" as LWGProduct
+  }
+
+  BakedCarbon --> GraphSplit
+  GraphSplit -down-> AchesonFurnace : Batch Architecture (12.50 kWh/kg)
+  AchesonFurnace --> AchesonWaste : Ash Vaporization (20 kg)
+  AchesonFurnace --> AchesonProduct : Furnace Unloading (1,000 kg)
+
+  GraphSplit -right-> LWGFurnace : LWG Architecture (7.40 kWh/kg)
+  LWGFurnace --> LWG_Waste : Fume Extraction (20 kg)
+  LWGFurnace --> LWGProduct : Continuous Push-out (1,000 kg)
+}
+
+' --- STAGE 4: FINISHING, DE-IRONING & CLASSIFICATION ---
+package "Stage 4: Post-Graphitization Finishing, Secondary Coating & QA [Cost Share: 14.6%]" #EAFAF1 {
+  rectangle "De-agglomeration & Mechanical Sizing\nBreakup of graphitized sinter cakes (+$180/t)" as Sizing
+  rectangle "High-Gradient Magnetic Separation (HGMS)\nRemoval of ferromagnetic tramp iron: Fe < 50 ppb (+$220/t)" as MagneticSep
+  rectangle "Surface CVD/Pitch Passivation, Classification & QA\nD10: 8.5 um | D50: 16.0 um | D90: 28.0 um (+$350/t)\nTotal Stage 4 Finishing Cost: +$750/t AAM" as Classification
+  card "Finished Synthetic Battery Anode Material (AAM)\n• Carbon Purity: >= 99.95% C | Fe < 50 ppb\n• Degree of Graphitization: g >= 93% (d002 <= 0.3358 nm)\n• Reversible Capacity: 350 - 360 mAh/g | Cycle Life: > 1,500 cycles\n• Benchmark Market Price: $5,130/t (Range: $4,200 - $8,000/t)\nMass: 1,000 kg" as FinalAAM
+
+  AchesonProduct --> Sizing
+  LWGProduct ..> Sizing : (LWG Dominant Stream)
+  Sizing --> MagneticSep : Sized Grains
+  MagneticSep --> Classification : Iron-Free Stream
+  Classification --> FinalAAM : Qualified Product (1,000 kg)
+}
+
+note bottom of FinalAAM
+  <b>Why China Commands 95.86% (2,550 kt / 2,660 kt) of Global Synthetic Anode Throughput:</b>
+  1. <b>Process Technology (LWG vs. Acheson):</b> Switching from batch Acheson (<b>13.79 kWh/kg</b> total) to continuous LWG (<b>8.69 kWh/kg</b> total) cuts electricity by <b>5.10 kWh/kg (-37.0%)</b> and reduces total Chinese production cost from <b>~$4,245/t</b> to <b>~$3,788/t</b>.
+  2. <b>Industrial Electricity Tariff ($0.045 vs. $0.150/kWh):</b> Even with LWG technology, a Western plant paying $0.15/kWh faces a <b>+$1,007/t graphitization cost penalty</b> ($1,760/t vs. $753/t in China); using legacy Acheson in the West costs <b>$5,860/t</b> (above the $5,130/t market price!).
+  3. <b>Integrated Coal-Tar & Needle Coke Cluster:</b> Co-located delayed coking, coal-tar pitch distillation, and 100-ktpa LWG furnace halls eliminate intermediate transport and cut CapEx per ton by 45-55%.
+end note
+
+@enduml
